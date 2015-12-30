@@ -23,8 +23,10 @@ Also does children's parties.
 npm install rejoinder
 ```
 
+### Usage
+
 ```javascript
-var echo = require("rejoinder");
+var echo = require('rejoinder');
 echo.ifDebug('Some debug message');
 echo('some other message'.formatAsError());
 ```
@@ -41,3 +43,16 @@ node examples/runner.js
 
 ### Methods
 (coming soon)
+
+## Tests
+
+  npm test
+
+## Contributing
+
+In lieu of a formal styleguide, take care to maintain the existing coding style.
+Add unit tests for any new or changed functionality. Lint and test your code.
+
+## Release History
+
+* 0.1.x Initial release
