@@ -24,9 +24,11 @@ npm install rejoinder
 ## Usage
 
 ```javascript
-var echo = require('rejoinder').echo;
-echo.ifDebug('Some debug message');
-echo('some other message'.formatAsError());
+var Echo = require('rejoinder').Echo;
+var echo = new Echo();
+echo.beVerbose = true;
+echo.ifVerbose('Some debug message');
+echo('some other message'.formatAsWarning());
 ```
 
 ## Examples (run it and see it)
@@ -53,4 +55,5 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
-* 0.1.x Initial release (rapid iteration)
+* 0.2.0 Initial working release, unit tested
+* 0.1.x Rapid Iteration)
