@@ -1,0 +1,30 @@
+{
+  "name": "rejoinder",
+  "version": "0.1.0",
+  "description": "a generator of smart, pretty, and organized output for Node/JS scripts, replacing console.*",
+  "repository": {
+    "type": "git",
+    "url": "https://git.xunn.io/open-source/rejoinder"
+  },
+  "main": "rejoinder.js",
+  "author": "Xunnamius",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "shelljs": "^0.3.0"
+  },
+  "keywords": [
+    "echo",
+    "output",
+    "console",
+    "log",
+    "warn",
+    "color",
+    "pretty",
+    "prompt",
+    "verbose"
+  ]
+}
