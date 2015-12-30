@@ -34,5 +34,5 @@
     "mocha": "^2.3.4",
     "sinon": "^1.17.2"
   },
-  "engines" : { "node" : "^4" }
+  "engines" : { "node" : "^5" }
 }
