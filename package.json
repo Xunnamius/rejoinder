@@ -1,7 +1,7 @@
 {
   "name": "rejoinder",
-  "version": "0.1.0",
-  "description": "a generator of smart, pretty, and organized output for Node/JS scripts, replacing console.*",
+  "version": "0.1.2",
+  "description": "A generator of smart, pretty, and organized output for Node/JS scripts, replacing console.*",
   "repository": {
     "type": "git",
     "url": "https://git.xunn.io/open-source/rejoinder"
