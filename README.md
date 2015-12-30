@@ -3,8 +3,11 @@
 # REJOINDER
 
 **rejoinder**
+
 /rɪˈdʒɔɪndə/
+
 *noun*
+
 a reply or response to a question or remark, esp a quick witty one; retort
 
 Rejoinder is a generator of smart, pretty, and organized output for Node/JS scripts, replacing several of the console.* utilities.
