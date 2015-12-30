@@ -15,15 +15,13 @@ Super awesome when paired with [inquirer](https://www.npmjs.com/package/inquirer
 
 Also does children's parties.
 
-## Documentation
-
-### Installation
+## Installation
 
 ```shell
 npm install rejoinder
 ```
 
-### Usage
+## Usage
 
 ```javascript
 var echo = require('rejoinder');
@@ -31,7 +29,7 @@ echo.ifDebug('Some debug message');
 echo('some other message'.formatAsError());
 ```
 
-### Examples (run it and see it)
+## Examples (run it and see it)
 
 Checkout the `examples/` folder for code and interface examples.
 
@@ -41,7 +39,7 @@ node examples/runner.js
 # etc...
 ```
 
-### Methods
+## Methods
 (coming soon)
 
 ## Tests
