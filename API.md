@@ -163,7 +163,7 @@ Emit one or more strings to stdout with an additional prefix applied.
 
 Returns **Any** The result from calling withPrefix()
 
-### Echo.withPostfix.action
+## Echo.withPostfix.action
 
 **Parameters**
 
@@ -171,7 +171,7 @@ Returns **Any** The result from calling withPrefix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.debug
+## Echo.withPostfix.debug
 
 **Parameters**
 
@@ -179,7 +179,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.error
+## Echo.withPostfix.error
 
 **Parameters**
 
@@ -187,7 +187,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.exit
+## Echo.withPostfix.exit
 
 **Parameters**
 
@@ -195,7 +195,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.info
+## Echo.withPostfix.info
 
 **Parameters**
 
@@ -203,7 +203,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.ok
+## Echo.withPostfix.ok
 
 **Parameters**
 
@@ -211,7 +211,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.skip
+## Echo.withPostfix.skip
 
 **Parameters**
 
@@ -219,7 +219,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.success
+## Echo.withPostfix.success
 
 **Parameters**
 
@@ -227,7 +227,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-### Echo.withPostfix.warn
+## Echo.withPostfix.warn
 
 **Parameters**
 
