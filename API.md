@@ -1,4 +1,4 @@
-# Execute
+# Class Execute
 
 The Execute class is used to execute one or more commands. It can also be made
 to write output to a log, check return values, and notify on failure. Is is
@@ -55,7 +55,7 @@ command.
 
 Returns **Boolean** If the command succeeded or failed
 
-# Echo
+# Class Echo
 
 The Echo class exposes an API for echoing out to stdoutin a clean and concise
 manner.
