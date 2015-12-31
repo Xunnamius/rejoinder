@@ -23,11 +23,16 @@ Also does children's parties.
 npm install rejoinder
 ```
 
+If you want support from shelljs (required to use `Execute`), install that too:
+
+```shell
+npm install shelljs
+```
+
 ## Usage
 
 ```javascript
-var Echo = require('rejoinder').Echo;
-var echo = new Echo();
+var echo = require('rejoinder').echo;
 echo.beVerbose = true;
 echo.ifVerbose('Some debug message');
 echo('some other message'.formatAsWarning());

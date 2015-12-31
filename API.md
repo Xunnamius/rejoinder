@@ -18,7 +18,7 @@ Composes an Echo object as a requisite for instantiation.
 
 -   `echoInstance` **Echo** A fully instantiated Echo object instance
 
-## Execute.butIgnoreErrors
+## Execute#butIgnoreErrors
 
 Execute a shell command, except it will ignore a non-zero exit code from
 the command.
@@ -30,7 +30,7 @@ the command.
 
 Returns **Boolean** If the command succeeded or failed
 
-## Execute.now
+## Execute#now
 
 Execute a shell command right now.
 
@@ -42,7 +42,7 @@ Execute a shell command right now.
 
 Returns **Boolean** If the command succeeded or failed
 
-## Execute.withoutLogging
+## Execute#withoutLogging
 
 Execute a shell command, except no logs will be written by the execute
 command.
@@ -79,7 +79,7 @@ manner.
 -   `prefix` **[String]** An optional prefix that will appear before each
     emission to stdout
 
-## Echo.if
+## Echo#if
 
 Emit one or more strings to stdout if and only if some condition is met.
 
@@ -90,7 +90,7 @@ Emit one or more strings to stdout if and only if some condition is met.
 
 Returns **Any** The result from calling now()
 
-## Echo.ifVerbose
+## Echo#ifVerbose
 
 Emit one or more strings to stdout if and only if beVerbose is true.
 
@@ -100,7 +100,7 @@ Emit one or more strings to stdout if and only if beVerbose is true.
 
 Returns **Any** The result from calling withPrefix()
 
-## Echo.now
+## Echo#now
 
 Emit one or more strings to stdout right now.
 
@@ -110,7 +110,7 @@ Emit one or more strings to stdout right now.
 
 Returns **Any** The result from calling shelljs.echo
 
-## Echo.thenBadExit
+## Echo#thenBadExit
 
 Emit one or more strings to stdout and then exit with a custom error code.
 
@@ -119,7 +119,7 @@ Emit one or more strings to stdout and then exit with a custom error code.
 -   `code` **Integer** The status code to exit the process with
 -   `msg` **...String** One or more strings to emit to stdout
 
-## Echo.thenExit
+## Echo#thenExit
 
 Emit one or more strings to stdout and then exit with code 0.
 
@@ -129,7 +129,7 @@ Emit one or more strings to stdout and then exit with code 0.
 
 Returns **Any** The result from calling thenBadExit()
 
-## Echo.toLog
+## Echo#toLog
 
 Write one or more strings to a file.
 
@@ -139,7 +139,7 @@ Write one or more strings to a file.
 
 Returns **Any** The result from calling fs.toEnd()
 
-## Echo.usingPredicate
+## Echo#usingPredicate
 
 Emit one or more strings to stdout after applying a predicate function to
 each string.
@@ -152,7 +152,7 @@ each string.
 
 Returns **Any** The result from calling now()
 
-## Echo.withPostfix
+## Echo#withPostfix
 
 Emit one or more strings to stdout with an additional prefix applied.
 
@@ -163,7 +163,7 @@ Emit one or more strings to stdout with an additional prefix applied.
 
 Returns **Any** The result from calling withPrefix()
 
-## Echo.withPostfix.action
+## Echo.withPostfix#action
 
 **Parameters**
 
@@ -171,7 +171,7 @@ Returns **Any** The result from calling withPrefix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.debug
+## Echo.withPostfix#debug
 
 **Parameters**
 
@@ -179,7 +179,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.error
+## Echo.withPostfix#error
 
 **Parameters**
 
@@ -187,7 +187,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.exit
+## Echo.withPostfix#exit
 
 **Parameters**
 
@@ -195,7 +195,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.info
+## Echo.withPostfix#info
 
 **Parameters**
 
@@ -203,7 +203,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.ok
+## Echo.withPostfix#ok
 
 **Parameters**
 
@@ -211,7 +211,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.skip
+## Echo.withPostfix#skip
 
 **Parameters**
 
@@ -219,7 +219,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.success
+## Echo.withPostfix#success
 
 **Parameters**
 
@@ -227,7 +227,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPostfix.warn
+## Echo.withPostfix#warn
 
 **Parameters**
 
@@ -235,7 +235,7 @@ Returns **Any** The result from calling withPostfix()
 
 Returns **Any** The result from calling withPostfix()
 
-## Echo.withPrefix
+## Echo#withPrefix
 
 Switches the prefix temporarily. Only the code in the callback will respect
 the new prefix. Once the callback finishes executing, the prefix will
@@ -251,28 +251,28 @@ Returns **Any** The result from calling fn()
 
 # Global Methods
 
-## String.prototype.formatAsAction
+## String.prototype#formatAsAction
 
 Allows a string to be formatted to represent an action This method modifies
 the String prototype and is therefore globally applied upon import..
 
 Returns **String**
 
-## String.prototype.formatAsError
+## String.prototype#formatAsError
 
 Allows a string to be formatted to represent an error. This method modifies
 the String prototype and is therefore globally applied upon import.
 
 Returns **String**
 
-## String.prototype.formatAsSuccess
+## String.prototype#formatAsSuccess
 
 Allows a string to be formatted to represent an success. This method modifies
 the String prototype and is therefore globally applied upon import.
 
 Returns **String**
 
-## String.prototype.formatAsWarning
+## String.prototype#formatAsWarning
 
 Allows a string to be formatted to represent an warning. This method modifies
 the String prototype and is therefore globally applied upon import.
