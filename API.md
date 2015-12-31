@@ -10,11 +10,11 @@
 
 # ok
 
+# skip
+
 # success
 
 # warn
-
-# withPostfix#skip
 
 # Execute
 
@@ -185,11 +185,29 @@ Returns **Any** The result from calling fn()
 
 # defineProperty
 
-# defineProperty
+**Properties**
+
+-   `separator` **String** The value that will be printed between the prefix and the message
 
 # defineProperty
 
+**Properties**
+
+-   `logFilePath` **String** Determines where toLog() will write out to, if anywhere all. A falsy value
+    will prevent any logs from being written.
+
 # defineProperty
+
+**Properties**
+
+-   `beVerbose` **Boolean** Indicates that the script should be as verbose as possible in its output
+    when true. Was formerly DEBUG_MODE.
+
+# defineProperty
+
+**Properties**
+
+-   `prefix` **String** The value to prefix all messages with by default.
 
 # defineProperty
 
