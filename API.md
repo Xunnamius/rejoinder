@@ -188,9 +188,7 @@ Returns **Any** The result from calling fn()
 
 **Properties**
 
--   `totalSuccess` **Boolean** Will remain true so long as all of the commands executed up until the
-    point that totalSuccess is queried exited with 0 status codes. Becomes
-    false in all other scenarios.
+-   `totalSuccess` **Boolean** 
 
 # formatAsAction
 
