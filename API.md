@@ -187,27 +187,25 @@ Returns **Any** The result from calling fn()
 
 **Properties**
 
--   `separator` **String** The value that will be printed between the prefix and the message
+-   `separator` **String** 
 
 # defineProperty
 
 **Properties**
 
--   `logFilePath` **String** Determines where toLog() will write out to, if anywhere all. A falsy value
-    will prevent any logs from being written.
+-   `beVerbose` **Boolean** 
 
 # defineProperty
 
 **Properties**
 
--   `beVerbose` **Boolean** Indicates that the script should be as verbose as possible in its output
-    when true. Was formerly DEBUG_MODE.
+-   `logFilePath` **String** 
 
 # defineProperty
 
 **Properties**
 
--   `prefix` **String** The value to prefix all messages with by default.
+-   `prefix` **String** 
 
 # defineProperty
 
