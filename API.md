@@ -1,22 +1,80 @@
 # action
 
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
 # debug
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
 
 # error
 
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
 # exit
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
 
 # info
 
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
 # ok
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
 
 # skip
 
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
 # success
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
 
 # warn
 
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
 # Execute
+
+The Execute class is used to execute one or more commands. It can also be made
+to write output to a log, check return values, and notify on failure. Is is
+also aware of the silence/verbose settings on the composed Echo object.
 
 **Parameters**
 
@@ -68,6 +126,9 @@ command.
 Returns **Boolean** If the command succeeded or failed
 
 # Echo
+
+The Echo class exposes an API for echoing out to stdoutin a clean and concise
+manner.
 
 **Parameters**
 
@@ -155,6 +216,8 @@ Returns **Any** The result from calling now()
 
 ## withPostfix
 
+Emit one or more strings to stdout with an additional prefix applied.
+
 **Parameters**
 
 -   `postfix` **String** A prefix that will appear before the emission
@@ -178,17 +241,37 @@ Returns **Any** The result from calling fn()
 
 # defineProperty
 
-# defineProperty
+**Properties**
 
-# defineProperty
-
-# defineProperty
+-   `separator` **String** The value that will be printed between the prefix and the message
 
 # defineProperty
 
 **Properties**
 
--   `totalSuccess` **Boolean** 
+-   `logFilePath` **String** Determines where toLog() will write out to, if anywhere all. A falsy value
+    will prevent any logs from being written.
+
+# defineProperty
+
+**Properties**
+
+-   `beVerbose` **Boolean** Indicates that the script should be as verbose as possible in its output
+    when true. Was formerly DEBUG_MODE.
+
+# defineProperty
+
+**Properties**
+
+-   `prefix` **String** The value to prefix all messages with by default.
+
+# defineProperty
+
+**Properties**
+
+-   `totalSuccess` **Boolean** Will remain true so long as all of the commands executed up until the
+    point that totalSuccess is queried exited with 0 status codes. Becomes
+    false in all other scenarios.
 
 # formatAsAction
 
