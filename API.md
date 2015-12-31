@@ -18,10 +18,6 @@
 
 # Execute
 
-The Execute class is used to execute one or more commands. It can also be made
-to write output to a log, check return values, and notify on failure. Is is
-also aware of the silence/verbose settings on the composed Echo object.
-
 **Parameters**
 
 -   `echoInstance`  
@@ -72,9 +68,6 @@ command.
 Returns **Boolean** If the command succeeded or failed
 
 # Echo
-
-The Echo class exposes an API for echoing out to stdoutin a clean and concise
-manner.
 
 **Parameters**
 
@@ -192,6 +185,12 @@ Returns **Any** The result from calling fn()
 # defineProperty
 
 # defineProperty
+
+**Properties**
+
+-   `totalSuccess` **Boolean** Will remain true so long as all of the commands executed up until the
+    point that totalSuccess is queried exited with 0 status codes. Becomes
+    false in all other scenarios.
 
 # formatAsAction
 
