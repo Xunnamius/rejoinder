@@ -10,7 +10,8 @@
   "author": "Xunnamius",
   "license": "ISC",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "documentation -f md -o API.md"
   },
   "keywords": [
     "echo",

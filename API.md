@@ -72,10 +72,6 @@ Returns **Any** The result from calling withPostfix()
 
 # Execute
 
-The Execute class is used to execute one or more commands. It can also be made
-to write output to a log, check return values, and notify on failure. Is is
-also aware of the silence/verbose settings on the composed Echo object.
-
 **Parameters**
 
 -   `echoInstance`  
@@ -98,12 +94,11 @@ Composes an Echo object as a requisite for instantiation.
 
 **Parameters**
 
--   `echo` **Echo** A fully instantiated Echo object instance
--   `echoInstance`  
+-   `echoInstance` **Echo** A fully instantiated Echo object instance
 
 ## now
 
-Execute a shell command.
+Execute a shell command right now.
 
 **Parameters**
 
@@ -127,9 +122,6 @@ command.
 Returns **Boolean** If the command succeeded or failed
 
 # Echo
-
-The Echo class exposes an API for echoing out to stdoutin a clean and concise
-manner.
 
 **Parameters**
 
@@ -165,7 +157,7 @@ Returns **Any** The result from calling withPrefix()
 
 ## now
 
-Emit one or more strings to stdout.
+Emit one or more strings to stdout right now.
 
 **Parameters**
 
@@ -214,17 +206,6 @@ each string.
 -   `msg` **...String** One or more strings to emit to stdout
 
 Returns **Any** The result from calling now()
-
-## withPostfix
-
-Emit one or more strings to stdout with an additional prefix applied.
-
-**Parameters**
-
--   `postfix` **String** A prefix that will appear before the emission
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPrefix()
 
 ## withPrefix
 
@@ -277,3 +258,12 @@ Allows a string to be formatted to represent an warning. This method modifies
 the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
+
+# withPostfix
+
+**Parameters**
+
+-   `postfix` **String** A prefix that will appear before the emission
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPrefix()
