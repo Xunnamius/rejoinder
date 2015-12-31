@@ -43,8 +43,8 @@ node examples/runner.js
 # etc...
 ```
 
-## Methods
-(coming soon)
+## Documentation
+See [API.md](API.md)
 
 ## Tests
 
