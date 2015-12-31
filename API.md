@@ -200,3 +200,5 @@ Allows a string to be formatted to represent an warning. This method modifies
 the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
+
+# withPostfix.skip
