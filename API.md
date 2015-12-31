@@ -1,75 +1,3 @@
-# action
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# debug
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# error
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# exit
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# info
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# ok
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# skip
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# success
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# warn
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
 # Execute
 
 **Parameters**
@@ -122,6 +50,9 @@ command.
 Returns **Boolean** If the command succeeded or failed
 
 # Echo
+
+The Echo class exposes an API for echoing out to stdoutin a clean and concise
+manner.
 
 **Parameters**
 
@@ -207,6 +138,17 @@ each string.
 
 Returns **Any** The result from calling now()
 
+## withPostfix
+
+Emit one or more strings to stdout with an additional prefix applied.
+
+**Parameters**
+
+-   `postfix` **String** A prefix that will appear before the emission
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPrefix()
+
 ## withPrefix
 
 Switches the prefix temporarily. Only the code in the callback will respect
@@ -233,37 +175,16 @@ Returns **Any** The result from calling fn()
 
 # formatAsAction
 
-Allows a string to be formatted to represent an action This method modifies
-the String prototype and is therefore globally applied upon import..
-
 Returns **String** 
 
 # formatAsError
-
-Allows a string to be formatted to represent an error. This method modifies
-the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
 
 # formatAsSuccess
 
-Allows a string to be formatted to represent an success. This method modifies
-the String prototype and is therefore globally applied upon import.
-
 Returns **String** 
 
 # formatAsWarning
 
-Allows a string to be formatted to represent an warning. This method modifies
-the String prototype and is therefore globally applied upon import.
-
 Returns **String** 
-
-# withPostfix
-
-**Parameters**
-
--   `postfix` **String** A prefix that will appear before the emission
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPrefix()
