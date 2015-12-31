@@ -10,13 +10,17 @@
 
 # ok
 
-# skip
-
 # success
 
 # warn
 
+# withPostfix#skip
+
 # Execute
+
+The Execute class is used to execute one or more commands. It can also be made
+to write output to a log, check return values, and notify on failure. Is is
+also aware of the silence/verbose settings on the composed Echo object.
 
 **Parameters**
 
