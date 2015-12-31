@@ -175,16 +175,28 @@ Returns **Any** The result from calling fn()
 
 # formatAsAction
 
+Allows a string to be formatted to represent an action This method modifies
+the String prototype and is therefore globally applied upon import..
+
 Returns **String** 
 
 # formatAsError
+
+Allows a string to be formatted to represent an error. This method modifies
+the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
 
 # formatAsSuccess
 
+Allows a string to be formatted to represent an success. This method modifies
+the String prototype and is therefore globally applied upon import.
+
 Returns **String** 
 
 # formatAsWarning
+
+Allows a string to be formatted to represent an warning. This method modifies
+the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
