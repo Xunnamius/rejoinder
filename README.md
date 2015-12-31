@@ -7,9 +7,9 @@
     noun
     a reply or response to a question or remark, esp a quick witty one; retort
 
-Rejoinder is a generator of smart, pretty, and organized output for Node/JS scripts, especially when executing shell commands.
-It leverages colors and the like using the [colors package](https://www.npmjs.com/package/colors). Makes life easier when executing CLI instructions
-with [shelljs](https://www.npmjs.com/package/shelljs) using specialized objects.
+Rejoinder is a generator of smart, pretty, and organized output on the console for Node/JS scripts, with optimizations
+for executing shell commands. It leverages colors and the like using the [colors package](https://www.npmjs.com/package/colors)
+and makes life easier when executing CLI instructions with [shelljs](https://www.npmjs.com/package/shelljs).
 
 Super awesome when paired with [inquirer](https://www.npmjs.com/package/inquirer) and/or [commander](https://www.npmjs.com/package/commander)!
 
