@@ -100,6 +100,17 @@ Emit one or more strings to stdout if and only if beVerbose is true.
 
 Returns **Any** The result from calling withPrefix()
 
+## Echo#ifDebug
+
+Emit one or more strings to stdout if and only if beVerbose is true.
+Emission will occur as if called by Echo.withPostfix.debug().
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPrefix()
+
 ## Echo#now
 
 Emit one or more strings to stdout right now.
