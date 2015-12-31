@@ -201,4 +201,4 @@ the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
 
-# withPostfix.skip
+# skip
