@@ -162,8 +162,6 @@ Returns **Any** The result from calling now()
 
 ## withPostfix
 
-Emit one or more strings to stdout with an additional prefix applied.
-
 **Parameters**
 
 -   `postfix` **String** A prefix that will appear before the emission
