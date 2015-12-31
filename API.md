@@ -185,27 +185,11 @@ Returns **Any** The result from calling fn()
 
 # defineProperty
 
-**Properties**
-
--   `separator` **String** 
+# defineProperty
 
 # defineProperty
 
-**Properties**
-
--   `beVerbose` **Boolean** 
-
 # defineProperty
-
-**Properties**
-
--   `logFilePath` **String** 
-
-# defineProperty
-
-**Properties**
-
--   `prefix` **String** 
 
 # defineProperty
 
