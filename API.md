@@ -1,84 +1,22 @@
-# action
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# debug
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# error
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# exit
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# info
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# ok
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# skip
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# success
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
-# warn
-
-**Parameters**
-
--   `msg` **...String** One or more strings to emit to stdout
-
-Returns **Any** The result from calling withPostfix()
-
 # Execute
 
 The Execute class is used to execute one or more commands. It can also be made
 to write output to a log, check return values, and notify on failure. Is is
 also aware of the silence/verbose settings on the composed Echo object.
 
+**Properties**
+
+-   `totalSuccess` **Boolean** Will remain true so long as all of the commands executed up until the
+    point that totalSuccess is queried exited with 0 status codes. Becomes
+    false in all other scenarios.
+
+## constructor
+
+Composes an Echo object as a requisite for instantiation.
+
 **Parameters**
 
--   `echoInstance`  
+-   `echoInstance` **Echo** A fully instantiated Echo object instance
 
 ## butIgnoreErrors
 
@@ -91,14 +29,6 @@ the command.
 -   `description` **[String]** A description of what this command is doing
 
 Returns **Boolean** If the command succeeded or failed
-
-## constructor
-
-Composes an Echo object as a requisite for instantiation.
-
-**Parameters**
-
--   `echoInstance` **Echo** A fully instantiated Echo object instance
 
 ## now
 
@@ -130,9 +60,17 @@ Returns **Boolean** If the command succeeded or failed
 The Echo class exposes an API for echoing out to stdoutin a clean and concise
 manner.
 
-**Parameters**
+**Properties**
 
--   `prefix`  
+-   `separator` **String** The value that will be printed between the prefix and the message
+
+-   `logFilePath` **String** Determines where toLog() will write out to, if anywhere all. A falsy value
+    will prevent any logs from being written.
+
+-   `beVerbose` **Boolean** Indicates that the script should be as verbose as possible in its output
+    when true. Was formerly DEBUG_MODE.
+
+-   `prefix` **String** The value to prefix all messages with by default.
 
 ## constructor
 
@@ -225,6 +163,78 @@ Emit one or more strings to stdout with an additional prefix applied.
 
 Returns **Any** The result from calling withPrefix()
 
+### withPostfix.action
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.debug
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.error
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.exit
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.info
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.ok
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.skip
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.success
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+### withPostfix.warn
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
 ## withPrefix
 
 Switches the prefix temporarily. Only the code in the callback will respect
@@ -239,62 +249,30 @@ revert back to its previous value.
 
 Returns **Any** The result from calling fn()
 
-# defineProperty
+# Global Methods
 
-**Properties**
-
--   `separator` **String** The value that will be printed between the prefix and the message
-
-# defineProperty
-
-**Properties**
-
--   `logFilePath` **String** Determines where toLog() will write out to, if anywhere all. A falsy value
-    will prevent any logs from being written.
-
-# defineProperty
-
-**Properties**
-
--   `beVerbose` **Boolean** Indicates that the script should be as verbose as possible in its output
-    when true. Was formerly DEBUG_MODE.
-
-# defineProperty
-
-**Properties**
-
--   `prefix` **String** The value to prefix all messages with by default.
-
-# defineProperty
-
-**Properties**
-
--   `totalSuccess` **Boolean** Will remain true so long as all of the commands executed up until the
-    point that totalSuccess is queried exited with 0 status codes. Becomes
-    false in all other scenarios.
-
-# formatAsAction
+## String.prototype.formatAsAction
 
 Allows a string to be formatted to represent an action This method modifies
 the String prototype and is therefore globally applied upon import..
 
 Returns **String** 
 
-# formatAsError
+## String.prototype.formatAsError
 
 Allows a string to be formatted to represent an error. This method modifies
 the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
 
-# formatAsSuccess
+## String.prototype.formatAsSuccess
 
 Allows a string to be formatted to represent an success. This method modifies
 the String prototype and is therefore globally applied upon import.
 
 Returns **String** 
 
-# formatAsWarning
+## String.prototype.formatAsWarning
 
 Allows a string to be formatted to represent an warning. This method modifies
 the String prototype and is therefore globally applied upon import.
