@@ -40,7 +40,7 @@ Execute a shell command right now.
 -   `description` **[String]** A description of what this command is doing
 -   `ignoreErrors` **[Boolean]** Ignore a non-zero exit code from the command
 
-Returns **Boolean** If the command succeeded or failed
+Returns **Object** The information object returned by shell.exec
 
 ## Execute#withoutLogging
 
