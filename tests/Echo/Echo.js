@@ -16,6 +16,7 @@ const WITHPOSTFIX_SUGAR_METHODS = [
     "error:formatAsError",
     "debug:toString",
     "exit:toString",
+    "badExit:formatAsError",
     "action:formatAsAction",
     "info:formatAsAction",
     "success:formatAsSuccess",
@@ -323,7 +324,7 @@ describe('Echo', function()
                 echo.thenBadExit(1, 'test');
                 process.exit = exit;
 
-                expect(emission).to.equal('EXIT test');
+                expect(emission).to.equal('BADEXIT ' + 'test'.formatAsError());
                 expect(die).to.equal(1);
             });
         });
