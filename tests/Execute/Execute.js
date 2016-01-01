@@ -11,7 +11,7 @@
 "use strict";
 
 var expects      = require('chai').expect;
-var colors       = require('../../lib/Utils/string.prototype').colors;
+var colors       = require('colors');
 var Execute      = require('../../lib/Execute/Execute');
 var Echo         = require('../../lib/Echo/Echo');
 var EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
@@ -86,7 +86,7 @@ describe('Execute', function()
                 expects(result).to.be.true;
 
                 execute.now('return 0', 'describe');
-                expects(emission).to.equal(colors.green('OK'));
+                expects(emission).to.equal('SUCCESS ' + colors.green('OK'));
 
                 result = execute.now('return 5');
                 expects(execute.totalSuccess).to.be.false;
