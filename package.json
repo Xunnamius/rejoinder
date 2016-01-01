@@ -1,6 +1,6 @@
 {
   "name": "rejoinder",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A generator of smart, pretty, and organized output for Node/JS scripts in the terminal",
   "repository": {
     "type": "git",

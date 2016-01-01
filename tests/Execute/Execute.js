@@ -10,7 +10,8 @@
 
 "use strict";
 
-var expects       = require('chai').expect;
+var expects      = require('chai').expect;
+var colors       = require('../../lib/Utils/string.prototype').colors;
 var Execute      = require('../../lib/Execute/Execute');
 var Echo         = require('../../lib/Echo/Echo');
 var EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
@@ -85,22 +86,22 @@ describe('Execute', function()
                 expects(result).to.be.true;
 
                 execute.now('return 0', 'describe');
-                expects(emission).to.equal('OK');
+                expects(emission).to.equal(colors.green('OK'));
 
                 result = execute.now('return 5');
                 expects(execute.totalSuccess).to.be.false;
                 expects(result).to.be.false;
 
                 result = execute.now('return 5', 'description');
-                expects(emission).to.equal('ERROR FAILED!');
+                expects(emission).to.equal('ERROR ' + colors.red('FAILED!'));
 
                 execute._echo.beVerbose = true;
 
                 execute.now('return 5');
-                expects(emission).to.equal('DEBUG FAILED!');
+                expects(emission).to.equal('DEBUG ' + colors.red('FAILED!'));
 
                 execute.now('return 0');
-                expects(emission).to.equal('DEBUG OK');
+                expects(emission).to.equal('DEBUG ' + colors.green('OK'));
 
                 expects(execute.totalSuccess).to.be.false;
             });
