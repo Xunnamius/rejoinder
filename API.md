@@ -57,7 +57,7 @@ Returns **Boolean** If the command succeeded or failed
 
 # Class Echo
 
-The Echo class exposes an API for echoing out to stdoutin a clean and concise
+The Echo class exposes an API for echoing out to stdout in a clean and concise
 manner.
 
 **Properties**
@@ -265,7 +265,11 @@ Returns **Any** The result from calling fn()
 ## String.prototype#formatAsAction
 
 Allows a string to be formatted to represent an action This method modifies
-the String prototype and is therefore globally applied upon import..
+the String prototype and is therefore globally applied upon import.
+
+**Parameters**
+
+-   `includePrefix` [**Boolean**]
 
 Returns **String**
 
@@ -274,6 +278,10 @@ Returns **String**
 Allows a string to be formatted to represent an error. This method modifies
 the String prototype and is therefore globally applied upon import.
 
+**Parameters**
+
+-   `includePrefix` [**Boolean**]
+
 Returns **String**
 
 ## String.prototype#formatAsSuccess
@@ -281,11 +289,19 @@ Returns **String**
 Allows a string to be formatted to represent an success. This method modifies
 the String prototype and is therefore globally applied upon import.
 
+**Parameters**
+
+-   `includePrefix` [**Boolean**]
+
 Returns **String**
 
 ## String.prototype#formatAsWarning
 
 Allows a string to be formatted to represent an warning. This method modifies
 the String prototype and is therefore globally applied upon import.
+
+**Parameters**
+
+-   `includePrefix` [**Boolean**]
 
 Returns **String**
