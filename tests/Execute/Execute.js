@@ -81,18 +81,16 @@ describe('Execute', function()
         {
             it('executes commands and outputs as expected', function()
             {
-                let result = execute.now('return 0');
+                execute.now('return 0');
                 expects(execute.totalSuccess).to.be.true;
-                expects(result).to.be.true;
 
                 execute.now('return 0', 'describe');
                 expects(emission).to.equal('SUCCESS ' + colors.green('OK'));
 
-                result = execute.now('return 5');
+                execute.now('return 5');
                 expects(execute.totalSuccess).to.be.false;
-                expects(result).to.be.false;
 
-                result = execute.now('return 5', 'description');
+                execute.now('return 5', 'description');
                 expects(emission).to.equal('ERROR ' + colors.red('FAILED!'));
 
                 execute._echo.beVerbose = true;
@@ -120,9 +118,8 @@ describe('Execute', function()
         {
             it('executes commands but does not get angry on exit status != 0', function()
             {
-                let result = execute.butIgnoreErrors('return 5');
+                execute.butIgnoreErrors('return 5');
                 expects(execute.totalSuccess).to.be.true;
-                expects(result).to.be.true;
             });
         });
 
