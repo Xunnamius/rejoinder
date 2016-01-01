@@ -124,6 +124,7 @@ Returns **Any** The result from calling shelljs.echo
 ## Echo#thenBadExit
 
 Emit one or more strings to stdout and then exit with a custom error code.
+Emission will occur as if called by Echo.withPostfix.badExit().
 
 **Parameters**
 
@@ -133,6 +134,7 @@ Emit one or more strings to stdout and then exit with a custom error code.
 ## Echo#thenExit
 
 Emit one or more strings to stdout and then exit with code 0.
+Emission will occur as if called by Echo.withPostfix.exit().
 
 **Parameters**
 
@@ -199,6 +201,14 @@ Returns **Any** The result from calling withPostfix()
 Returns **Any** The result from calling withPostfix()
 
 ## Echo.withPostfix#exit
+
+**Parameters**
+
+-   `msg` **...String** One or more strings to emit to stdout
+
+Returns **Any** The result from calling withPostfix()
+
+## Echo.withPostfix#badExit
 
 **Parameters**
 
