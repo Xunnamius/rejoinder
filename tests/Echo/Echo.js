@@ -11,15 +11,15 @@
 "use strict";
 
 const WITHPOSTFIX_SUGAR_METHODS = [
-    "skip",
-    "warn",
-    "error",
-    "debug",
-    "exit",
-    "action",
-    "info",
-    "success",
-    "ok"
+    "skip:formatAsWarning",
+    "warn:formatAsWarning",
+    "error:formatAsError",
+    "debug:toString",
+    "exit:toString",
+    "action:formatAsAction",
+    "info:formatAsAction",
+    "success:formatAsSuccess",
+    "ok:formatAsSuccess"
 ];
 
 var expect       = require('chai').expect;
@@ -365,12 +365,18 @@ describe('Echo', function()
 
             describe('#<sugar methods>', function()
             {
-                for(let method of WITHPOSTFIX_SUGAR_METHODS)
+                for(let methodsig of WITHPOSTFIX_SUGAR_METHODS)
                 {
+                    let splt = methodsig.split(':');
+                    let method = splt[0];
+                    let fname = splt[1];
+
                     the(`${method}() emits as expected`, function()
                     {
                         echo.withPostfix[method](method);
-                        expect(emission).to.equal(`${method.toUpperCase()} ${method}`);
+                        expect(emission).to.equal(`${method.toUpperCase()} ` + method[fname]());
+                        echo.withPostfix[method](method, method);
+                        expect(emission).to.equal(`${method.toUpperCase()} ` + `${method} ${method}`[fname]());
                     });
                 }
             });
