@@ -18,7 +18,7 @@ const WITHPOSTFIX_SUGAR_METHODS = [
     "exit:toString",
     "badExit:formatAsError",
     "action:formatAsAction",
-    "info:formatAsAction",
+    "info:formatAsInformation",
     "success:formatAsSuccess",
     "ok:formatAsSuccess"
 ];

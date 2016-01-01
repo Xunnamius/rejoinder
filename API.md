@@ -315,3 +315,14 @@ the String prototype and is therefore globally applied upon import.
 -   `includePrefix` [**Boolean**]
 
 Returns **String**
+
+## String.prototype#formatAsInformation
+
+Allows a string to be formatted to represent information. This method modifies
+the String prototype and is therefore globally applied upon import.
+
+**Parameters**
+
+-   `includePrefix` [**Boolean**]
+
+Returns **String**
