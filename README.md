@@ -33,7 +33,9 @@ npm install shelljs
 ## Usage and Examples
 
 ```javascript
-var echo = require('rejoinder').echo;
+var rejoinder = require('rejoinder');
+var echo = rejoinder.echo;
+var execute = rejoinder.execute;
 
 echo.now('output this very important warning to the console with pretty colors'.formatAsWarning());
 
@@ -61,6 +63,9 @@ echo.withPrefix('~>', function()
     echo.withPostfix('NO', 'Wait!');
     echo.withPostfix.action("Don't make me bring Execute into this...");
 });
+
+echo.beVerbose = true;
+execute.now('return 0'); // prints the command and the result thanks to echo.beVerbose!
 ```
 
 ## Documentation
