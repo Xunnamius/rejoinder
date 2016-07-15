@@ -9,6 +9,7 @@
 # Sublime #
 ###########
 *.sublime-*
+!*.sublime-project
 
 # Logs and Databases #
 ######################
