@@ -7,5 +7,5 @@
  * Rejoinder.js BDD unit tests
  */
 
-var expect = require('chai').expect;
+let expect = require('chai').expect;
 

@@ -23,11 +23,12 @@ const WITHPOSTFIX_SUGAR_METHODS = [
     "ok:formatAsSuccess"
 ];
 
-var expect       = require('chai').expect;
-var Echo         = require('../../lib/Echo/Echo');
-var EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
+let fs           = require('fs');
+let expect       = require('chai').expect;
+let Echo         = require('../../lib/Echo/Echo');
+let EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
 
-var the = it;
+let the = it;
 
 describe('Echo', function()
 {
@@ -35,25 +36,25 @@ describe('Echo', function()
     {
         it('should have logFilePath property = null', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
             expect(echo).to.have.property('logFilePath', null);
         });
 
         it('should have beVerbose property = false', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
             expect(echo).to.have.property('beVerbose', false);
         });
 
         it('should have separator property = " "', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
             expect(echo).to.have.property('separator', ' ');
         });
 
         it('should have emitStrategy property = null', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
             expect(echo).to.have.property('emitStrategy', null);
         });
 
@@ -61,7 +62,7 @@ describe('Echo', function()
         {
             it('should have prefix property = null', function()
             {
-                var echo = new Echo();
+                let echo = new Echo();
                 expect(echo).to.have.property('prefix', null);
             });
         });
@@ -70,14 +71,14 @@ describe('Echo', function()
         {
             it('should have prefix property = what was passed', function()
             {
-                var echo = new Echo('test');
+                let echo = new Echo('test');
                 expect(echo).to.have.property('prefix', 'test');
             });
         });
 
         the('logFilePath property should only be of type null or string', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
 
             echo.logFilePath = 'string';
             expect(echo.logFilePath).to.be.a('string');
@@ -97,7 +98,7 @@ describe('Echo', function()
 
         the('prefix property should only be of type null or string', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
 
             echo.prefix = 'string';
             expect(echo.prefix).to.be.a('string');
@@ -117,7 +118,7 @@ describe('Echo', function()
 
         the('beVerbose property should only be of type boolean', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
 
             echo.beVerbose = 'string';
             expect(echo.beVerbose).to.be.true;
@@ -137,7 +138,7 @@ describe('Echo', function()
 
         the('separator property should only be of type string', function()
         {
-            var echo = new Echo();
+            let echo = new Echo();
 
             echo.separator = 'string';
             expect(echo.separator).to.be.a('string');
@@ -157,8 +158,8 @@ describe('Echo', function()
 
         the('emitStrategy property should only allow an object of type EmitStrategy to be set', function()
         {
-            var echo = new Echo();
-            var emitStrategy = new EmitStrategy();
+            let echo = new Echo();
+            let emitStrategy = new EmitStrategy();
 
             expect(function()
             {
@@ -333,18 +334,16 @@ describe('Echo', function()
         {
             it('emits properly using the correct separator', function()
             {
-                let toEnd = String.prototype.toEnd;
-                let str = null;
-                String.prototype.toEnd = function(s){ str = s; emission = this; };
+                let rand = Math.random();
                 
-                echo.logFilePath = 'testPath';
+                echo.logFilePath = 'test.log';
                 echo.separator = '-';
-                echo.toLog('test', 'the', 'rest');
+                echo.toLog(rand);
+                
+                let contents = fs.readFileSync(echo.logFilePath).toString('utf8');
+                fs.unlinkSync(echo.logFilePath);
 
-                expect(emission).to.equal('test-the-rest\n');
-                expect(str).to.equal('testPath');
-
-                String.prototype.toEnd = toEnd;
+                expect(contents).to.equal(`${rand}\n`);
             });
         });
 

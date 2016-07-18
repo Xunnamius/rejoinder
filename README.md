@@ -16,7 +16,7 @@ Super awesome when paired with [inquirer](https://www.npmjs.com/package/inquirer
 
 Also does children's parties.
 
-**Note that rejoinder requires Node.js version 6.x but does NOT depend on use of the --harmony flag!**
+**Note that rejoinder requires Node.js version >=5.x (including ^6) but does NOT depend on use of the --harmony flag!**
 
 ## Installation
 

@@ -10,14 +10,14 @@
 
 "use strict";
 
-var expects      = require('chai').expect;
-var colors       = require('colors');
-var Execute      = require('../../lib/Execute/Execute');
-var Echo         = require('../../lib/Echo/Echo');
-var EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
+let expects      = require('chai').expect;
+let colors       = require('colors');
+let Execute      = require('../../lib/Execute/Execute');
+let Echo         = require('../../lib/Echo/Echo');
+let EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
 
-var the = it;
-var emission;
+let the = it;
+let emission;
 
 class TestEmitStrategy extends EmitStrategy
 {
