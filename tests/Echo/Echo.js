@@ -24,7 +24,7 @@ const WITHPOSTFIX_SUGAR_METHODS = [
 ];
 
 let fs           = require('fs');
-let expect       = require('chai').expect;
+let expects       = require('chai').expect;
 let Echo         = require('../../lib/Echo/Echo');
 let EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
 
@@ -37,25 +37,25 @@ describe('Echo', function()
         it('should have logFilePath property = null', function()
         {
             let echo = new Echo();
-            expect(echo).to.have.property('logFilePath', null);
+            expects(echo).to.have.property('logFilePath', null);
         });
 
         it('should have beVerbose property = false', function()
         {
             let echo = new Echo();
-            expect(echo).to.have.property('beVerbose', false);
+            expects(echo).to.have.property('beVerbose', false);
         });
 
         it('should have separator property = " "', function()
         {
             let echo = new Echo();
-            expect(echo).to.have.property('separator', ' ');
+            expects(echo).to.have.property('separator', ' ');
         });
 
         it('should have emitStrategy property = null', function()
         {
             let echo = new Echo();
-            expect(echo).to.have.property('emitStrategy', null);
+            expects(echo).to.have.property('emitStrategy', null);
         });
 
         context('when a prefix is not passed as an argument', function()
@@ -63,7 +63,7 @@ describe('Echo', function()
             it('should have prefix property = null', function()
             {
                 let echo = new Echo();
-                expect(echo).to.have.property('prefix', null);
+                expects(echo).to.have.property('prefix', null);
             });
         });
 
@@ -72,7 +72,7 @@ describe('Echo', function()
             it('should have prefix property = what was passed', function()
             {
                 let echo = new Echo('test');
-                expect(echo).to.have.property('prefix', 'test');
+                expects(echo).to.have.property('prefix', 'test');
             });
         });
 
@@ -81,19 +81,19 @@ describe('Echo', function()
             let echo = new Echo();
 
             echo.logFilePath = 'string';
-            expect(echo.logFilePath).to.be.a('string');
+            expects(echo.logFilePath).to.be.a('string');
             echo.logFilePath = '';
-            expect(echo.logFilePath).to.be.null;
+            expects(echo.logFilePath).to.be.null;
             echo.logFilePath = { obj: 1 };
-            expect(echo.logFilePath).to.be.a('string');
+            expects(echo.logFilePath).to.be.a('string');
             echo.logFilePath = 1;
-            expect(echo.logFilePath).to.be.a('string');
+            expects(echo.logFilePath).to.be.a('string');
             echo.logFilePath = 0;
-            expect(echo.logFilePath).to.be.null;
+            expects(echo.logFilePath).to.be.null;
             echo.logFilePath = true;
-            expect(echo.logFilePath).to.be.a('string');
+            expects(echo.logFilePath).to.be.a('string');
             echo.logFilePath = false;
-            expect(echo.logFilePath).to.be.null;
+            expects(echo.logFilePath).to.be.null;
         });
 
         the('prefix property should only be of type null or string', function()
@@ -101,19 +101,19 @@ describe('Echo', function()
             let echo = new Echo();
 
             echo.prefix = 'string';
-            expect(echo.prefix).to.be.a('string');
+            expects(echo.prefix).to.be.a('string');
             echo.prefix = '';
-            expect(echo.prefix).to.be.null;
+            expects(echo.prefix).to.be.null;
             echo.prefix = { obj: 1 };
-            expect(echo.prefix).to.be.a('string');
+            expects(echo.prefix).to.be.a('string');
             echo.prefix = 1;
-            expect(echo.prefix).to.be.a('string');
+            expects(echo.prefix).to.be.a('string');
             echo.prefix = 0;
-            expect(echo.prefix).to.be.null;
+            expects(echo.prefix).to.be.null;
             echo.prefix = true;
-            expect(echo.prefix).to.be.a('string');
+            expects(echo.prefix).to.be.a('string');
             echo.prefix = false;
-            expect(echo.prefix).to.be.null;
+            expects(echo.prefix).to.be.null;
         });
 
         the('beVerbose property should only be of type boolean', function()
@@ -121,19 +121,19 @@ describe('Echo', function()
             let echo = new Echo();
 
             echo.beVerbose = 'string';
-            expect(echo.beVerbose).to.be.true;
+            expects(echo.beVerbose).to.be.true;
             echo.beVerbose = '';
-            expect(echo.beVerbose).to.be.false;
+            expects(echo.beVerbose).to.be.false;
             echo.beVerbose = { obj: 1 };
-            expect(echo.beVerbose).to.be.true;
+            expects(echo.beVerbose).to.be.true;
             echo.beVerbose = 1;
-            expect(echo.beVerbose).to.be.true;
+            expects(echo.beVerbose).to.be.true;
             echo.beVerbose = 0;
-            expect(echo.beVerbose).to.be.false;
+            expects(echo.beVerbose).to.be.false;
             echo.beVerbose = true;
-            expect(echo.beVerbose).to.be.true;
+            expects(echo.beVerbose).to.be.true;
             echo.beVerbose = false;
-            expect(echo.beVerbose).to.be.false;
+            expects(echo.beVerbose).to.be.false;
         });
 
         the('separator property should only be of type string', function()
@@ -141,19 +141,19 @@ describe('Echo', function()
             let echo = new Echo();
 
             echo.separator = 'string';
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
             echo.separator = '';
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
             echo.separator = { obj: 1 };
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
             echo.separator = 1;
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
             echo.separator = 0;
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
             echo.separator = true;
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
             echo.separator = false;
-            expect(echo.separator).to.be.a('string');
+            expects(echo.separator).to.be.a('string');
         });
 
         the('emitStrategy property should only allow an object of type EmitStrategy to be set', function()
@@ -161,12 +161,12 @@ describe('Echo', function()
             let echo = new Echo();
             let emitStrategy = new EmitStrategy();
 
-            expect(function()
+            expects(function()
             {
                 echo.emitStrategy = function(){};
             }).to.throw(TypeError);
 
-            expect(function()
+            expects(function()
             {
                 echo.emitStrategy = emitStrategy;
             }).to.not.throw(TypeError);
@@ -198,45 +198,45 @@ describe('Echo', function()
             it('should emit just the message when called with no prefix', function()
             {
                 echo.now('test');
-                expect(emission).to.equal('test');
+                expects(emission).to.equal('test');
             });
 
             it('should emit properly when called with multiple parameters', function()
             {
                 echo.now('t', 'e', 's', 't');
-                expect(emission).to.equal('t e s t');
+                expects(emission).to.equal('t e s t');
             });
 
             it('should emit properly when called with multiple parameters of differing types', function()
             {
                 echo.now('t', 3, null, 't', 'is', false);
-                expect(emission).to.equal('t 3  t is false');
+                expects(emission).to.equal('t 3  t is false');
             });
 
             it('should emit properly when different prefixes are set', function()
             {
                 echo.prefix = '~>';
                 echo.now('test');
-                expect(emission).to.equal('~> test');
+                expects(emission).to.equal('~> test');
 
                 echo.prefix = 'this is my:prefix';
                 echo.now('test');
-                expect(emission).to.equal('this is my:prefix test');
+                expects(emission).to.equal('this is my:prefix test');
             });
 
             it('should emit properly when a different separator is set', function()
             {
                 echo.separator = '';
                 echo.now('t', 'e', 's', 't');
-                expect(emission).to.equal('test');
+                expects(emission).to.equal('test');
 
                 echo.separator = false;
                 echo.now('t', 'e', 's', 't');
-                expect(emission).to.equal('test');
+                expects(emission).to.equal('test');
 
                 echo.separator = '-';
                 echo.now('t', 'e', 's', 't');
-                expect(emission).to.equal('t-e-s-t');
+                expects(emission).to.equal('t-e-s-t');
             });
         });
 
@@ -246,7 +246,7 @@ describe('Echo', function()
             {
                 echo.separator = '';
                 echo.usingPredicate(function(s){ return `-${s}-`; }, 't', 'e', 's', 't');
-                expect(emission).to.equal('-t--e--s--t-');
+                expects(emission).to.equal('-t--e--s--t-');
             });
         });
 
@@ -259,9 +259,9 @@ describe('Echo', function()
                     echo.now('test');
                 });
 
-                expect(emission).to.equal('prefix test');
+                expects(emission).to.equal('prefix test');
                 echo.now('test');
-                expect(emission).to.equal('test');
+                expects(emission).to.equal('test');
             });
         });
 
@@ -270,9 +270,9 @@ describe('Echo', function()
             it('only emits if the supplied condition evaluates to true', function()
             {
                 echo.if(false, 'test');
-                expect(emission).to.be.undefined;
+                expects(emission).to.be.undefined;
                 echo.if(true, 'test');
-                expect(emission).to.equal('test');
+                expects(emission).to.equal('test');
             });
         });
 
@@ -281,10 +281,10 @@ describe('Echo', function()
             it('only emits if the property beVerbose is true', function()
             {
                 echo.ifVerbose('test');
-                expect(emission).to.be.undefined;
+                expects(emission).to.be.undefined;
                 echo.beVerbose = true;
                 echo.ifVerbose('test');
-                expect(emission).to.equal('test');
+                expects(emission).to.equal('test');
             });
         });
 
@@ -293,10 +293,10 @@ describe('Echo', function()
             it('emits properly only if the property beVerbose is true', function()
             {
                 echo.ifDebug('test');
-                expect(emission).to.be.undefined;
+                expects(emission).to.be.undefined;
                 echo.beVerbose = true;
                 echo.ifDebug('test');
-                expect(emission).to.equal('DEBUG test');
+                expects(emission).to.equal('DEBUG test');
             });
         });
 
@@ -310,8 +310,8 @@ describe('Echo', function()
                 echo.thenExit('test');
                 process.exit = exit;
 
-                expect(emission).to.equal('EXIT test');
-                expect(die).to.equal(0);
+                expects(emission).to.equal('EXIT test');
+                expects(die).to.equal(0);
             });
         });
 
@@ -325,8 +325,8 @@ describe('Echo', function()
                 echo.thenBadExit(1, 'test');
                 process.exit = exit;
 
-                expect(emission).to.equal('BADEXIT ' + 'test'.formatAsError());
-                expect(die).to.equal(1);
+                expects(emission).to.equal('BADEXIT ' + 'test'.formatAsError());
+                expects(die).to.equal(1);
             });
         });
 
@@ -343,7 +343,7 @@ describe('Echo', function()
                 let contents = fs.readFileSync(echo.logFilePath).toString('utf8');
                 fs.unlinkSync(echo.logFilePath);
 
-                expect(contents).to.equal(`${rand}\n`);
+                expects(contents).to.equal(`${rand}\n`);
             });
         });
 
@@ -352,7 +352,7 @@ describe('Echo', function()
             it('emits using the specified postfix', function()
             {
                 echo.withPostfix('postfix', 'test');
-                expect(emission).to.equal('postfix test');
+                expects(emission).to.equal('postfix test');
             });
 
             it('emits properly using the specified postfix and prefix separated by the correct separator', function()
@@ -360,7 +360,7 @@ describe('Echo', function()
                 echo.prefix = 'prefix';
                 echo.separator = '-';
                 echo.withPostfix('postfix', 'test');
-                expect(emission).to.equal('prefix-postfix-test');
+                expects(emission).to.equal('prefix-postfix-test');
             });
 
             describe('#<sugar methods>', function()
@@ -374,9 +374,9 @@ describe('Echo', function()
                     the(`${method}() emits as expected`, function()
                     {
                         echo.withPostfix[method](method);
-                        expect(emission).to.equal(`${method.toUpperCase()} ` + method[fname]());
+                        expects(emission).to.equal(`${method.toUpperCase()} ` + method[fname]());
                         echo.withPostfix[method](method, method);
-                        expect(emission).to.equal(`${method.toUpperCase()} ` + `${method} ${method}`[fname]());
+                        expects(emission).to.equal(`${method.toUpperCase()} ` + `${method} ${method}`[fname]());
                     });
                 }
             });

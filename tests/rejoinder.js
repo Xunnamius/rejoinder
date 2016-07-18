@@ -7,5 +7,5 @@
  * Rejoinder.js BDD unit tests
  */
 
-let expect = require('chai').expect;
-
+let expects = require('chai').expect;
+let rejoinder = require('../lib/rejoinder');
