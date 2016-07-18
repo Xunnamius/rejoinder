@@ -16,7 +16,7 @@ Super awesome when paired with [inquirer](https://www.npmjs.com/package/inquirer
 
 Also does children's parties.
 
-**Note that rejoinder requires Node.js version 5.x and, until rest parameters are shipped by default, use of [the --harmony flag](https://nodejs.org/en/docs/es6/#which-features-are-behind-the-es_staging-flag)!**
+**Note that rejoinder requires Node.js version 6.x and, until rest parameters are shipped by default, use of [the --harmony flag](https://nodejs.org/en/docs/es6/#which-features-are-behind-the-es_staging-flag)!**
 
 ## Installation
 
