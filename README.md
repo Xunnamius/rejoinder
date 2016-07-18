@@ -73,7 +73,8 @@ See [API.md](API.md)
 
 ## Tests
 
-  npm test
+npm install
+npm test
 
 ## Contributing
 
@@ -82,5 +83,6 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
+* 0.3.x Several bugfixes
 * 0.2.0 Initial working release; unit tested; semver versioning semantics are obeyed from this point forward
 * 0.1.x Rapid iteration
