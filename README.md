@@ -73,8 +73,10 @@ See [API.md](API.md)
 
 ## Tests
 
+```
 npm install
 npm test
+```
 
 ## Contributing
 
