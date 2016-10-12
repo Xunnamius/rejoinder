@@ -1,6 +1,6 @@
 {
   "name": "rejoinder",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "A generator of smart, pretty, and organized output for Node/JS scripts in the terminal",
   "repository": {
     "type": "git",
@@ -25,8 +25,7 @@
     "verbose"
   ],
   "optionalDependencies": {
-    "shelljs": "^0.7.0",
-    "colors": "^1.1.2"
+    "shelljs": "^0.7.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
