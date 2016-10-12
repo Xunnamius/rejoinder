@@ -95,10 +95,10 @@ describe('Execute', function()
                 execute._echo.beVerbose = true;
 
                 execute.now('return 5');
-                expects(emission).to.equal('DEBUG ' + colors.red('FAILED!'));
+                expects(emission).to.equal('ERROR ' + colors.red('FAILED!'));
 
                 execute.now('return 0');
-                expects(emission).to.equal('DEBUG ' + colors.green('OK'));
+                expects(emission).to.equal('SUCCESS ' + colors.green('OK'));
 
                 expects(execute.totalSuccess).to.be.false;
             });
