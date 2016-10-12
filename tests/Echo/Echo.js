@@ -45,16 +45,29 @@ describe('Echo', function()
             expects(echo).to.have.property('beVerbose', false);
         });
 
-        it('should have separator property = " "', function()
+        it('should have messageSeparator property = " "', function()
         {
             let echo = new Echo();
-            expects(echo).to.have.property('separator', ' ');
+            expects(echo).to.have.property('messageSeparator', ' ');
         });
 
-        it('should have separatePostfix property = true', function()
+        it('should have postfixSeparator property = "" when prefix is falsey', function()
         {
             let echo = new Echo();
-            expects(echo).to.have.property('separatePostfix', true);
+            expects(echo).to.have.property('postfixSeparator', '');
+            echo.prefix = '';
+            expects(echo).to.have.property('postfixSeparator', '');
+            echo.prefix = false;
+            expects(echo).to.have.property('postfixSeparator', '');
+        });
+
+        it('should have postfixSeparator property = ":" when prefix is truthy', function()
+        {
+            let echo = new Echo();
+            echo.prefix = 'yes';
+            expects(echo).to.have.property('postfixSeparator', ':');
+            echo.prefix = true;
+            expects(echo).to.have.property('postfixSeparator', ':');
         });
 
         it('should have emitStrategy property = null', function()
@@ -65,10 +78,10 @@ describe('Echo', function()
 
         context('when a prefix is not passed as an argument', function()
         {
-            it('should have prefix property = null', function()
+            it('should have prefix property = ""', function()
             {
                 let echo = new Echo();
-                expects(echo).to.have.property('prefix', null);
+                expects(echo).to.have.property('prefix', '');
             });
         });
 
@@ -101,24 +114,24 @@ describe('Echo', function()
             expects(echo.logFilePath).to.be.null;
         });
 
-        the('prefix property should only be of type null or string', function()
+        the('prefix property should only be of type string', function()
         {
             let echo = new Echo();
 
             echo.prefix = 'string';
             expects(echo.prefix).to.be.a('string');
             echo.prefix = '';
-            expects(echo.prefix).to.be.null;
+            expects(echo.prefix).to.be.a('string');
             echo.prefix = { obj: 1 };
             expects(echo.prefix).to.be.a('string');
             echo.prefix = 1;
             expects(echo.prefix).to.be.a('string');
             echo.prefix = 0;
-            expects(echo.prefix).to.be.null;
+            expects(echo.prefix).to.be.a('string');
             echo.prefix = true;
             expects(echo.prefix).to.be.a('string');
             echo.prefix = false;
-            expects(echo.prefix).to.be.null;
+            expects(echo.prefix).to.be.a('string');
         });
 
         the('beVerbose property should only be of type boolean', function()
@@ -141,44 +154,44 @@ describe('Echo', function()
             expects(echo.beVerbose).to.be.false;
         });
 
-        the('separatePostfix property should only be of type boolean', function()
+        the('messageSeparator property should only be of type string', function()
         {
             let echo = new Echo();
 
-            echo.separatePostfix = 'string';
-            expects(echo.separatePostfix).to.be.true;
-            echo.separatePostfix = '';
-            expects(echo.separatePostfix).to.be.false;
-            echo.separatePostfix = { obj: 1 };
-            expects(echo.separatePostfix).to.be.true;
-            echo.separatePostfix = 1;
-            expects(echo.separatePostfix).to.be.true;
-            echo.separatePostfix = 0;
-            expects(echo.separatePostfix).to.be.false;
-            echo.separatePostfix = true;
-            expects(echo.separatePostfix).to.be.true;
-            echo.separatePostfix = false;
-            expects(echo.separatePostfix).to.be.false;
+            echo.messageSeparator = 'string';
+            expects(echo.messageSeparator).to.be.a('string');
+            echo.messageSeparator = '';
+            expects(echo.messageSeparator).to.be.a('string');
+            echo.messageSeparator = { obj: 1 };
+            expects(echo.messageSeparator).to.be.a('string');
+            echo.messageSeparator = 1;
+            expects(echo.messageSeparator).to.be.a('string');
+            echo.messageSeparator = 0;
+            expects(echo.messageSeparator).to.be.a('string');
+            echo.messageSeparator = true;
+            expects(echo.messageSeparator).to.be.a('string');
+            echo.messageSeparator = false;
+            expects(echo.messageSeparator).to.be.a('string');
         });
 
-        the('separator property should only be of type string', function()
+        the('postfixSeparator property should only be of type string', function()
         {
             let echo = new Echo();
 
-            echo.separator = 'string';
-            expects(echo.separator).to.be.a('string');
-            echo.separator = '';
-            expects(echo.separator).to.be.a('string');
-            echo.separator = { obj: 1 };
-            expects(echo.separator).to.be.a('string');
-            echo.separator = 1;
-            expects(echo.separator).to.be.a('string');
-            echo.separator = 0;
-            expects(echo.separator).to.be.a('string');
-            echo.separator = true;
-            expects(echo.separator).to.be.a('string');
-            echo.separator = false;
-            expects(echo.separator).to.be.a('string');
+            echo.postfixSeparator = 'string';
+            expects(echo.postfixSeparator).to.be.a('string');
+            echo.postfixSeparator = '';
+            expects(echo.postfixSeparator).to.be.a('string');
+            echo.postfixSeparator = { obj: 1 };
+            expects(echo.postfixSeparator).to.be.a('string');
+            echo.postfixSeparator = 1;
+            expects(echo.postfixSeparator).to.be.a('string');
+            echo.postfixSeparator = 0;
+            expects(echo.postfixSeparator).to.be.a('string');
+            echo.postfixSeparator = true;
+            expects(echo.postfixSeparator).to.be.a('string');
+            echo.postfixSeparator = false;
+            expects(echo.postfixSeparator).to.be.a('string');
         });
 
         the('emitStrategy property should only allow an object of type EmitStrategy to be set', function()
@@ -249,34 +262,34 @@ describe('Echo', function()
                 expects(emission).to.equal('this is my:prefix test');
             });
 
-            it('should emit properly when a different separator is set', function()
+            it('should emit properly when a different messageSeparator is set', function()
             {
-                echo.separator = '';
+                echo.messageSeparator = '';
                 echo.now('t', 'e', 's', 't');
                 expects(emission).to.equal('t e s t');
 
-                echo.separator = false;
+                echo.messageSeparator = false;
                 echo.now('t', 'e', 's', 't');
                 expects(emission).to.equal('t e s t');
 
-                echo.separator = '-';
+                echo.messageSeparator = '-';
                 echo.now('t', 'e', 's', 't');
                 expects(emission).to.equal('t e s t');
             });
 
-            it('should emit properly with a set prefix when a different separator is set', function()
+            it('should emit properly with a set prefix when a different messageSeparator is set', function()
             {
                 echo.prefix = '>>';
 
-                echo.separator = '';
+                echo.messageSeparator = '';
                 echo.now('t', 'e', 's', 't');
                 expects(emission).to.equal('>>t e s t');
 
-                echo.separator = false;
+                echo.messageSeparator = false;
                 echo.now('t', 'e', 's', 't');
                 expects(emission).to.equal('>>t e s t');
 
-                echo.separator = '-';
+                echo.messageSeparator = '-';
                 echo.now('t', 'e', 's', 't');
                 expects(emission).to.equal('>>-t e s t');
             });
@@ -286,7 +299,7 @@ describe('Echo', function()
         {
             it('applies the predicate function to every argument', function()
             {
-                echo.separator = '';
+                echo.messageSeparator = '';
                 echo.usingPredicate(function(s){ return `-${s}-`; }, 't', 'e', 's', 't');
                 expects(emission).to.equal('-t- -e- -s- -t-');
             });
@@ -379,7 +392,7 @@ describe('Echo', function()
                 let rand = Math.random();
                 
                 echo.logFilePath = 'test.log';
-                echo.separator = '-';
+                echo.messageSeparator = '-';
                 echo.toLog(rand);
                 
                 let contents = fs.readFileSync(echo.logFilePath).toString('utf8');
@@ -400,12 +413,16 @@ describe('Echo', function()
             it('emits properly using the specified postfix and prefix separated by the correct separator', function()
             {
                 echo.prefix = 'prefix';
-                echo.separator = '-';
+                echo.messageSeparator = '-';
+                echo.postfixSeparator = '-';
                 echo.withPostfix('postfix', 'test');
                 expects(emission).to.equal('prefix-postfix-test');
-                echo.separatePostfix = false;
+                echo.postfixSeparator = '';
                 echo.withPostfix('postfix', 'test');
                 expects(emission).to.equal('prefixpostfix-test');
+                echo.messageSeparator = '';
+                echo.withPostfix('postfix', 'test');
+                expects(emission).to.equal('prefixpostfixtest');
             });
 
             describe('#<sugar methods>', function()
