@@ -9,20 +9,20 @@
 
 "use strict";
 
-let expects      = require('chai').expect;
-let colors       = require('colors');
-let Execute      = require('../../lib/Execute/Execute');
-let Echo         = require('../../lib/Echo/Echo');
-let EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
+const expects      = require('chai').expect;
+const colors       = require('colors');
+const Execute      = require('../../lib/Execute/Execute');
+const Echo         = require('../../lib/Echo/Echo');
+const EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
 
-let the = it;
+const the = it;
 let emission;
 
 class TestEmitStrategy extends EmitStrategy
 {
     emit(str)
     {
-        emission = str;
+        emission = colors.strip(str);
     }
 }
 
@@ -84,21 +84,21 @@ describe('Execute', function()
                 expects(execute.totalSuccess).to.be.true;
 
                 execute.now('return 0', 'describe');
-                expects(emission).to.equal('SUCCESS ' + colors.green('OK'));
+                expects(emission).to.equal('SUCCESS OK');
 
                 execute.now('return 5');
                 expects(execute.totalSuccess).to.be.false;
 
                 execute.now('return 5', 'description');
-                expects(emission).to.equal('ERROR ' + colors.red('FAILED!'));
+                expects(emission).to.equal('ERROR FAILED!');
 
                 execute._echo.beVerbose = true;
 
                 execute.now('return 5');
-                expects(emission).to.equal('ERROR ' + colors.red('FAILED!'));
+                expects(emission).to.equal('ERROR FAILED!');
 
                 execute.now('return 0');
-                expects(emission).to.equal('SUCCESS ' + colors.green('OK'));
+                expects(emission).to.equal('SUCCESS OK');
 
                 expects(execute.totalSuccess).to.be.false;
             });
