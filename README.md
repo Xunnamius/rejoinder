@@ -37,7 +37,7 @@ const rejoinder = require('rejoinder');
 let echo = rejoinder.echo;
 let execute = rejoinder.execute;
 
-echo.now('output this very important warning to the console with pretty colors'.formatAsWarning()); // colorful output
+echo.now('output this very important warning to the console with pretty colors'); // immediate output
 echo.withPostfix.warn('output this very important warning to the console with pretty colors'); // colorful output prefixed with the string "WARN "
 
 echo.beVerbose = true; // beVerbose fka "debugMode"
@@ -47,7 +47,7 @@ echo.beVerbose = false; // it is false by default
 echo.ifVerbose('Some message will NOT appear if beVerbose is false!');
 echo.ifDebug('Some debug message will NOT appear if beVerbose is false!');
 
-echo.if(somethingistrue, 'I spit only the truth!'.formatAsSuccess()); // also returns false if somethingistrue is false
+echo.if(somethingistrue, 'I spit only the truth!'); // also returns false if somethingistrue is false
 
 echo.now('all', 'my', 'methods', 'are', 'also', 'variadic!'); // prints "all my methods are also variadic!"
 echo.if(true, 'even', 'this', 'one :)'); // prints "even this one :)"
