@@ -227,15 +227,32 @@ describe('Echo', function()
             {
                 echo.separator = '';
                 echo.now('t', 'e', 's', 't');
-                expects(emission).to.equal('test');
+                expects(emission).to.equal('t e s t');
 
                 echo.separator = false;
                 echo.now('t', 'e', 's', 't');
-                expects(emission).to.equal('test');
+                expects(emission).to.equal('t e s t');
 
                 echo.separator = '-';
                 echo.now('t', 'e', 's', 't');
-                expects(emission).to.equal('t-e-s-t');
+                expects(emission).to.equal('t e s t');
+            });
+
+            it('should emit properly with a set prefix when a different separator is set', function()
+            {
+                echo.prefix = '>>';
+
+                echo.separator = '';
+                echo.now('t', 'e', 's', 't');
+                expects(emission).to.equal('>>t e s t');
+
+                echo.separator = false;
+                echo.now('t', 'e', 's', 't');
+                expects(emission).to.equal('>>t e s t');
+
+                echo.separator = '-';
+                echo.now('t', 'e', 's', 't');
+                expects(emission).to.equal('>>-t e s t');
             });
         });
 
@@ -245,7 +262,7 @@ describe('Echo', function()
             {
                 echo.separator = '';
                 echo.usingPredicate(function(s){ return `-${s}-`; }, 't', 'e', 's', 't');
-                expects(emission).to.equal('-t--e--s--t-');
+                expects(emission).to.equal('-t- -e- -s- -t-');
             });
         });
 
