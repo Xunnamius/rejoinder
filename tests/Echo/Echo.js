@@ -51,6 +51,12 @@ describe('Echo', function()
             expects(echo).to.have.property('separator', ' ');
         });
 
+        it('should have separatePostfix property = true', function()
+        {
+            let echo = new Echo();
+            expects(echo).to.have.property('separatePostfix', true);
+        });
+
         it('should have emitStrategy property = null', function()
         {
             let echo = new Echo();
@@ -133,6 +139,26 @@ describe('Echo', function()
             expects(echo.beVerbose).to.be.true;
             echo.beVerbose = false;
             expects(echo.beVerbose).to.be.false;
+        });
+
+        the('separatePostfix property should only be of type boolean', function()
+        {
+            let echo = new Echo();
+
+            echo.separatePostfix = 'string';
+            expects(echo.separatePostfix).to.be.true;
+            echo.separatePostfix = '';
+            expects(echo.separatePostfix).to.be.false;
+            echo.separatePostfix = { obj: 1 };
+            expects(echo.separatePostfix).to.be.true;
+            echo.separatePostfix = 1;
+            expects(echo.separatePostfix).to.be.true;
+            echo.separatePostfix = 0;
+            expects(echo.separatePostfix).to.be.false;
+            echo.separatePostfix = true;
+            expects(echo.separatePostfix).to.be.true;
+            echo.separatePostfix = false;
+            expects(echo.separatePostfix).to.be.false;
         });
 
         the('separator property should only be of type string', function()
@@ -377,6 +403,9 @@ describe('Echo', function()
                 echo.separator = '-';
                 echo.withPostfix('postfix', 'test');
                 expects(emission).to.equal('prefix-postfix-test');
+                echo.separatePostfix = false;
+                echo.withPostfix('postfix', 'test');
+                expects(emission).to.equal('prefixpostfix-test');
             });
 
             describe('#<sugar methods>', function()
