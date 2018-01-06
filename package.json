@@ -11,7 +11,9 @@
   "license": "ISC",
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive --reporter spec ./tests",
-    "docs": "documentation -f md -o API.md"
+    "docs": "documentation -f md -o API.md",
+    "pp": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "keywords": [
     "echo",
@@ -30,10 +32,8 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
+    "publish-please": "^2.3.1",
     "sinon": "^1.17.2"
-  },
-  "engines": {
-    "node": "^6"
   },
   "dependencies": {
     "colors": "^1.1.2"
