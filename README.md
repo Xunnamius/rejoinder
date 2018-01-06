@@ -7,16 +7,15 @@
     noun
     a reply or response to a question or remark, esp a quick witty one; retort
 
-Rejoinder is a generator of smart, pretty, and organized output on the console for Node/JS scripts, with optimizations
-for executing shell commands. It leverages colors and the like using the [colors package](https://www.npmjs.com/package/colors)
-and makes life easier when executing CLI instructions with [shelljs](https://www.npmjs.com/package/shelljs). ShellJS and
-any CLI extensions are not required, however! Check out `lib/Echo/EmitStrategy` if you're curious :)
+Rejoinder is a generator of smart, pretty, and organized output on the console for Node/JS scripts, with optimizations for executing shell commands.
+
+It leverages colors and the like using the [colors package](https://www.npmjs.com/package/colors) and makes life easier when executing CLI instructions with [shelljs](https://www.npmjs.com/package/shelljs).
+
+ShellJS and any CLI extensions are not required, however! Check out `lib/Echo/EmitStrategy` if you're curious how it works :)
 
 Super awesome when paired with [inquirer](https://www.npmjs.com/package/inquirer) and/or [commander](https://www.npmjs.com/package/commander)!
 
 Also does children's parties.
-
-**Note that rejoinder requires Node.js version >=5.x (including ^6) but does NOT depend on use of the --harmony flag!**
 
 ## Installation
 
@@ -65,7 +64,8 @@ echo.postfixSeparator = '<>'; // this is the thing between the prefix and the po
 echo.withPostfix('postfix', 'this too'); // prints "Big:Boy:Time:<>postfix||this too"
 echo.withPostfix.ok('GOT IT!'); // prints colorful output that says "Big:Boy:Time:<>OK||GOT IT!"
 
-echo.withPrefix('~>', () => // ONLY the echo statements that appear inside of this function will have the aforesaid prefix
+// ONLY the echo statements that appear inside of this function will have the aforesaid prefix
+echo.withPrefix('~>', () =>
 {
     echo.now('or'); // prints "~>||or"
     echo.now('is', 'it? I wonder.'); // prints "~>||is it? I wonder."
@@ -74,7 +74,9 @@ echo.withPrefix('~>', () => // ONLY the echo statements that appear inside of th
 });
 
 echo.beVerbose = true;
-execute.now('return 0'); // prints the command and the result of executing it thanks to echo.beVerbose! See API.md for more information on how this works
+
+// prints the command and the result of executing it thanks to echo.beVerbose! See API.md for more information on how this works
+execute.now('return 0');
 ```
 
 ## Documentation
@@ -90,6 +92,7 @@ npm test
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
+
 Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
