@@ -24,7 +24,7 @@ const WITHPOSTFIX_SUGAR_METHODS = [
 
 const fs           = require('fs');
 const expects      = require('chai').expect;
-const colors       = require('colors');
+const colors       = require('colors/safe');
 const Echo         = require('../../lib/Echo/Echo');
 const EmitStrategy = require('../../lib/Echo/EmitStrategy/EmitStrategy');
 
