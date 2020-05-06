@@ -1,6 +1,6 @@
 {
   "name": "rejoinder",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "description": "A generator of smart, pretty, and organized output for Node/JS scripts in the terminal",
   "repository": {
     "type": "git",
@@ -10,10 +10,11 @@
   "author": "Xunnamius",
   "license": "ISC",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --recursive --reporter spec ./tests",
+    "test": "mocha --recursive --reporter spec ./test",
     "docs": "documentation build -f md -o API.md",
     "pp": "publish-please",
-    "prepublish": "publish-please guard"
+    "prepublishOnly": "publish-please guard && publish-please guard",
+    "publish-please": "publish-please"
   },
   "keywords": [
     "echo",
