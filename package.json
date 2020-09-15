@@ -14,7 +14,8 @@
     "docs": "documentation build -f md -o API.md",
     "pp": "publish-please",
     "prepublishOnly": "publish-please guard && publish-please guard",
-    "publish-please": "publish-please"
+    "publish-please": "publish-please",
+    "preinstall": ":; test -e ./package-lock.json && npx npm-force-resolutions || true"
   },
   "keywords": [
     "echo",
@@ -32,11 +33,14 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^7.1.2",
+    "mocha": "^8.0.1",
     "publish-please": "^5.5.1",
     "sinon": "^9.0.2"
   },
   "dependencies": {
     "colors": "^1.4.0"
+  },
+  "resolutions": {
+    "lodash": "4.17.19"
   }
 }

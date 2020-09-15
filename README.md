@@ -1,4 +1,5 @@
-[![npm version](https://badge.fury.io/js/rejoinder.svg)](https://badge.fury.io/js/rejoinder)
+[![npm
+version](https://badge.fury.io/js/rejoinder.svg)](https://badge.fury.io/js/rejoinder)
 
 # REJOINDER
 
@@ -7,11 +8,15 @@
     noun
     a reply or response to a question or remark, esp a quick witty one; retort
 
-Rejoinder is that generator of smart, pretty, highly organized output your parents warned you about.
+Rejoinder is that generator of smart, pretty, highly organized output your
+parents warned you about.
 
-TODO: SPIN OFF EXECUTABLE POWERS INTO A SLASH-FILE VERSION i.e. rejoinder/execute
+TODO: SPIN OFF EXECUTABLE POWERS INTO A SLASH-FILE VERSION i.e.
+rejoinder/execute
 
-Super awesome when paired with [inquirer](https://www.npmjs.com/package/inquirer) and/or [commander](https://www.npmjs.com/package/commander)!
+Super awesome when paired with
+[inquirer](https://www.npmjs.com/package/inquirer) and/or
+[commander](https://www.npmjs.com/package/commander)!
 
 ## Installation
 
@@ -94,5 +99,6 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 ## Release History
 
 * 0.3.x Several bugfixes
-* 0.2.0 Initial working release; unit tested; semver versioning semantics are obeyed from this point forward
+* 0.2.0 Initial working release; unit tested; semver versioning semantics are
+  obeyed from this point forward
 * 0.1.x Rapid iteration
