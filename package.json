@@ -1,6 +1,6 @@
 {
   "name": "rejoinder",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "description": "A generator of smart, pretty, and organized output for Node/JS scripts in the terminal",
   "repository": {
     "type": "git",
@@ -13,8 +13,7 @@
     "test": "mocha --recursive --reporter spec ./test",
     "docs": "documentation build -f md -o API.md",
     "pp": "publish-please",
-    "prepublishOnly": "publish-please guard && publish-please guard",
-    "publish-please": "publish-please",
+    "prepublishOnly": "publish-please guard",
     "preinstall": ":; test -e ./package-lock.json && npx npm-force-resolutions || true"
   },
   "keywords": [
