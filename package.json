@@ -8,7 +8,7 @@
   },
   "main": "lib/rejoinder.js",
   "author": "Xunnamius",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "test": "mocha --recursive --reporter spec ./test",
     "docs": "documentation build -f md -o API.md"
