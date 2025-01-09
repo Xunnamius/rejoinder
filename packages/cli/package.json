@@ -1,6 +1,6 @@
 {
   "name": "rejoinder-cli",
-  "version": "1.0.0",
+  "version": "1.0.0-init",
   "description": "A CLI frontend for rejoinder",
   "keywords": [],
   "homepage": "https://github.com/Xunnamius/rejoinder/tree/main/packages/cli#readme",
