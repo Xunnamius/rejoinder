@@ -83,7 +83,7 @@
     "core-js": "^3.40.0"
   },
   "devDependencies": {
-    "@-xun/symbiote": "^2.7.1",
+    "@-xun/symbiote": "^2.8.0",
     "type-fest": "^4.32.0"
   },
   "engines": {
