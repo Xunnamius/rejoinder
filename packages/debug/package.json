@@ -1,6 +1,6 @@
 {
   "name": "@-xun/debug",
-  "version": "1.0.0",
+  "version": "1.0.0-init",
   "description": "Extends the hyper-popular debug package with several convenience methods",
   "keywords": [
     "debug",
