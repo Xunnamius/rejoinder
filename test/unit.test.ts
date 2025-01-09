@@ -12,7 +12,7 @@ import {
   type ExtendedLogger
 } from 'universe';
 
-import { withMockedEnv, withMockedOutput } from 'testverse:util.ts';
+import { withMockedOutput } from 'testverse:util.ts';
 
 import { extendedDebuggerSubInstanceProperties } from '@-xun/debug';
 
