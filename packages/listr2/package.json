@@ -1,0 +1,92 @@
+{
+  "name": "rejoinder-listr2",
+  "version": "1.0.0",
+  "description": "A listr2 backend for rejoinder",
+  "keywords": [
+    "debug",
+    "stderr",
+    "echo",
+    "output",
+    "console",
+    "log",
+    "warn",
+    "color",
+    "pretty",
+    "prompt",
+    "verbose",
+    "rejoinder"
+  ],
+  "homepage": "https://github.com/Xunnamius/rejoinder/tree/main/packages/listr2#readme",
+  "bugs": {
+    "url": "https://github.com/Xunnamius/rejoinder/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xunnamius/rejoinder.git"
+  },
+  "license": "MIT",
+  "author": "Xunnamius",
+  "sideEffects": false,
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "types": "./dist/packages/rejoinder-listr2/src/index.d.ts",
+      "default": "./dist/packages/rejoinder-listr2/src/index.js"
+    },
+    "./package": "./package.json",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "index": [
+        "dist/packages/rejoinder-listr2/src/index.d.ts"
+      ],
+      "package": [
+        "package.json"
+      ]
+    }
+  },
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "scripts": {
+    "build": "npm run build:dist --",
+    "build:changelog": "symbiote build changelog --env NODE_NO_WARNINGS=1",
+    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1",
+    "build:docs": "symbiote build docs --env NODE_NO_WARNINGS=1",
+    "clean": "symbiote clean --env NODE_NO_WARNINGS=1",
+    "format": "symbiote format --env NODE_NO_WARNINGS=1 --hush",
+    "info": "symbiote project info --env NODE_NO_WARNINGS=1",
+    "lint": "npm run lint:package --",
+    "lint:package": "symbiote lint --env NODE_NO_WARNINGS=1 --hush",
+    "lint:packages": "symbiote lint --env NODE_NO_WARNINGS=1 --hush --scope unlimited",
+    "lint:project": "symbiote project lint --env NODE_NO_WARNINGS=1",
+    "list-tasks": "symbiote list-tasks --env NODE_NO_WARNINGS=1 --scope this-package",
+    "release": "symbiote release --env NODE_NO_WARNINGS=1",
+    "start": "symbiote start --env NODE_NO_WARNINGS=1 --",
+    "test": "npm run test:package:unit --",
+    "test:package:all": "symbiote test --env NODE_NO_WARNINGS=1 --coverage",
+    "test:package:e2e": "symbiote test --env NODE_NO_WARNINGS=1 --tests end-to-end",
+    "test:package:integration": "symbiote test --env NODE_NO_WARNINGS=1 --tests integration",
+    "test:package:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit",
+    "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
+  },
+  "dependencies": {
+    "@listr2/manager": "^2.0.13",
+    "core-js": "^3.40.0",
+    "listr2": "^8.2.5"
+  },
+  "peerDependencies": {
+    "rejoinder": ">=1.0.0"
+  },
+  "engines": {
+    "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}
