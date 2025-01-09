@@ -10,7 +10,7 @@ import {
 import {
   expectExtendedDebugger,
   expectUnextendableDebugger
-} from 'rootverse+debug:test/helpers.ts';
+} from 'testverse+debug:helpers.ts';
 
 import { isolatedImport, withMockedEnv } from 'testverse:util.ts';
 
