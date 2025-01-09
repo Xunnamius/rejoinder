@@ -1,19 +1,14 @@
 {
-  "name": "rejoinder",
-  "version": "0.0.0-temporary",
-  "description": "A tiny library for creating gorgeous terminal output",
+  "name": "@-xun/debug",
+  "version": "1.0.0",
+  "description": "Extends the hyper-popular debug package with several convenience methods",
   "keywords": [
-    "echo",
+    "debug",
+    "stderr",
     "output",
-    "console",
-    "log",
-    "warn",
-    "color",
-    "pretty",
-    "prompt",
-    "verbose"
+    "rejoinder"
   ],
-  "homepage": "https://github.com/Xunnamius/rejoinder#readme",
+  "homepage": "https://github.com/Xunnamius/rejoinder/tree/main/packages/debug#readme",
   "bugs": {
     "url": "https://github.com/Xunnamius/rejoinder/issues"
   },
@@ -27,8 +22,8 @@
   "type": "commonjs",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
+      "types": "./dist/packages/debug/src/index.d.ts",
+      "default": "./dist/packages/debug/src/index.js"
     },
     "./package": "./package.json",
     "./package.json": "./package.json"
@@ -36,7 +31,7 @@
   "typesVersions": {
     "*": {
       "index": [
-        "dist/src/index.d.ts"
+        "dist/packages/debug/src/index.d.ts"
       ],
       "package": [
         "package.json"
@@ -48,10 +43,6 @@
     "/LICENSE",
     "/package.json",
     "/README.md"
-  ],
-  "workspaces": [
-    "packages/*",
-    "!packages/*.ignore*"
   ],
   "scripts": {
     "build": "npm run build:dist --",
@@ -66,24 +57,20 @@
     "lint:packages": "symbiote lint --env NODE_NO_WARNINGS=1 --hush --scope unlimited",
     "lint:project": "symbiote project lint --env NODE_NO_WARNINGS=1",
     "list-tasks": "symbiote list-tasks --env NODE_NO_WARNINGS=1 --scope this-package",
-    "prepare": "symbiote project prepare --env NODE_NO_WARNINGS=1",
     "release": "symbiote release --env NODE_NO_WARNINGS=1",
-    "renovate": "symbiote project renovate --env NODE_NO_WARNINGS=1 --hush --github-reconfigure-repo --regenerate-assets --assets-preset 'basic cli lib lib-esm lib-web react nextjs'",
     "start": "symbiote start --env NODE_NO_WARNINGS=1 --",
     "test": "npm run test:package:unit --",
     "test:package:all": "symbiote test --env NODE_NO_WARNINGS=1 --coverage",
     "test:package:e2e": "symbiote test --env NODE_NO_WARNINGS=1 --tests end-to-end",
     "test:package:integration": "symbiote test --env NODE_NO_WARNINGS=1 --tests integration",
     "test:package:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit",
-    "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage",
-    "turbo:init": "symbiote project init-turbo --env NODE_NO_WARNINGS=1 --not-multiversal"
+    "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
-    "core-js": "^3.40.0"
-  },
-  "devDependencies": {
-    "@-xun/symbiote": "^2.7.0",
+    "@types/debug": "^4.1.12",
+    "core-js": "^3.40.0",
+    "debug": "^4.4.0",
+    "supports-color": "^8.1.1",
     "type-fest": "^4.32.0"
   },
   "engines": {
