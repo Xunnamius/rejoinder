@@ -1,10 +1,6 @@
-import { Manager } from '@listr2/manager';
-
 import {
   createDebugLogger,
   createGenericLogger,
-  createListrManager,
-  createListrTaskLogger,
   disableLoggers,
   disableLoggingByTag,
   enableLoggers,
@@ -13,8 +9,7 @@ import {
   LoggerType,
   resetInternalState,
   type ExtendedDebugger,
-  type ExtendedLogger,
-  type GenericListrTask
+  type ExtendedLogger
 } from 'universe';
 
 import { withMockedEnv, withMockedOutput } from 'testverse:util.ts';
@@ -191,105 +186,6 @@ describe('::createGenericLogger', () => {
   });
 });
 
-describe('::createListrTaskLogger', () => {
-  it('returns ExtendedLogger instance', async () => {
-    expect.hasAssertions();
-
-    const task = { output: null } as unknown as GenericListrTask;
-    const log = createListrTaskLogger({ namespace, task });
-
-    expect(log.enabled).toBeTrue();
-    expect(log.log).toBeDefined();
-
-    log('logged');
-    expect(task.output).toStrictEqual(expect.stringMatching(/namespace.+logged/));
-  });
-
-  it('returns instance capable of handling complex input', async () => {
-    expect.hasAssertions();
-
-    const task = { output: null } as unknown as GenericListrTask;
-    const log = createListrTaskLogger({ namespace, task });
-
-    expect(log.enabled).toBeTrue();
-    expect(log.log).toBeDefined();
-
-    log('logged: %O', { success: true });
-    expect(task.output).toStrictEqual(
-      expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
-    );
-  });
-
-  it('returns extensions that can themselves be extended', async () => {
-    expect.hasAssertions();
-
-    const task = { output: null } as unknown as GenericListrTask;
-    const log = createListrTaskLogger({ namespace, task });
-    const extension1 = log.extend(namespace);
-    const extension2 = extension1.extend(namespace);
-
-    expect(log.enabled).toBeTrue();
-    expect(extension1.enabled).toBeTrue();
-    expect(extension2.enabled).toBeTrue();
-
-    expect(log.log).toBeDefined();
-    expect(extension1.log).toBeDefined();
-    expect(extension2.log).toBeDefined();
-
-    log('logged');
-    expect(task.output).toStrictEqual(expect.stringMatching(/namespace.+logged/));
-
-    extension1('logged');
-    expect(task.output).toStrictEqual(
-      expect.stringMatching(/namespace::namespace.+logged/)
-    );
-
-    extension2('logged');
-    expect(task.output).toStrictEqual(
-      expect.stringMatching(/(?:namespace::?){2}namespace.+logged/)
-    );
-  });
-
-  it('is unaffected by the presence of tags by default', async () => {
-    expect.hasAssertions();
-
-    const outputHistory: string[] = [];
-    const task = {
-      set output(message: string) {
-        outputHistory.push(message);
-      }
-    } as unknown as GenericListrTask;
-
-    const log = createListrTaskLogger({ namespace, task });
-    const extension = log.extend(namespace);
-
-    log(['tag-1', 'tag-2'], 'logged: %O', { success: true });
-    log.error(['tag-1', 'tag-2'], 'logged: %O', { success: true });
-    log.message(['tag-1', 'tag-2'], 'logged: %O', { success: true });
-    log.warn(['tag-1', 'tag-2'], 'logged: %O', { success: true });
-    log.newline(['tag-1', 'tag-2']);
-
-    extension(['tag-1', 'tag-2'], 'logged');
-    extension.error(['tag-1', 'tag-2'], 'logged');
-    extension.message(['tag-1', 'tag-2'], 'logged');
-    extension.warn(['tag-1', 'tag-2'], 'logged');
-    extension.newline(['tag-1', 'tag-2']);
-
-    expect(outputHistory).toStrictEqual([
-      expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/),
-      '',
-      expect.stringMatching(/namespace::namespace.+logged/),
-      expect.stringMatching(/namespace::namespace:<error>.+logged/),
-      expect.stringMatching(/namespace::namespace:<message>.+logged/),
-      expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/),
-      ''
-    ]);
-  });
-});
-
 describe('::createDebugLogger', () => {
   it('returns ExtendedDebugger instance', async () => {
     expect.hasAssertions();
@@ -358,51 +254,9 @@ describe('::createDebugLogger', () => {
   });
 });
 
-describe('::createListrManager', () => {
-  it('returns Listr2 Manager instance', async () => {
-    expect.hasAssertions();
-    expect(createListrManager()).toBeInstanceOf(Manager);
-  });
-
-  it('returns a Manager using default renderer by default', async () => {
-    expect.hasAssertions();
-
-    await withMockedEnv(() => {
-      expect(createListrManager().options?.renderer).toBe('default');
-    }, {});
-  });
-
-  it('returns a Manager using fallback renderer if process.env.DEBUG is present', async () => {
-    expect.hasAssertions();
-
-    await withMockedEnv(
-      () => {
-        const { fallbackRendererCondition: fallback } =
-          createListrManager().options ?? {};
-
-        expect(typeof fallback === 'boolean' ? fallback : fallback?.()).toBeTrue();
-      },
-      { DEBUG: '*:*' }
-    );
-  });
-
-  it('returns a Manager using fallback renderer if any debug loggers are enabled', async () => {
-    expect.hasAssertions();
-
-    createDebugLogger({ namespace }).enabled = true;
-
-    await withMockedEnv(() => {
-      const { fallbackRendererCondition: fallback } = createListrManager().options ?? {};
-
-      expect(typeof fallback === 'boolean' ? fallback : fallback?.()).toBeTrue();
-    }, {});
-  });
-});
-
 describe('::disableLoggers', () => {
   const loggers: {
     log: ExtendedLogger;
-    listr: ExtendedLogger;
     debug: ExtendedDebugger;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = {} as any;
@@ -410,12 +264,6 @@ describe('::disableLoggers', () => {
   beforeEach(() => {
     loggers.log = createGenericLogger({ namespace: LoggerType.GenericOutput });
     loggers.log.log = jest.fn();
-
-    loggers.listr = createListrTaskLogger({
-      namespace: 'listr',
-      task: { output: '' } as GenericListrTask
-    });
-    loggers.listr.log = jest.fn();
 
     loggers.debug = createDebugLogger({ namespace: LoggerType.DebugOnly });
     loggers.debug.log = jest.fn();
@@ -425,13 +273,11 @@ describe('::disableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     disableLoggers({ type: LoggerType.All });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalse();
   });
 
@@ -439,19 +285,16 @@ describe('::disableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     disableLoggers({ type: LoggerType.All });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalse();
 
     disableLoggers({ type: LoggerType.All });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalse();
   });
 
@@ -459,25 +302,21 @@ describe('::disableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     disableLoggers({ type: LoggerType.All, filter: LoggerType.GenericOutput });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     disableLoggers({ type: LoggerType.All, filter: 'listr' });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalsy();
 
     disableLoggers({ type: LoggerType.All, filter: LoggerType.DebugOnly });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalse();
 
     loggers.debug.enabled = true;
@@ -493,13 +332,11 @@ describe('::disableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     disableLoggers({ type: LoggerType.All, filter: globalDummyFilter });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalse();
   });
 
@@ -507,7 +344,6 @@ describe('::disableLoggers', () => {
     expect.hasAssertions();
 
     loggers.log.enabled = true;
-    loggers.listr.enabled = true;
     loggers.debug.enabled = true;
 
     const parameters = {
@@ -518,17 +354,14 @@ describe('::disableLoggers', () => {
     disableLoggers(parameters);
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalse();
 
     loggers.log.enabled = true;
-    loggers.listr.enabled = true;
     loggers.debug.enabled = true;
 
     disableLoggers(parameters);
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalse();
   });
 
@@ -538,22 +371,18 @@ describe('::disableLoggers', () => {
     loggers.debug.enabled = true;
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
 
     disableLoggers({ type: LoggerType.GenericOutput });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeTrue();
 
     loggers.log.enabled = true;
-    loggers.listr.enabled = true;
 
     disableLoggers({ type: LoggerType.DebugOnly });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalse();
   });
 
@@ -563,13 +392,11 @@ describe('::disableLoggers', () => {
     loggers.debug.enabled = true;
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
 
     disableLoggers({ type: LoggerType.All, filter: 'no-match' });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
 
     disableLoggers({
@@ -578,7 +405,6 @@ describe('::disableLoggers', () => {
     });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
 
     disableLoggers({
@@ -587,7 +413,6 @@ describe('::disableLoggers', () => {
     });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
   });
 });
@@ -604,12 +429,6 @@ describe('::enableLoggers', () => {
     loggers.log = createGenericLogger({ namespace: LoggerType.GenericOutput });
     loggers.log.log = jest.fn();
 
-    loggers.listr = createListrTaskLogger({
-      namespace: 'listr',
-      task: { output: '' } as GenericListrTask
-    });
-    loggers.listr.log = jest.fn();
-
     loggers.debug = createDebugLogger({ namespace: LoggerType.DebugOnly });
     loggers.debug.log = jest.fn();
   });
@@ -618,13 +437,11 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
   });
 
@@ -632,19 +449,16 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
 
     enableLoggers({ type: LoggerType.All });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
   });
 
@@ -652,25 +466,21 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All, filter: LoggerType.GenericOutput });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All, filter: 'listr' });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All, filter: LoggerType.DebugOnly });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
 
     loggers.log.enabled = false;
@@ -686,13 +496,11 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All, filter: globalDummyFilter });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeTrue();
   });
 
@@ -700,7 +508,6 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     loggers.log.enabled = false;
-    loggers.listr.enabled = false;
     loggers.debug.enabled = false;
 
     const parameters = { type: LoggerType.All, filter: globalDummyFilter } as const;
@@ -708,17 +515,14 @@ describe('::enableLoggers', () => {
     enableLoggers(parameters);
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeTrue();
 
     loggers.log.enabled = false;
-    loggers.listr.enabled = false;
     loggers.debug.enabled = false;
 
     enableLoggers(parameters);
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeTrue();
   });
 
@@ -726,25 +530,20 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     loggers.log.enabled = false;
-    loggers.listr.enabled = false;
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.GenericOutput });
 
     expect(loggers.log.enabled).toBeTrue();
-    expect(loggers.listr.enabled).toBeTrue();
     expect(loggers.debug.enabled).toBeFalsy();
 
     loggers.log.enabled = false;
-    loggers.listr.enabled = false;
 
     enableLoggers({ type: LoggerType.DebugOnly });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeTrue();
   });
 
@@ -752,16 +551,13 @@ describe('::enableLoggers', () => {
     expect.hasAssertions();
 
     loggers.log.enabled = false;
-    loggers.listr.enabled = false;
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({ type: LoggerType.All, filter: 'no-match' });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({
@@ -770,7 +566,6 @@ describe('::enableLoggers', () => {
     });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalsy();
 
     enableLoggers({
@@ -779,7 +574,6 @@ describe('::enableLoggers', () => {
     });
 
     expect(loggers.log.enabled).toBeFalse();
-    expect(loggers.listr.enabled).toBeFalse();
     expect(loggers.debug.enabled).toBeFalsy();
   });
 });
@@ -788,15 +582,11 @@ describe('::disableLoggingByTag', () => {
   it('can disable logging across logger types including sub-loggers by tag', async () => {
     expect.hasAssertions();
 
-    const task = { output: '' } as unknown as GenericListrTask;
     const generic = createGenericLogger({ namespace });
-    const listr = createListrTaskLogger({ namespace, task });
     const genericExtended = generic.extend(namespace);
-    const listrExtended = listr.extend(namespace);
 
     await withMockedOutput(({ logSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
-      listr(['tag-2'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
@@ -807,20 +597,12 @@ describe('::disableLoggingByTag', () => {
           expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
         ])
       ]);
-
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
-
-      task.output = '';
-      listrExtended(['tag-2'], 'message: %O', { success: true });
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
     });
 
-    task.output = '';
     disableLoggingByTag({ tags: ['tag-2'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
-      listr(['tag-2'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
@@ -831,48 +613,33 @@ describe('::disableLoggingByTag', () => {
           expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
         ])
       ]);
-
-      expect(task.output).toBeEmpty();
-
-      listrExtended(['tag-2'], 'message: %O', { success: true });
-      expect(task.output).toBeEmpty();
     });
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
-      listr(['tag-2'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toBeEmpty();
-      expect(task.output).toBeEmpty();
-
-      listrExtended(['tag-2'], 'message: %O', { success: true });
-      expect(task.output).toBeEmpty();
     });
   });
 
   it('does not prevent tag-less log calls from executing successfully', async () => {
     expect.hasAssertions();
 
-    const task = { output: '' } as unknown as GenericListrTask;
     const generic = createGenericLogger({ namespace });
-    const listr = createListrTaskLogger({ namespace, task });
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic('message: %O', { success: true });
-      listr('message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
         expect.arrayContaining([
           expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
         ])
       ]);
-
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
     });
   });
 });
@@ -881,46 +648,31 @@ describe('::enableLoggingByTag', () => {
   it('can enable logging across logger types including sub-loggers by tag', async () => {
     expect.hasAssertions();
 
-    const task = { output: '' } as unknown as GenericListrTask;
     const generic = createGenericLogger({ namespace });
-    const listr = createListrTaskLogger({ namespace, task });
     const genericExtended = generic.extend(namespace);
-    const listrExtended = listr.extend(namespace);
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
-      listr(['tag-2'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toBeEmpty();
-      expect(task.output).toBeEmpty();
-
-      listrExtended(['tag-2'], 'message: %O', { success: true });
-      expect(task.output).toBeEmpty();
     });
 
     enableLoggingByTag({ tags: ['tag-2'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
-      listr(['tag-2'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toBeEmpty();
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
-
-      task.output = '';
-      listrExtended(['tag-2'], 'message: %O', { success: true });
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
     });
 
     enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
-      listr(['tag-2'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
@@ -931,35 +683,24 @@ describe('::enableLoggingByTag', () => {
           expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
         ])
       ]);
-
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
-
-      task.output = '';
-      listrExtended(['tag-2'], 'message: %O', { success: true });
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
     });
   });
 
   it('does not prevent tag-less log calls from executing successfully', async () => {
     expect.hasAssertions();
 
-    const task = { output: '' } as unknown as GenericListrTask;
     const generic = createGenericLogger({ namespace });
-    const listr = createListrTaskLogger({ namespace, task });
 
     enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
     await withMockedOutput(({ logSpy }) => {
       generic('message: %O', { success: true });
-      listr('message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
         expect.arrayContaining([
           expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
         ])
       ]);
-
-      expect(task.output).toMatch(/namespace.+message:.+{.+success:.+true.+}/);
     });
   });
 });
@@ -970,25 +711,15 @@ describe('::getLoggersByType', () => {
 
     const debug1 = createDebugLogger({ namespace: LoggerType.DebugOnly });
     const log1 = createGenericLogger({ namespace: LoggerType.GenericOutput });
-    const listr1 = createListrTaskLogger({
-      namespace: 'listr',
-      task: { output: '' } as GenericListrTask
-    });
 
     const debug2 = createDebugLogger({ namespace: LoggerType.DebugOnly });
     const log2 = createGenericLogger({ namespace: LoggerType.GenericOutput });
-    const listr2 = createListrTaskLogger({
-      namespace: 'listr',
-      task: { output: '' } as GenericListrTask
-    });
 
     expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([
       ...extractAllLoggers(debug1),
       ...extractAllLoggers(log1),
-      ...extractAllLoggers(listr1),
       ...extractAllLoggers(debug2),
-      ...extractAllLoggers(log2),
-      ...extractAllLoggers(listr2)
+      ...extractAllLoggers(log2)
     ]);
 
     expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([
@@ -998,9 +729,7 @@ describe('::getLoggersByType', () => {
 
     expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers([
       ...extractAllLoggers(log1),
-      ...extractAllLoggers(listr1),
-      ...extractAllLoggers(log2),
-      ...extractAllLoggers(listr2)
+      ...extractAllLoggers(log2)
     ]);
   });
 
@@ -1009,21 +738,13 @@ describe('::getLoggersByType', () => {
 
     const debug1 = createDebugLogger({ namespace: LoggerType.DebugOnly });
     const log1 = createGenericLogger({ namespace: LoggerType.GenericOutput });
-    const listr1 = createListrTaskLogger({
-      namespace: 'listr',
-      task: { output: '' } as GenericListrTask
-    });
 
     const debug2 = createDebugLogger({ namespace: LoggerType.DebugOnly });
     const log2 = createGenericLogger({ namespace: LoggerType.GenericOutput });
-    const listr2 = createListrTaskLogger({
-      namespace: 'listr',
-      task: { output: '' } as GenericListrTask
-    });
 
     expect(
       getLoggersByType({ type: LoggerType.All, includeInternal: false })
-    ).toIncludeSameMembers([debug1, log1, listr1, debug2, log2, listr2]);
+    ).toIncludeSameMembers([debug1, log1, debug2, log2]);
 
     expect(
       getLoggersByType({ type: LoggerType.DebugOnly, includeInternal: false })
@@ -1031,7 +752,7 @@ describe('::getLoggersByType', () => {
 
     expect(
       getLoggersByType({ type: LoggerType.GenericOutput, includeInternal: false })
-    ).toIncludeSameMembers([log1, listr1, log2, listr2]);
+    ).toIncludeSameMembers([log1, log2]);
   });
 
   it('tracks extended loggers', async () => {

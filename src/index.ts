@@ -1,23 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// ! SPLIT OFF LISTR2 FEATURES AS SEPARATE PACKAGE
+// TODO: add chalk abilities (and also delete the comment on the next line)
+// {@symbiote/notExtraneous chalk}
 
 import assert from 'node:assert';
 import { isPromise } from 'node:util/types';
-
-import { Manager } from '@listr2/manager';
-
-import {
-  ListrLogger,
-  PRESET_TIMER,
-  PRESET_TIMESTAMP,
-  ProcessOutput,
-  type ListrBaseClassOptions,
-  type ListrContext,
-  type ListrRenderer,
-  type ListrTaskWrapper
-} from 'listr2';
 
 import {
   $instances,
@@ -51,11 +39,6 @@ export enum LoggerType {
   GenericOutput = 'logger',
   DebugOnly = 'debugger'
 }
-
-/**
- * A pre-customized Listr {@link Manager} instance.
- */
-export type ListrManager<T = any> = Manager<T, 'default' | 'verbose'>;
 
 /**
  * @internal
@@ -147,22 +130,13 @@ type _ExtendedLogger<T> = Omit<
   DebuggerExtension<UnextendableInternalLogger, T>;
 
 /**
- * Represents a generic Listr2 Task object.
- *
- * @internal
- */
-export type GenericListrTask = ListrTaskWrapper<
-  ListrContext,
-  typeof ListrRenderer,
-  typeof ListrRenderer
->;
-
-/**
  * Keeps track of our various "logger" (i.e. debug) instances and their
  * associated metadata. Also keeps track of those tags for which we disable
  * output.
+ *
+ * @internal
  */
-const metadata = {
+export const metadata = {
   logger: [] as (ExtendedLogger | UnextendableInternalLogger)[],
   debugger: [] as (ExtendedDebugger | UnextendableInternalDebugger)[],
   denylist: new Set<string>()
@@ -223,38 +197,6 @@ export function createGenericLogger({
 }
 
 /**
- * Create and return a new set of logger instances configured to output via a
- * Listr2 task.
- */
-export function createListrTaskLogger({
-  namespace,
-  task
-}: {
-  /**
-   * The namespace of the logger. The namespace must be a valid [`debug`
-   * namespace](https://npm.im/debug#namespace-colors).
-   *
-   * @see https://npm.im/debug#namespace-colors
-   */
-  namespace: string;
-  /**
-   * The task to which logging output will be sent.
-   */
-  task: GenericListrTask;
-}) {
-  return withMetadataTracking(
-    LoggerType.GenericOutput,
-    makeExtendedLogger(
-      debugFactory(namespace),
-      LoggerType.GenericOutput,
-      function (...args: unknown[]) {
-        task.output = args.join(' ').trim();
-      }
-    )
-  );
-}
-
-/**
  * Create a new debug logger instance.
  */
 export function createDebugLogger({
@@ -275,54 +217,6 @@ export function createDebugLogger({
 
   debug.log = consoleError;
   return debug;
-}
-
-/**
- * Create and return a new Listr2 {@link Manager} instance pre-configured to
- * work in harmony with rejoinder.
- *
- * Specifically, this instance:
- *
- *   - Has good consistent defaults.
- *
- *   - Switches to the verbose renderer when the DEBUG environment variable is
- *     present or any of the debug logger namespaces are enabled.
- */
-export function createListrManager<T = any>(options?: {
-  /**
-   * Properties provided here will override the defaults passed to the
-   * {@link Manager} constructor.
-   */
-  overrides?: ListrBaseClassOptions;
-}) {
-  const processOutput = new ProcessOutput();
-  // ? Since we use the fallback logger whenever we're in debug mode, let's
-  // ? allow debug traffic to hit stderr live.
-  processOutput.hijack = processOutput.release = () => undefined /* noop */;
-
-  const manager = new Manager<T, 'default', 'verbose' | 'simple'>({
-    concurrent: false,
-    collectErrors: 'minimal',
-    exitOnError: true,
-    registerSignalListeners: true,
-    renderer: 'default',
-    fallbackRenderer: 'verbose',
-    fallbackRendererCondition: () =>
-      !!process.env.DEBUG || metadata.debugger.some((logger) => logger.enabled),
-    rendererOptions: {
-      collapseSubtasks: false,
-      collapseSkips: false,
-      timer: PRESET_TIMER
-    },
-    fallbackRendererOptions: {
-      timestamp: PRESET_TIMESTAMP,
-      timer: PRESET_TIMER,
-      logger: new ListrLogger({ processOutput })
-    },
-    ...options?.overrides
-  });
-
-  return manager;
 }
 
 /**
@@ -482,6 +376,8 @@ export function getDisabledTags() {
  * A function that resets the internal logger cache. Essentially, calling this
  * function causes rejoinder to forget any disabled tags or loggers created
  * prior.
+ *
+ * @internal
  */
 export function resetInternalState() {
   metadata.debugger.length = 0;
@@ -491,8 +387,10 @@ export function resetInternalState() {
 
 /**
  * Transforms an {@link ExtendedDebugger} into an {@link ExtendedLogger}.
+ *
+ * @internal
  */
-function makeExtendedLogger(
+export function makeExtendedLogger(
   extendedDebugger: ExtendedDebugger,
   type: Exclude<LoggerType, LoggerType.All>,
   /**
@@ -672,8 +570,10 @@ function makeExtendedLogger(
 /**
  * Allows logging to be disabled via tags at the fine-grain message level. Set
  * `trapdoorArgLength` to the number of params necessary to trigger denylisting.
+ *
+ * @internal
  */
-function decorateWithTagSupport<T extends (...args: any[]) => any>(
+export function decorateWithTagSupport<T extends (...args: any[]) => any>(
   fn: T,
   trapdoorArgsMinLength: number
 ): WithTagSupport<T> {
@@ -692,19 +592,24 @@ function decorateWithTagSupport<T extends (...args: any[]) => any>(
   });
 }
 
-function withMetadataTracking(
+/**
+ * Make rejoinder's internals aware of a new logger instance.
+ *
+ * @internal
+ */
+export function withMetadataTracking(
   type: LoggerType.GenericOutput,
   logger: ExtendedLogger
 ): ExtendedLogger;
-function withMetadataTracking(
+export function withMetadataTracking(
   type: LoggerType.DebugOnly,
   logger: ExtendedDebugger
 ): ExtendedDebugger;
-function withMetadataTracking(
+export function withMetadataTracking(
   type: Exclude<LoggerType, LoggerType.All>,
   logger: ExtendedDebugger | ExtendedLogger
 ): ExtendedDebugger | ExtendedLogger;
-function withMetadataTracking(
+export function withMetadataTracking(
   type: Exclude<LoggerType, LoggerType.All>,
   logger: ExtendedDebugger | ExtendedLogger
 ) {
@@ -719,8 +624,10 @@ function withMetadataTracking(
 /**
  * Recursively patches {@link ExtendedDebugger.extend} so that all debugger
  * instances are properly tracked.
+ *
+ * @internal
  */
-function withPatchedExtend(instance: ExtendedDebugger) {
+export function withPatchedExtend(instance: ExtendedDebugger) {
   const oldExtend = instance.extend.bind(instance);
 
   // ? We don't use a Proxy here because it's overkill; we don't need access to
