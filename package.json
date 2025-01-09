@@ -1,6 +1,6 @@
 {
   "name": "rejoinder",
-  "version": "0.0.0-temporary",
+  "version": "0.3.21",
   "description": "A tiny library for creating gorgeous terminal output",
   "keywords": [
     "echo",

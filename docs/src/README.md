@@ -16,10 +16,6 @@
 - [ExtendedLogger](interfaces/ExtendedLogger.md)
 - [UnextendableInternalLogger](interfaces/UnextendableInternalLogger.md)
 
-## Type Aliases
-
-- [ListrManager](type-aliases/ListrManager.md)
-
 ## Variables
 
 - [ansiOrangeColorCodes](variables/ansiOrangeColorCodes.md)
@@ -32,8 +28,6 @@
 
 - [createDebugLogger](functions/createDebugLogger.md)
 - [createGenericLogger](functions/createGenericLogger.md)
-- [createListrManager](functions/createListrManager.md)
-- [createListrTaskLogger](functions/createListrTaskLogger.md)
 - [disableLoggers](functions/disableLoggers.md)
 - [disableLoggingByTag](functions/disableLoggingByTag.md)
 - [enableLoggers](functions/enableLoggers.md)
@@ -41,4 +35,3 @@
 - [extendedDebugFactory](functions/extendedDebugFactory.md)
 - [getDisabledTags](functions/getDisabledTags.md)
 - [getLoggersByType](functions/getLoggersByType.md)
-- [resetInternalState](functions/resetInternalState.md)

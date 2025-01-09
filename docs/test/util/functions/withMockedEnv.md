@@ -8,7 +8,7 @@
 
 > **withMockedEnv**(`test`, `simulatedEnv`, `options`): `Promise`\<`void`\>
 
-Defined in: test/util.ts:25
+Defined in: [test/util.ts:25](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/test/util.ts#L25)
 
 ## Parameters
 

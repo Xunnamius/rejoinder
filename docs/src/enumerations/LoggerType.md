@@ -6,7 +6,7 @@
 
 # Enumeration: LoggerType
 
-Defined in: src/index.ts:49
+Defined in: [src/index.ts:37](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L37)
 
 An enum representing the types of loggers classified by output target.
 
@@ -16,7 +16,7 @@ An enum representing the types of loggers classified by output target.
 
 > **All**: `"all"`
 
-Defined in: src/index.ts:50
+Defined in: [src/index.ts:38](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L38)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: src/index.ts:50
 
 > **DebugOnly**: `"debugger"`
 
-Defined in: src/index.ts:52
+Defined in: [src/index.ts:40](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L40)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: src/index.ts:52
 
 > **GenericOutput**: `"logger"`
 
-Defined in: src/index.ts:51
+Defined in: [src/index.ts:39](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L39)

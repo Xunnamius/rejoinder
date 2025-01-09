@@ -6,7 +6,7 @@
 
 # Interface: ExtendedLogger()
 
-Defined in: src/index.ts:103
+Defined in: [src/index.ts:86](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L86)
 
 A wrapper around [ExtendedDebugger](ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -17,7 +17,7 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: src/index.ts:107
+Defined in: [src/index.ts:90](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L90)
 
 A wrapper around [ExtendedDebugger](ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -34,7 +34,7 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: src/index.ts:111
+Defined in: [src/index.ts:94](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L94)
 
 A wrapper around [ExtendedDebugger](ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -198,7 +198,7 @@ A sub-instance for outputting warning messages.
 
 > **extend**(...`args`): [`ExtendedLogger`](ExtendedLogger.md)
 
-Defined in: src/index.ts:141
+Defined in: [src/index.ts:124](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L124)
 
 Creates a new instance by appending `namespace` to the current logger's
 namespace.
@@ -221,7 +221,7 @@ namespace.
 
 > **newline**(...`args`): `void`
 
-Defined in: src/index.ts:120
+Defined in: [src/index.ts:103](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L103)
 
 Send a blank newline to output.
 
@@ -239,7 +239,7 @@ Send a blank newline to output.
 
 > **newline**(...`args`): `void`
 
-Defined in: src/index.ts:134
+Defined in: [src/index.ts:117](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/src/index.ts#L117)
 
 Send a blank newline to output.
 
