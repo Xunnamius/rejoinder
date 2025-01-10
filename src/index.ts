@@ -95,10 +95,10 @@ export interface ExtendedLogger extends _ExtendedLogger<ExtendedLogger> {
   /**
    * Send a blank newline to output.
    *
-   * @param outputMethod Determines if the newline will be output via the
-   * default output method or the alternate output method. This parameter only
-   * has an effect when using certain logger backends and typically corresponds
-   * to stdout (`"default"`) and stderr (`"alternate"`).
+   * `outputMethod` determines if the newline will be output via the default
+   * output method or the alternate output method. This parameter only has an
+   * effect when using certain logger backends and typically corresponds to
+   * stdout (`"default"`) and stderr (`"alternate"`).
    */
   newline(
     ...args: [
@@ -109,10 +109,10 @@ export interface ExtendedLogger extends _ExtendedLogger<ExtendedLogger> {
   /**
    * Send a blank newline to output.
    *
-   * @param outputMethod Determines if the newline will be output via the
-   * default output method or the alternate output method. This parameter only
-   * has an effect when using certain logger backends and typically corresponds
-   * to stdout (`"default"`) and stderr (`"alternate"`).
+   * `outputMethod` determines if the newline will be output via the default
+   * output method or the alternate output method. This parameter only has an
+   * effect when using certain logger backends and typically corresponds to
+   * stdout (`"default"`) and stderr (`"alternate"`).
    */
   newline(
     ...args: [outputMethod?: 'default' | 'alternate']
