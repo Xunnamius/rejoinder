@@ -30,8 +30,8 @@
   "type": "commonjs",
   "exports": {
     ".": {
-      "types": "./dist/packages/rejoinder-listr2/src/index.d.ts",
-      "default": "./dist/packages/rejoinder-listr2/src/index.js"
+      "types": "./dist/packages/listr2/src/index.d.ts",
+      "default": "./dist/packages/listr2/src/index.js"
     },
     "./package": "./package.json",
     "./package.json": "./package.json"
@@ -39,7 +39,7 @@
   "typesVersions": {
     "*": {
       "index": [
-        "dist/packages/rejoinder-listr2/src/index.d.ts"
+        "dist/packages/listr2/src/index.d.ts"
       ],
       "package": [
         "package.json"
@@ -75,6 +75,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
   "dependencies": {
+    "@-xun/debug": "^1.0.1",
     "@listr2/manager": "^2.0.13",
     "core-js": "^3.40.0",
     "listr2": "^8.2.5"
