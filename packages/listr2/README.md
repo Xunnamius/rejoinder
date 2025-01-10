@@ -1,7 +1,7 @@
 <!-- symbiote-template-region-start 1 -->
 
 <p align="center" width="100%">
-  <img width="400" src="https://raw.githubusercontent.com/Xunnamius/rejoinder/refs/heads/main/packages/listr2/logo.png">
+  <img width="300" src="https://raw.githubusercontent.com/Xunnamius/rejoinder/refs/heads/main/packages/listr2/logo.png">
 </p>
 
 <p align="center" width="100%">
@@ -21,7 +21,7 @@ A listr2 backend for <a href="https://github.com/Xunnamius/rejoinder#readme"><co
 [![Uses Semantic Release!][x-badge-semanticrelease-image]][x-badge-semanticrelease-link]
 
 [![NPM version][x-badge-npm-image]][x-badge-npm-link]
-[![Monthly Downloads][x-badge-downloads-image]][x-badge-npm-link]
+[![Monthly Downloads][x-badge-downloads-image]][x-badge-downloads-link]
 
 </div>
 
@@ -174,6 +174,7 @@ See the [table of contributors][x-repo-contributors].
 [x-badge-downloads-image]:
   https://img.shields.io/npm/dm/rejoinder-listr2?style=flat-square
   'Number of times this package has been downloaded per month'
+[x-badge-downloads-link]: https://npmtrends.com/rejoinder-listr2
 [x-badge-lastcommit-image]:
   https://img.shields.io/github/last-commit/Xunnamius/rejoinder?style=flat-square
   'Latest commit timestamp'
@@ -184,7 +185,7 @@ See the [table of contributors][x-repo-contributors].
 [x-badge-npm-image]:
   https://xunn.at/npm-pkg-version/rejoinder-listr2
   'Install this package using npm or yarn!'
-[x-badge-npm-link]: https://npmtrends.com/rejoinder-listr2
+[x-badge-npm-link]: https://npm.im/rejoinder-listr2
 [x-badge-repo-link]: https://github.com/Xunnamius/rejoinder
 [x-badge-semanticrelease-image]:
   https://xunn.at/badge-semantic-release
@@ -195,8 +196,6 @@ See the [table of contributors][x-repo-contributors].
   https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed#publish-only-a-cjs-distribution-with-property-exports
 [x-pkg-dual-package-hazard]:
   https://nodejs.org/api/packages.html#dual-package-hazard
-[x-pkg-esm-wine]:
-  https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed#esm-source-and-distribution
 [x-pkg-exports-conditions]:
   https://webpack.js.org/guides/package-exports#reference-syntax
 [x-pkg-exports-module-key]:

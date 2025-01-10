@@ -38,11 +38,15 @@
     "paths": {
       "rootverse+cli:*": ["packages/cli/*"],
       "rootverse+debug:*": ["packages/debug/*"],
+      "rootverse+github:*": ["packages/github/*"],
+      "rootverse+listr2:*": ["packages/listr2/*"],
       "rootverse:*": ["*"],
       "universe:*": ["src/*"],
       "universe": ["src/index.ts"],
       "testverse+cli:*": ["packages/cli/test/*"],
       "testverse+debug:*": ["packages/debug/test/*"],
+      "testverse+github:*": ["packages/github/test/*"],
+      "testverse+listr2:*": ["packages/listr2/test/*"],
       "testverse:*": ["test/*"],
       "typeverse:*": ["types/*"]
     },

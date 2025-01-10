@@ -1,7 +1,7 @@
 <!-- symbiote-template-region-start 1 -->
 
 <p align="center" width="100%">
-  <img width="200" src="https://raw.githubusercontent.com/Xunnamius/rejoinder/refs/heads/main/packages/debug/logo.png">
+  <img width="300" src="https://raw.githubusercontent.com/Xunnamius/rejoinder/refs/heads/main/packages/debug/logo.png">
 </p>
 
 <p align="center" width="100%">
@@ -21,7 +21,7 @@ Extends the hyper-popular <code>debug</code> package with several convenience me
 [![Uses Semantic Release!][x-badge-semanticrelease-image]][x-badge-semanticrelease-link]
 
 [![NPM version][x-badge-npm-image]][x-badge-npm-link]
-[![Monthly Downloads][x-badge-downloads-image]][x-badge-npm-link]
+[![Monthly Downloads][x-badge-downloads-image]][x-badge-downloads-link]
 
 </div>
 
@@ -177,6 +177,7 @@ See the [table of contributors][x-repo-contributors].
 [x-badge-downloads-image]:
   https://img.shields.io/npm/dm/@-xun/debug?style=flat-square
   'Number of times this package has been downloaded per month'
+[x-badge-downloads-link]: https://npmtrends.com/@-xun/debug
 [x-badge-lastcommit-image]:
   https://img.shields.io/github/last-commit/Xunnamius/rejoinder?style=flat-square
   'Latest commit timestamp'
@@ -187,7 +188,7 @@ See the [table of contributors][x-repo-contributors].
 [x-badge-npm-image]:
   https://xunn.at/npm-pkg-version/@-xun/debug
   'Install this package using npm or yarn!'
-[x-badge-npm-link]: https://npmtrends.com/@-xun/debug
+[x-badge-npm-link]: https://npm.im/@-xun/debug
 [x-badge-repo-link]: https://github.com/Xunnamius/rejoinder
 [x-badge-semanticrelease-image]:
   https://xunn.at/badge-semantic-release

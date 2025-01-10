@@ -21,7 +21,7 @@ A GitHub Actions compatible backend for <a href="https://github.com/Xunnamius/re
 [![Uses Semantic Release!][x-badge-semanticrelease-image]][x-badge-semanticrelease-link]
 
 [![NPM version][x-badge-npm-image]][x-badge-npm-link]
-[![Monthly Downloads][x-badge-downloads-image]][x-badge-npm-link]
+[![Monthly Downloads][x-badge-downloads-image]][x-badge-downloads-link]
 
 </div>
 
@@ -178,6 +178,7 @@ See the [table of contributors][x-repo-contributors].
 [x-badge-downloads-image]:
   https://img.shields.io/npm/dm/rejoinder-github-actions?style=flat-square
   'Number of times this package has been downloaded per month'
+[x-badge-downloads-link]: https://npmtrends.com/rejoinder-github-actions
 [x-badge-lastcommit-image]:
   https://img.shields.io/github/last-commit/Xunnamius/rejoinder?style=flat-square
   'Latest commit timestamp'
@@ -188,7 +189,7 @@ See the [table of contributors][x-repo-contributors].
 [x-badge-npm-image]:
   https://xunn.at/npm-pkg-version/rejoinder-github-actions
   'Install this package using npm or yarn!'
-[x-badge-npm-link]: https://npmtrends.com/rejoinder-github-actions
+[x-badge-npm-link]: https://npm.im/rejoinder-github-actions
 [x-badge-repo-link]: https://github.com/Xunnamius/rejoinder
 [x-badge-semanticrelease-image]:
   https://xunn.at/badge-semantic-release
