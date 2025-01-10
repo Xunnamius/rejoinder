@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { debugFactory } from '@-xun/debug';
-import {} from 'rejoinder';
 import { Manager } from '@listr2/manager';
 
 import {
@@ -14,6 +13,13 @@ import {
   type ListrRenderer,
   type ListrTaskWrapper
 } from 'listr2';
+
+import {
+  LoggerType,
+  makeExtendedLogger,
+  metadata,
+  withMetadataTracking
+} from 'rejoinder/internal';
 
 /**
  * A pre-customized Listr {@link Manager} instance.
