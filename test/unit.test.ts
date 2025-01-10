@@ -7,10 +7,11 @@ import {
   enableLoggingByTag,
   getLoggersByType,
   LoggerType,
-  resetInternalState,
   type ExtendedDebugger,
   type ExtendedLogger
 } from 'universe';
+
+import { resetInternalState } from 'universe:internal.ts';
 
 import { withMockedOutput } from 'testverse:util.ts';
 

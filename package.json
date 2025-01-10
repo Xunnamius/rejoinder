@@ -30,6 +30,10 @@
       "types": "./dist/src/index.d.ts",
       "default": "./dist/src/index.js"
     },
+    "./internal": {
+      "types": "./dist/src/internal.d.ts",
+      "default": "./dist/src/internal.js"
+    },
     "./package": "./package.json",
     "./package.json": "./package.json"
   },
@@ -37,6 +41,9 @@
     "*": {
       "index": [
         "dist/src/index.d.ts"
+      ],
+      "internal": [
+        "dist/src/internal.d.ts"
       ],
       "package": [
         "package.json"
