@@ -6,7 +6,7 @@
 
 <p align="center" width="100%">
 <!-- symbiote-template-region-end -->
-A CLI frontend for <a href="https://github.com/Xunnamius/rejoinder#readme"><code>rejoinder</code></a> ✒️
+A GitHub Actions compatible backend for <a href="https://github.com/Xunnamius/rejoinder#readme"><code>rejoinder</code></a> ✒️
 <!-- symbiote-template-region-start 2 -->
 </p>
 
@@ -31,7 +31,11 @@ A CLI frontend for <a href="https://github.com/Xunnamius/rejoinder#readme"><code
 
 <!-- symbiote-template-region-end -->
 
-A CLI frontend for [`rejoinder`][1].
+A backend for [`rejoinder`][1] with outputs specialized for GitHub Actions
+pipelines.
+
+When outside of a GitHub Actions context, `createActionsLogger` functions
+identically to `createGenericLogger`.
 
 <!-- symbiote-template-region-start 3 -->
 
@@ -195,8 +199,6 @@ See the [table of contributors][x-repo-contributors].
   https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed#publish-only-a-cjs-distribution-with-property-exports
 [x-pkg-dual-package-hazard]:
   https://nodejs.org/api/packages.html#dual-package-hazard
-[x-pkg-esm-wine]:
-  https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed#esm-source-and-distribution
 [x-pkg-exports-conditions]:
   https://webpack.js.org/guides/package-exports#reference-syntax
 [x-pkg-exports-module-key]:
