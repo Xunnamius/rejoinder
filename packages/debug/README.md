@@ -31,8 +31,8 @@ Extends the hyper-popular <code>debug</code> package with several convenience me
 
 <!-- symbiote-template-region-end -->
 
-Extends a debugger from the hyper popular `debug` package with several
-convenience methods.
+`@-xun/debug` extends debugger instances from the hyper popular `debug` package
+with several convenience methods.
 
 This package is the workhorse on which [`rejoinder`][1] is built.
 
