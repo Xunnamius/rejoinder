@@ -1,6 +1,6 @@
 {
   "name": "rejoinder-cli",
-  "version": "1.0.0-init",
+  "version": "1.0.0",
   "description": "A CLI frontend for rejoinder",
   "keywords": [],
   "homepage": "https://github.com/Xunnamius/rejoinder/tree/main/packages/cli#readme",
@@ -60,6 +60,9 @@
     "test:package:integration": "symbiote test --env NODE_NO_WARNINGS=1 --tests integration",
     "test:package:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit",
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
+  },
+  "peerDependencies": {
+    "rejoinder": ">=1.1.0"
   },
   "engines": {
     "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
