@@ -6,20 +6,12 @@
 
 # src
 
-## Enumerations
-
-- [LoggerType](enumerations/LoggerType.md)
-
 ## Interfaces
 
 - [ExtendedDebugger](interfaces/ExtendedDebugger.md)
-- [ExtendedLogger](interfaces/ExtendedLogger.md)
-- [UnextendableInternalLogger](interfaces/UnextendableInternalLogger.md)
 
 ## Variables
 
-- [ansiOrangeColorCodes](variables/ansiOrangeColorCodes.md)
-- [ansiRedColorCodes](variables/ansiRedColorCodes.md)
 - [SHORT\_TAB](variables/SHORT_TAB.md)
 - [SINGLE\_SPACE](variables/SINGLE_SPACE.md)
 - [TAB](variables/TAB.md)
@@ -32,6 +24,17 @@
 - [disableLoggingByTag](functions/disableLoggingByTag.md)
 - [enableLoggers](functions/enableLoggers.md)
 - [enableLoggingByTag](functions/enableLoggingByTag.md)
-- [extendedDebugFactory](functions/extendedDebugFactory.md)
 - [getDisabledTags](functions/getDisabledTags.md)
 - [getLoggersByType](functions/getLoggersByType.md)
+
+## References
+
+### ExtendedLogger
+
+Re-exports [ExtendedLogger](internal/interfaces/ExtendedLogger.md)
+
+***
+
+### LoggerType
+
+Re-exports [LoggerType](internal/enumerations/LoggerType.md)

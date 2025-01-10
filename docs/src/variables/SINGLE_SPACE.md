@@ -8,7 +8,7 @@
 
 > `const` **SINGLE\_SPACE**: `"⠀"` = `'⠀'`
 
-Defined in: [src/index.ts:150](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L150)
+Defined in: [src/index.ts:32](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/index.ts#L32)
 
 A string representing a single space (one space-ish character). Note that
 space-ish characters will not be `trim()`'d.

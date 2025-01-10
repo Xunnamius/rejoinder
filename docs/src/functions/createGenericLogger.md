@@ -6,9 +6,9 @@
 
 # Function: createGenericLogger()
 
-> **createGenericLogger**(`__namedParameters`): [`ExtendedLogger`](../interfaces/ExtendedLogger.md)
+> **createGenericLogger**(`__namedParameters`): [`ExtendedLogger`](../internal/interfaces/ExtendedLogger.md)
 
-Defined in: [src/index.ts:177](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L177)
+Defined in: [src/index.ts:49](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/index.ts#L49)
 
 Create and return new set of logger instances.
 
@@ -29,4 +29,4 @@ https://npm.im/debug#namespace-colors
 
 ## Returns
 
-[`ExtendedLogger`](../interfaces/ExtendedLogger.md)
+[`ExtendedLogger`](../internal/interfaces/ExtendedLogger.md)

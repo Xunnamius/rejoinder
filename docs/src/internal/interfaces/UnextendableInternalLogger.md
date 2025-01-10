@@ -1,12 +1,12 @@
-[**rejoinder**](../../README.md)
+[**rejoinder**](../../../README.md)
 
 ***
 
-[rejoinder](../../README.md) / [src](../README.md) / UnextendableInternalLogger
+[rejoinder](../../../README.md) / [src/internal](../README.md) / UnextendableInternalLogger
 
 # Interface: UnextendableInternalLogger()
 
-Defined in: [src/index.ts:71](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L71)
+Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L346)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -17,7 +17,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/index.ts:75](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L75)
+Defined in: [src/internal.ts:350](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L350)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -34,7 +34,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/index.ts:79](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L79)
+Defined in: [src/internal.ts:354](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L354)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -51,7 +51,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/index.ts:71](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L71)
+Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L346)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).

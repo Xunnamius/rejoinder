@@ -8,7 +8,7 @@
 
 > **enableLoggingByTag**(`__namedParameters`): `void`
 
-Defined in: [src/index.ts:356](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L356)
+Defined in: [src/index.ts:228](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/index.ts#L228)
 
 Allows logs with the specified tags to resume being sent to output. Only relevant as the inverse function of [disableLoggingByTag](disableLoggingByTag.md).
 

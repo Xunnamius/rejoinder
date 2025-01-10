@@ -6,9 +6,9 @@
 
 # Function: getLoggersByType()
 
-> **getLoggersByType**(`__namedParameters`): ([`ExtendedLogger`](../interfaces/ExtendedLogger.md) \| [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md) \| `UnextendableInternalDebugger`)[]
+> **getLoggersByType**(`__namedParameters`): ([`ExtendedLogger`](../internal/interfaces/ExtendedLogger.md) \| [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md) \| `UnextendableInternalDebugger`)[]
 
-Defined in: [src/index.ts:227](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L227)
+Defined in: [src/index.ts:99](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/index.ts#L99)
 
 Return an array of all known loggers of a specific type: either `stdout`,
 `debug`, or both (`all`). Pre-extended loggers (e.g. `::message`,
@@ -33,7 +33,7 @@ true
 
 #### type
 
-[`LoggerType`](../enumerations/LoggerType.md)
+[`LoggerType`](../internal/enumerations/LoggerType.md)
 
 The type of loggers to return. Valid values are one of:
 
@@ -45,4 +45,4 @@ The type of loggers to return. Valid values are one of:
 
 ## Returns
 
-([`ExtendedLogger`](../interfaces/ExtendedLogger.md) \| [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md) \| `UnextendableInternalDebugger`)[]
+([`ExtendedLogger`](../internal/interfaces/ExtendedLogger.md) \| [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md) \| `UnextendableInternalDebugger`)[]

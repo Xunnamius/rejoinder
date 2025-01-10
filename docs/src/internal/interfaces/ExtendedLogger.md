@@ -1,14 +1,14 @@
-[**rejoinder**](../../README.md)
+[**rejoinder**](../../../README.md)
 
 ***
 
-[rejoinder](../../README.md) / [src](../README.md) / ExtendedLogger
+[rejoinder](../../../README.md) / [src/internal](../README.md) / ExtendedLogger
 
 # Interface: ExtendedLogger()
 
-Defined in: [src/index.ts:86](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L86)
+Defined in: [src/internal.ts:361](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L361)
 
-A wrapper around [ExtendedDebugger](ExtendedDebugger.md) representing the extension from
+A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
 ## Extends
@@ -17,9 +17,9 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/index.ts:90](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L90)
+Defined in: [src/internal.ts:365](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L365)
 
-A wrapper around [ExtendedDebugger](ExtendedDebugger.md) representing the extension from
+A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
 ## Parameters
@@ -34,9 +34,9 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/index.ts:94](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L94)
+Defined in: [src/internal.ts:369](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L369)
 
-A wrapper around [ExtendedDebugger](ExtendedDebugger.md) representing the extension from
+A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
 ## Parameters
@@ -198,7 +198,7 @@ A sub-instance for outputting warning messages.
 
 > **extend**(...`args`): [`ExtendedLogger`](ExtendedLogger.md)
 
-Defined in: [src/index.ts:124](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L124)
+Defined in: [src/internal.ts:399](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L399)
 
 Creates a new instance by appending `namespace` to the current logger's
 namespace.
@@ -221,7 +221,7 @@ namespace.
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/index.ts:103](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L103)
+Defined in: [src/internal.ts:378](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L378)
 
 Send a blank newline to output.
 
@@ -244,7 +244,7 @@ stdout (`"default"`) and stderr (`"alternate"`).
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/index.ts:117](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L117)
+Defined in: [src/internal.ts:392](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L392)
 
 Send a blank newline to output.
 

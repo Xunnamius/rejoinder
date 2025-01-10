@@ -8,7 +8,7 @@
 
 > **disableLoggers**(`__namedParameters`): `void`
 
-Defined in: [src/index.ts:267](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/src/index.ts#L267)
+Defined in: [src/index.ts:139](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/index.ts#L139)
 
 Disable all logger instances (coarse-grain).
 
@@ -27,7 +27,7 @@ will be disabled.
 
 #### type
 
-[`LoggerType`](../enumerations/LoggerType.md)
+[`LoggerType`](../internal/enumerations/LoggerType.md)
 
 The type of logging to disable. Valid values are one of:
 
