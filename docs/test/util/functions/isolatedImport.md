@@ -8,7 +8,7 @@
 
 > **isolatedImport**\<`T`\>(`args`): `T`
 
-Defined in: [test/util.ts:180](https://github.com/Xunnamius/rejoinder/blob/64011a11a45735665b3ce75107a37b187f35af77/test/util.ts#L180)
+Defined in: [test/util.ts:180](https://github.com/Xunnamius/rejoinder/blob/f565868f81df25d1011782666f1a2b9fb2361f02/test/util.ts#L180)
 
 Performs a module import as if it were being imported for the first time.
 
