@@ -6,7 +6,7 @@
 
 # Interface: InternalDebugger()
 
-Defined in: [packages/debug/src/index.ts:45](https://github.com/Xunnamius/rejoinder/blob/8a30e3e849ce1f6dc4f0e3024c6c25440d95742f/packages/debug/src/index.ts#L45)
+Defined in: [packages/debug/src/index.ts:45](https://github.com/Xunnamius/rejoinder/blob/0c71f0cfbd86c57b509e0c9b870bf5a3b0f96cd2/packages/debug/src/index.ts#L45)
 
 The base `Debugger` interface coming from the [debug](https://npm.im/debug)
 package.
@@ -21,7 +21,7 @@ package.
 
 > **InternalDebugger**(...`args`): `void`
 
-Defined in: [packages/debug/src/index.ts:49](https://github.com/Xunnamius/rejoinder/blob/8a30e3e849ce1f6dc4f0e3024c6c25440d95742f/packages/debug/src/index.ts#L49)
+Defined in: [packages/debug/src/index.ts:49](https://github.com/Xunnamius/rejoinder/blob/0c71f0cfbd86c57b509e0c9b870bf5a3b0f96cd2/packages/debug/src/index.ts#L49)
 
 The base `Debugger` interface coming from the [debug](https://npm.im/debug)
 package.
@@ -120,7 +120,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:48
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: [packages/debug/src/index.ts:53](https://github.com/Xunnamius/rejoinder/blob/8a30e3e849ce1f6dc4f0e3024c6c25440d95742f/packages/debug/src/index.ts#L53)
+Defined in: [packages/debug/src/index.ts:53](https://github.com/Xunnamius/rejoinder/blob/0c71f0cfbd86c57b509e0c9b870bf5a3b0f96cd2/packages/debug/src/index.ts#L53)
 
 #### Parameters
 
