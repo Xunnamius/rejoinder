@@ -8,7 +8,7 @@
 
 > `const` **extendedDebuggerSubInstanceProperties**: \[`"message"`, `"error"`, `"warn"`\]
 
-Defined in: [packages/debug/src/index.ts:137](https://github.com/Xunnamius/rejoinder/blob/5838a1333ac9de7c91d67ae8237becbb22928097/packages/debug/src/index.ts#L137)
+Defined in: [packages/debug/src/index.ts:137](https://github.com/Xunnamius/rejoinder/blob/8a30e3e849ce1f6dc4f0e3024c6c25440d95742f/packages/debug/src/index.ts#L137)
 
 The single source of truth for the keys and types of the various convenience
 sub-instances (e.g. "error", "warn", etc).
