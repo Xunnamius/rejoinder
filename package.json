@@ -86,7 +86,7 @@
     "turbo:init": "symbiote project init-turbo --env NODE_NO_WARNINGS=1 --not-multiversal"
   },
   "dependencies": {
-    "@-xun/debug": "^1.0.1",
+    "@-xun/debug": "^1.0.4",
     "chalk": "^5.4.1",
     "core-js": "^3.40.0"
   },

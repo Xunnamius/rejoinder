@@ -75,7 +75,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
   "dependencies": {
-    "@-xun/debug": "^1.0.1",
+    "@-xun/debug": "^1.0.4",
     "@listr2/manager": "^2.0.13",
     "core-js": "^3.40.0",
     "listr2": "^8.2.5"
