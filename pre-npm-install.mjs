@@ -22,7 +22,7 @@
 
 import { lstat, rename, rm } from 'node:fs/promises';
 
-const prefix = '  symbiote::npm-pre-install: ';
+const prefix = '  symbiote::pre-npm-install: ';
 const nodeModulesXunDebugPackagePath = './node_modules/@-xun/debug';
 const nodeModulesXunDebugDevPackagePath = './node_modules/@-xun/debug~dev';
 
