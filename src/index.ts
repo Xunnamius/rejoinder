@@ -1,8 +1,6 @@
 // TODO: add chalk abilities (and also delete the comment on the next line)
 // {@symbiote/notExtraneous chalk}
 
-import { debugFactory, type ExtendedDebugger } from '@-xun/debug';
-
 import {
   LoggerType,
   makeExtendedLogger,
@@ -11,6 +9,8 @@ import {
   withPatchedExtend,
   type ExtendedLogger
 } from 'universe:internal.ts';
+
+import { debugFactory, type ExtendedDebugger } from '@-xun/debug';
 
 const consoleLog = (...args: unknown[]) => {
   // eslint-disable-next-line no-console

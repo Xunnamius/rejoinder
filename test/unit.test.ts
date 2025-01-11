@@ -1,5 +1,3 @@
-import { extendedDebuggerSubInstanceProperties } from '@-xun/debug';
-
 import {
   createDebugLogger,
   createGenericLogger,
@@ -16,6 +14,8 @@ import {
 import { resetInternalState } from 'universe:internal.ts';
 
 import { withMockedOutput } from 'testverse:util.ts';
+
+import { extendedDebuggerSubInstanceProperties } from '@-xun/debug';
 
 const namespace = 'namespace';
 const globalDummyFilter = new RegExp(
