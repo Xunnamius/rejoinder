@@ -8,7 +8,7 @@
 
 > **extendDebugger**(`instance`): [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:306](https://github.com/Xunnamius/rejoinder/blob/0c71f0cfbd86c57b509e0c9b870bf5a3b0f96cd2/packages/debug/src/index.ts#L306)
+Defined in: [packages/debug/src/index.ts:306](https://github.com/Xunnamius/rejoinder/blob/6a2f2c964cfd9707e5829cabd8d4be94ce6acda1/packages/debug/src/index.ts#L306)
 
 Extends a [InternalDebugger](../interfaces/InternalDebugger.md) instance with several convenience methods,
 returning an [ExtendedDebugger](../interfaces/ExtendedDebugger.md) instance.
