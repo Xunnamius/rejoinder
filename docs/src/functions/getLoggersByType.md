@@ -8,7 +8,7 @@
 
 > **getLoggersByType**(`__namedParameters`): ([`ExtendedLogger`](../internal/interfaces/ExtendedLogger.md) \| [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md) \| `UnextendableInternalDebugger`)[]
 
-Defined in: [src/index.ts:99](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/index.ts#L99)
+Defined in: [src/index.ts:99](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/index.ts#L99)
 
 Return an array of all known loggers of a specific type: either `stdout`,
 `debug`, or both (`all`). Pre-extended loggers (e.g. `::message`,

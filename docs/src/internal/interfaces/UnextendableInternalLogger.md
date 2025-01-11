@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalLogger()
 
-Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L346)
+Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L346)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -17,7 +17,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:350](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L350)
+Defined in: [src/internal.ts:350](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L350)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -34,7 +34,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:354](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L354)
+Defined in: [src/internal.ts:354](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L354)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -51,7 +51,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/8a503ebeed2689d0efaa12692a8cdaf933b5902d/src/internal.ts#L346)
+Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L346)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -124,7 +124,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **extend**: (...`args`) => `never`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:48
+Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:48
 
 #### Parameters
 
@@ -146,7 +146,7 @@ Defined in: packages/debug/dist/packages/debug/src/index.d.ts:48
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:41
+Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:41
 
 #### Parameters
 
