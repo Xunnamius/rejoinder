@@ -92,7 +92,7 @@
   },
   "devDependencies": {
     "@-xun/debug~dev": "npm:@-xun/debug",
-    "@-xun/symbiote": "^2.11.5",
+    "@-xun/symbiote": "^2.11.6",
     "type-fest": "^4.32.0"
   },
   "engines": {
