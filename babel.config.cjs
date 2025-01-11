@@ -8,7 +8,9 @@ const {
   moduleExport
 } = require('@-xun/symbiote/assets/babel.config.cjs');
 
-const { createDebugLogger } = require('rejoinder');
+// ? This needs to be this way only for this project since rejoinder and
+// ? symbiote have a co-dependent relationship
+const { createDebugLogger } = require('./node_modules/rejoinder/dist/src/index.js');
 
 const debug = createDebugLogger({ namespace: 'symbiote:config:babel' });
 
