@@ -8,7 +8,7 @@
 
 > **createListrTaskLogger**(`__namedParameters`): `ExtendedLogger`
 
-Defined in: [index.ts:44](https://github.com/Xunnamius/rejoinder/blob/78424fa8f7badb679969f17dc434d2444f557d0d/packages/listr2/src/index.ts#L44)
+Defined in: [index.ts:44](https://github.com/Xunnamius/rejoinder/blob/133b4f924be655aa01a49d03e5d1594795ffe3bd/packages/listr2/src/index.ts#L44)
 
 Create and return a new set of logger instances configured to output via a
 Listr2 task.
