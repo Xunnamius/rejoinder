@@ -24,6 +24,14 @@ function getJestAliases() {
   // ! directly, consider regenerating aliases across the entire project with:
   // ! `npx symbiote project renovate --regenerate-assets --assets-preset ...`
   return {
+    '^multiverse\\+cli:(.+)$': '<rootDir>/packages/cli/src/$1',
+    '^multiverse\\+debug:(.+)$': '<rootDir>/packages/debug/src/$1',
+    '^multiverse\\+github:(.+)$': '<rootDir>/packages/github/src/$1',
+    '^multiverse\\+listr2:(.+)$': '<rootDir>/packages/listr2/src/$1',
+    '^multiverse\\+cli$': '<rootDir>/packages/cli/src/index.ts',
+    '^multiverse\\+debug$': '<rootDir>/packages/debug/src/index.ts',
+    '^multiverse\\+github$': '<rootDir>/packages/github/src/index.ts',
+    '^multiverse\\+listr2$': '<rootDir>/packages/listr2/src/index.ts',
     '^rootverse\\+cli:(.+)$': '<rootDir>/packages/cli/$1',
     '^rootverse\\+debug:(.+)$': '<rootDir>/packages/debug/$1',
     '^rootverse\\+github:(.+)$': '<rootDir>/packages/github/$1',

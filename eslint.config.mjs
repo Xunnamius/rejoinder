@@ -27,6 +27,14 @@ function getEslintAliases() {
   // ! directly, consider regenerating aliases across the entire project with:
   // ! `npx symbiote project renovate --regenerate-assets --assets-preset ...`
   return [
+    ['multiverse+cli:*', './packages/cli/src/*'],
+    ['multiverse+debug:*', './packages/debug/src/*'],
+    ['multiverse+github:*', './packages/github/src/*'],
+    ['multiverse+listr2:*', './packages/listr2/src/*'],
+    ['multiverse+cli', './packages/cli/src/index.ts'],
+    ['multiverse+debug', './packages/debug/src/index.ts'],
+    ['multiverse+github', './packages/github/src/index.ts'],
+    ['multiverse+listr2', './packages/listr2/src/index.ts'],
     ['rootverse+cli:*', './packages/cli/*'],
     ['rootverse+debug:*', './packages/debug/*'],
     ['rootverse+github:*', './packages/github/*'],
