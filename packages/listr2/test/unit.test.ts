@@ -17,7 +17,7 @@ import {
   createListrManager,
   createListrTaskLogger,
   type GenericListrTask
-} from 'multiverse+listr2';
+} from 'rootverse+listr2:src/index.ts';
 
 import { extractAllLoggers, withMockedEnv, withMockedOutput } from 'testverse:util.ts';
 

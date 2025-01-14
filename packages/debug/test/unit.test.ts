@@ -5,7 +5,7 @@ import {
   debugFactory,
   extendDebugger,
   finalizeDebugger
-} from 'multiverse+debug';
+} from 'rootverse+debug:src/index.ts';
 
 import {
   expectExtendedDebugger,
@@ -58,9 +58,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -78,9 +78,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -98,9 +98,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -120,9 +120,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -142,9 +142,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -162,9 +162,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -183,9 +183,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -203,9 +203,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -221,9 +221,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -243,9 +243,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -264,9 +264,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -282,9 +282,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -300,9 +300,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -321,9 +321,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -341,9 +341,9 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('multiverse+debug')>({
-          path: 'multiverse+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger = isolatedImport<
+          typeof import('rootverse+debug:src/index.ts')
+        >({ path: 'rootverse+debug:src/index.ts' }).debugFactory('namespace');
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -501,7 +501,7 @@ describe('::ExtendedDebugger', () => {
     });
   });
 
-  describe('::$instances', () => {
+  describe('::[$instances] (and named convenience methods)', () => {
     it('returns all sub-instances attached to the current instance', async () => {
       expect.hasAssertions();
 
