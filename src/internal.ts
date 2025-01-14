@@ -18,6 +18,8 @@ import type { Entry } from 'type-fest';
 // eslint-disable-next-line unicorn/prevent-abbreviations
 const extendedLoggerFnPropsWeakMap = new WeakMap<Function, Function>();
 
+export { $instances };
+
 /**
  * Decorate a function `T` with an initial potentially-optional `tags`
  * parameter.
@@ -206,9 +208,6 @@ export function makeExtendedLogger(
     // ? function.
     instance.log = underlyingAlternateLogFn;
 
-    // ? Ensure our sub-loggers are enabled (generate output) by default.
-    instance.enabled = true;
-
     // ? Decorate the sub-logger with tag support.
     extendedLogger[$instances][key] = decorateWithTagSupport(instance, 2);
   }
@@ -221,7 +220,8 @@ export function makeExtendedLogger(
   // ? function.
   extendedLogger.log = underlyingDefaultLogFn;
 
-  // ? Ensure our extendedLogger is enabled (generates output) by default.
+  // ? Ensure our extendedLogger and its sub-loggers are enabled (generates
+  // ? output) by default.
   extendedLogger.enabled = true;
 
   ensureInstanceHasNonReservedColor(extendedLogger);
@@ -284,6 +284,9 @@ export function decorateWithTagSupport<T extends (...args: any[]) => any>(
 
 /**
  * Make rejoinder's internals aware of a new logger instance.
+ *
+ * **This function should be invoked ONLY AFTER `::log` and {@link $instances}
+ * have been configured on `logger`!**
  */
 export function withMetadataTracking(
   type: LoggerType.GenericOutput,
@@ -323,6 +326,16 @@ export function withPatchedExtend(instance: ExtendedDebugger) {
   };
 
   return instance;
+}
+
+/**
+ * Returns all keys in an object's {@link $instances} property with proper
+ * types.
+ */
+export function get$instancesKeys<T extends Pick<ExtendedDebugger, typeof $instances>>(
+  logger: T
+) {
+  return Object.keys(logger[$instances]) as (keyof (typeof logger)[typeof $instances])[];
 }
 
 /**
