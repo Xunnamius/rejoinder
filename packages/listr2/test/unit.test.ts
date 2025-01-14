@@ -120,12 +120,10 @@ describe('::createListrTaskLogger', () => {
       expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/),
       expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/),
       expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/),
-      '',
       expect.stringMatching(/namespace::namespace.+logged/),
       expect.stringMatching(/namespace::namespace:<error>.+logged/),
       expect.stringMatching(/namespace::namespace:<message>.+logged/),
-      expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/),
-      ''
+      expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
     ]);
   });
 });
@@ -574,16 +572,20 @@ describe('::getLoggersByType', () => {
       task: { output: '' } as GenericListrTask
     });
 
+    const listr11 = listr1.extend('1');
+
     expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([
       ...extractAllLoggers(listr1),
-      ...extractAllLoggers(listr2)
+      ...extractAllLoggers(listr2),
+      ...extractAllLoggers(listr11)
     ]);
 
     expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([]);
 
     expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers([
       ...extractAllLoggers(listr1),
-      ...extractAllLoggers(listr2)
+      ...extractAllLoggers(listr2),
+      ...extractAllLoggers(listr11)
     ]);
   });
 
@@ -600,9 +602,11 @@ describe('::getLoggersByType', () => {
       task: { output: '' } as GenericListrTask
     });
 
+    const listr11 = listr1.extend('1');
+
     expect(
       getLoggersByType({ type: LoggerType.All, includeInternal: false })
-    ).toIncludeSameMembers([listr1, listr2]);
+    ).toIncludeSameMembers([listr1, listr2, listr11]);
 
     expect(
       getLoggersByType({ type: LoggerType.DebugOnly, includeInternal: false })
@@ -610,6 +614,6 @@ describe('::getLoggersByType', () => {
 
     expect(
       getLoggersByType({ type: LoggerType.GenericOutput, includeInternal: false })
-    ).toIncludeSameMembers([listr1, listr2]);
+    ).toIncludeSameMembers([listr1, listr2, listr11]);
   });
 });

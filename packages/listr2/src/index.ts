@@ -21,6 +21,7 @@ import {
   LoggerType,
   metadata,
   withMetadataTracking,
+  withoutMetadataTracking,
   type ExtendedLogger
 } from 'rejoinder/internal';
 
@@ -45,6 +46,8 @@ export type GenericListrTask = ListrTaskWrapper<
 /**
  * Create and return a new set of logger instances configured to output via a
  * Listr2 task.
+ *
+ * Note that the `::newline` method of listr2 logger instances is a no-op.
  */
 export function createListrTaskLogger({
   namespace,
@@ -62,13 +65,20 @@ export function createListrTaskLogger({
    */
   task: GenericListrTask;
 }) {
-  const logger = withPatchedExtend(createGenericLogger({ namespace }), task);
+  const logger = withPatchedExtend(
+    withoutMetadataTracking(
+      LoggerType.GenericOutput,
+      createGenericLogger({ namespace })
+    ),
+    task
+  );
+
   return withMetadataTracking(LoggerType.GenericOutput, logger);
 }
 
 /**
- * Recursively patches {@link ExtendedDebugger.extend} so that all debugger
- * instances are properly tracked.
+ * Recursively patches {@link ExtendedLogger.extend} so that all debugger
+ * instances function properly and are tracked.
  */
 function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
   // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -82,11 +92,15 @@ function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
   }
 
   instance.extend = (...args: Parameters<ExtendedLogger['extend']>) => {
+    const logger = withoutMetadataTracking(LoggerType.GenericOutput, oldExtend(...args));
+
     return withMetadataTracking(
-      LoggerType.DebugOnly,
-      withPatchedExtend(oldExtend(...args), task)
+      LoggerType.GenericOutput,
+      withPatchedExtend(logger, task)
     );
   };
+
+  instance.newline = () => undefined;
 
   return instance;
 }
