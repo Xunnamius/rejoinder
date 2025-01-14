@@ -82,7 +82,7 @@ export async function withMockedOutput(
     stderrSpy: jest.spyOn(process.stderr, 'write')
   };
 
-  const $wasAccessed = Symbol('was-accessed');
+  const $wasAccessed = Symbol.for('@xunnamius:was-accessed');
   const noDebugPassthrough = !process.env.DEBUG || !passthroughOutputIfDebugging;
 
   for (const [name, spy] of Object.entries(spies)) {

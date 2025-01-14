@@ -15,7 +15,7 @@ const debugStringSplitterRegExp = /[\s,]+/;
  * (e.g. "error", "warn", etc). The array will also include the root
  * {@link ExtendedDebugger} instance.
  */
-export const $instances = Symbol('debug-builtin-sub-instances');
+export const $instances = Symbol.for('@xunnamius:debug-builtin-sub-instances');
 
 /**
  * A type representing the property names of the sub-instances made available
