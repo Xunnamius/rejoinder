@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { debugFactory } from '@-xun/debug';
 import { Manager } from '@listr2/manager';
 
 import {
@@ -14,9 +13,12 @@ import {
   type ListrTaskWrapper
 } from 'listr2';
 
+import { createGenericLogger } from 'rejoinder';
+
 import {
+  $instances,
+  get$instancesKeys,
   LoggerType,
-  makeExtendedLogger,
   metadata,
   withMetadataTracking
 } from 'rejoinder/internal';
@@ -57,16 +59,16 @@ export function createListrTaskLogger({
    */
   task: GenericListrTask;
 }) {
-  return withMetadataTracking(
-    LoggerType.GenericOutput,
-    makeExtendedLogger(
-      debugFactory(namespace),
-      LoggerType.GenericOutput,
-      function (...args: unknown[]) {
-        task.output = args.join(' ').trim();
-      }
-    )
-  );
+  const logger = createGenericLogger({ namespace });
+  const taskLog = (...args: unknown[]) => {
+    task.output = args.join(' ').trim();
+  };
+
+  for (const instanceProperty of get$instancesKeys(logger)) {
+    logger[$instances][instanceProperty].log = taskLog;
+  }
+
+  return withMetadataTracking(LoggerType.GenericOutput, logger);
 }
 
 /**

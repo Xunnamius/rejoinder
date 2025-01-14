@@ -1,9 +1,8 @@
 // TODO: add chalk abilities (and also delete the comment on the next line)
 // {@symbiote/notExtraneous chalk}
 
-import { debugFactory, type ExtendedDebugger } from '@-xun/debug';
-
 import {
+  get$instancesKeys,
   LoggerType,
   makeExtendedLogger,
   metadata,
@@ -11,6 +10,8 @@ import {
   withPatchedExtend,
   type ExtendedLogger
 } from 'universe:internal.ts';
+
+import { $instances, debugFactory, type ExtendedDebugger } from '@-xun/debug';
 
 const consoleLog = (...args: unknown[]) => {
   // eslint-disable-next-line no-console
@@ -82,13 +83,13 @@ export function createDebugLogger({
    */
   namespace: string;
 }) {
-  const debug = withMetadataTracking(
-    LoggerType.DebugOnly,
-    withPatchedExtend(debugFactory(namespace))
-  );
+  const debug = withPatchedExtend(debugFactory(namespace));
 
-  debug.log = consoleError;
-  return debug;
+  for (const instanceProperty of get$instancesKeys(debug)) {
+    debug[$instances][instanceProperty].log = consoleError;
+  }
+
+  return withMetadataTracking(LoggerType.DebugOnly, debug);
 }
 
 /**
