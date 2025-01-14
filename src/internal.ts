@@ -51,13 +51,20 @@ export type ExtendedLoggerParameters = WithExtendedParameters<ExtendedDebugger, 
  * These color codes correspond to a reddish color on the console.
  * https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124?permalink_comment_id=4481079#gistcomment-4481079
  */
-export const ansiRedColorCodes = [1, 9, 52, 88, 124, 160, 196];
+export const ansiRedColorCodes = [1, 9, 88, 124, 160, 196];
 
 /**
  * These color codes correspond to a yellowish color on the console.
  * https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124?permalink_comment_id=4481079#gistcomment-4481079
  */
 export const ansiYellowColorCodes = [3, 11, 94, 136, 178, 214, 220];
+
+/**
+ * These color codes are tough to see on my personal terminals.
+ */
+export const ansiBannedColorCodes = [
+  16, 17, 18, 19, 20, 21, 52, 53, 54, 55, 56, 57, 233, 234, 235, 236, 237, 238
+];
 
 /**
  * Keeps track of our various "logger" (i.e. debug) instances and their
@@ -76,8 +83,8 @@ export const metadata = {
  * prior.
  */
 export function resetInternalState() {
-  metadata.debugger.length = 0;
-  metadata.logger.length = 0;
+  metadata.debugger = [];
+  metadata.logger = [];
   metadata.denylist.clear();
 }
 
@@ -113,6 +120,11 @@ export function makeExtendedLogger(
     1
   ) as typeof extendedLogger.newline;
 
+  // ? These are properties that have been redefined (set) in higher contexts.
+  // ? We track them so that we can allow the redefined value to be returned
+  // ? in our proxy's getter, which prevents stack overflow errors.
+  const redefinedProperties = new Set<PropertyKey>();
+
   const extendedLogger = new Proxy(extendedDebugger as ExtendedLogger, {
     apply(
       _target,
@@ -122,24 +134,30 @@ export function makeExtendedLogger(
       return baseLoggerFn(...args);
     },
     get(target, property: PropertyKey, proxy: ExtendedLogger) {
-      if (property === 'extend') {
-        return function (...args: Parameters<ExtendedLogger['extend']>) {
-          return withMetadataTracking(
-            type,
-            makeExtendedLogger(
-              extendedDebugger.extend(...args),
+      if (!redefinedProperties.has(property)) {
+        if (property === 'extend') {
+          // ? We need to keep this here since, if someone redefines this
+          // ? property, we need to ensure we're only referencing the original
+          // ? to prevent stack overflow errors.
+          const realExtend = extendedDebugger.extend;
+          return function (...args: Parameters<ExtendedLogger['extend']>) {
+            return withMetadataTracking(
               type,
-              underlyingDefaultLogFn,
-              underlyingAlternateLogFn
-            )
-          );
-        };
-      }
+              makeExtendedLogger(
+                realExtend(...args),
+                type,
+                underlyingDefaultLogFn,
+                underlyingAlternateLogFn
+              )
+            );
+          };
+        }
 
-      if (property === 'newline') {
-        return function (...args: Parameters<ExtendedLogger['newline']>) {
-          baseNewlineFn(...args);
-        };
+        if (property === 'newline') {
+          return function (...args: Parameters<ExtendedLogger['newline']>) {
+            baseNewlineFn(...args);
+          };
+        }
       }
 
       const value: unknown = target[property as keyof typeof target];
@@ -185,6 +203,14 @@ export function makeExtendedLogger(
       function maybeReturnProxy(returnValue: unknown) {
         return returnValue === target ? proxy : returnValue;
       }
+    },
+    set(target, property_, updatedValue) {
+      const property = property_ as keyof typeof target;
+
+      redefinedProperties.add(property);
+      (target[property] as any) = updatedValue;
+
+      return true;
     }
   });
 
@@ -242,9 +268,13 @@ export function makeExtendedLogger(
       assert(Array.isArray(hiddenInternals.colors));
 
       const oldAvailableColors = hiddenInternals.colors;
-      hiddenInternals.colors = oldAvailableColors.filter(
-        (c) => !ansiRedColorCodes.includes(c) && !ansiYellowColorCodes.includes(c)
-      );
+      hiddenInternals.colors = oldAvailableColors.filter((c) => {
+        return (
+          !ansiRedColorCodes.includes(c) &&
+          !ansiYellowColorCodes.includes(c) &&
+          !ansiBannedColorCodes.includes(c)
+        );
+      });
 
       try {
         const selectedColor = hiddenInternals.selectColor(extendedDebugger.namespace);
@@ -283,10 +313,12 @@ export function decorateWithTagSupport<T extends (...args: any[]) => any>(
 }
 
 /**
- * Make rejoinder's internals aware of a new logger instance.
+ * Make rejoinder's internals aware of a new logger instance and its
+ * pre-extended sub-instances.
  *
- * **This function should be invoked ONLY AFTER `::log` and {@link $instances}
- * have been configured on `logger`!**
+ * **This function MUST be invoked, and ONLY AFTER `::log` and
+ * {@link $instances} have been configured on `logger`!** This allows all of
+ * rejoinder's global enable/disable functions to work.
  */
 export function withMetadataTracking(
   type: LoggerType.GenericOutput,
@@ -305,6 +337,40 @@ export function withMetadataTracking(
   logger: ExtendedDebugger | ExtendedLogger
 ) {
   metadata[type].push(...Object.values(logger[$instances]));
+  return logger;
+}
+
+/**
+ * Make rejoinder's internals forget a logger instance and its pre-extended
+ * sub-instances.
+ *
+ * **This function MUST be invoked for descendant loggers, and ONLY AFTER
+ * creating a new generic/debug `logger` that will be extended with additional
+ * functionality but BEFORE passing that finalized `logger` to
+ * {@link withMetadataTracking}!** This prevents memory leaks.
+ */
+export function withoutMetadataTracking(
+  type: LoggerType.GenericOutput,
+  logger: ExtendedLogger
+): ExtendedLogger;
+export function withoutMetadataTracking(
+  type: LoggerType.DebugOnly,
+  logger: ExtendedDebugger
+): ExtendedDebugger;
+export function withoutMetadataTracking(
+  type: Exclude<LoggerType, LoggerType.All>,
+  logger: ExtendedDebugger | ExtendedLogger
+): ExtendedDebugger | ExtendedLogger;
+export function withoutMetadataTracking(
+  type: Exclude<LoggerType, LoggerType.All>,
+  logger: ExtendedDebugger | ExtendedLogger
+) {
+  const instancesToExclude = Object.values(logger[$instances]);
+
+  metadata[type] = metadata[type].filter(
+    (instance) => !instancesToExclude.includes(instance)
+  );
+
   return logger;
 }
 
