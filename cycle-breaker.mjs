@@ -20,46 +20,84 @@
  */
 
 // {@symbiote/notExtraneous @-xun/debug~dev}
+// {@symbiote/notExtraneous rejoinder~dev}
 
-import { access, mkdir, rename } from 'node:fs/promises';
-import { dirname } from 'node:path';
+import { access, cp, mkdir, rm, symlink } from 'node:fs/promises';
+import { dirname, relative } from 'node:path';
 
 // ! Though this script is run after node_modules is populated, we still can't
 // ! use rejoinder here for obvious reasons :)
 
 const prefix = '  symbiote::cycle-breaker:';
-const nodeModulesXunDebugDevPackagePath = './node_modules/@-xun/debug~dev';
-const nodeModulesXunSymbioteUnhoistedXunDebugPath =
+const rejoinderPath = './node_modules/rejoinder';
+const devRejoinderPath = './node_modules/rejoinder~dev';
+const devDebugPath = './node_modules/@-xun/debug~dev';
+const symbioteUnhoistedDebugPath =
   './node_modules/@-xun/symbiote/node_modules/@-xun/debug';
+const symbioteUnhoistedRejoinderPath =
+  './node_modules/@-xun/symbiote/node_modules/rejoinder';
 
-const debugDevPackageExists = await isAccessible(nodeModulesXunDebugDevPackagePath);
-const debugUnhoistedPackageExists = await isAccessible(
-  nodeModulesXunSymbioteUnhoistedXunDebugPath
+const rejoinderExists = await isAccessible(rejoinderPath);
+const devDebugExists = await isAccessible(devDebugPath);
+const devRejoinderExists = await isAccessible(devRejoinderPath);
+const symbioteUnhoistedDebugExists = await isAccessible(symbioteUnhoistedDebugPath);
+const symbioteUnhoistedRejoinderExists = await isAccessible(
+  symbioteUnhoistedRejoinderPath
 );
 
-if (debugDevPackageExists) {
-  if (debugUnhoistedPackageExists) {
-    logIfDebug(
-      `no action taken because path already exists: ${nodeModulesXunSymbioteUnhoistedXunDebugPath}`
-    );
+if (rejoinderExists) {
+  await rm(rejoinderPath, { maxRetries: 10, recursive: true });
+
+  // TODO: replace this with toRelativePath from @-xun/fs
+  const nodeModulesRelativeProjectRoot = relative(dirname(rejoinderPath), '.');
+
+  await symlink(nodeModulesRelativeProjectRoot, rejoinderPath, 'junction');
+
+  log(
+    `installed dependency symlink: ${rejoinderPath} => ${nodeModulesRelativeProjectRoot}`
+  );
+} else {
+  logIfDebug(`path does not exist: ${rejoinderPath}`);
+}
+
+if (devDebugExists) {
+  if (symbioteUnhoistedDebugExists) {
+    logIfDebug(`path already exists: ${symbioteUnhoistedDebugPath}`);
   } else {
-    await mkdir(dirname(nodeModulesXunSymbioteUnhoistedXunDebugPath), {
+    await mkdir(dirname(symbioteUnhoistedDebugPath), {
       recursive: true
     });
 
-    await rename(
-      nodeModulesXunDebugDevPackagePath,
-      nodeModulesXunSymbioteUnhoistedXunDebugPath
-    );
+    await cp(devDebugPath, symbioteUnhoistedDebugPath, {
+      recursive: true,
+      verbatimSymlinks: true,
+      force: true
+    });
 
-    log(
-      `installed un-hoisted dependency at: ${nodeModulesXunSymbioteUnhoistedXunDebugPath}`
-    );
+    log(`installed un-hoisted dependency at: ${symbioteUnhoistedDebugPath}`);
   }
 } else {
-  logIfDebug(
-    `no action taken because path does not exist: ${nodeModulesXunDebugDevPackagePath}`
-  );
+  logIfDebug(`path does not exist: ${devDebugPath}`);
+}
+
+if (devRejoinderExists) {
+  if (symbioteUnhoistedRejoinderExists) {
+    logIfDebug(`path already exists: ${symbioteUnhoistedRejoinderPath}`);
+  } else {
+    await mkdir(dirname(symbioteUnhoistedRejoinderPath), {
+      recursive: true
+    });
+
+    await cp(devRejoinderPath, symbioteUnhoistedRejoinderPath, {
+      recursive: true,
+      verbatimSymlinks: true,
+      force: true
+    });
+
+    log(`installed un-hoisted dependency at: ${symbioteUnhoistedRejoinderPath}`);
+  }
+} else {
+  logIfDebug(`path does not exist: ${devRejoinderPath}`);
 }
 
 // TODO: replace access with isAccessible from @-xun/fs
