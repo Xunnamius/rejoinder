@@ -501,7 +501,7 @@ describe('::ExtendedDebugger', () => {
     });
   });
 
-  describe('::[$instances] (and named convenience methods)', () => {
+  describe('::$instances', () => {
     it('returns all sub-instances attached to the current instance', async () => {
       expect.hasAssertions();
 
