@@ -15,7 +15,7 @@ import {
 
 import { resetInternalState } from 'universe:internal.ts';
 
-import { withMockedOutput } from 'testverse:util.ts';
+import { extractAllLoggers, withMockedOutput } from 'testverse:util.ts';
 
 const namespace = 'namespace';
 const globalDummyFilter = new RegExp(
@@ -789,14 +789,3 @@ describe('::getLoggersByType', () => {
     ]);
   });
 });
-
-/**
- * Returns the logger that was passed in along with any of its properties that
- * are themselves loggers (like `::warn` and `::message`).
- */
-function extractAllLoggers(logger: ExtendedDebugger | ExtendedLogger) {
-  return [
-    logger,
-    ...extendedDebuggerSubInstanceProperties.map((property) => logger[property])
-  ];
-}

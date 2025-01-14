@@ -5,10 +5,21 @@
 
 import assert from 'node:assert';
 
+import { $instances } from 'universe:internal.ts';
+
 import type { Promisable } from 'type-fest';
+import type { ExtendedDebugger, ExtendedLogger } from 'universe';
 
 // TODO:
 //export * from '@-xun/test';
+
+/**
+ * Returns the logger that was passed in along with any of its properties that
+ * are themselves loggers (like `::warn` and `::message`).
+ */
+export function extractAllLoggers(logger: ExtendedLogger | ExtendedDebugger) {
+  return Object.values(logger[$instances]);
+}
 
 // TODO: delete all of the below in favor of @-xun/test
 
