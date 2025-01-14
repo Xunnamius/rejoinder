@@ -1,4 +1,3 @@
-import { extendedDebuggerSubInstanceProperties } from '@-xun/debug';
 import { Manager } from '@listr2/manager';
 
 import {
@@ -20,7 +19,7 @@ import {
   type GenericListrTask
 } from 'rootverse+listr2:src/index.ts';
 
-import { withMockedEnv, withMockedOutput } from 'testverse:util.ts';
+import { extractAllLoggers, withMockedEnv, withMockedOutput } from 'testverse:util.ts';
 
 const namespace = 'namespace';
 const globalDummyFilter = new RegExp(
@@ -614,14 +613,3 @@ describe('::getLoggersByType', () => {
     ).toIncludeSameMembers([listr1, listr2]);
   });
 });
-
-/**
- * Returns the logger that was passed in along with any of its properties that
- * are themselves loggers (like `::warn` and `::message`).
- */
-function extractAllLoggers(logger: ExtendedLogger) {
-  return [
-    logger,
-    ...extendedDebuggerSubInstanceProperties.map((property) => logger[property])
-  ];
-}
