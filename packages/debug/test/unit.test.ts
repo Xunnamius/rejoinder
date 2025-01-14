@@ -402,6 +402,51 @@ describe('::ExtendedDebugger', () => {
       expect(debugFactory.selectColor('namespace')).toBe(debug.color);
       expect(debug.color).not.toBe(debug.extend('different').color);
     });
+
+    it('propagates ::enabled mutations only to sub-instances but not the inverse', () => {
+      expect.hasAssertions();
+
+      const debug = debugFactory('namespace');
+      const debugDebug = debug.extend('namespace');
+
+      expect(debug.enabled).toBeFalsy();
+      expect(debugDebug.enabled).toBeFalsy();
+      expect(debug.message.enabled).toBeFalsy();
+      expect(debug.warn.enabled).toBeFalsy();
+      expect(debug.error.enabled).toBeFalsy();
+
+      debug.enabled = true;
+
+      expect(debug.enabled).toBeTrue();
+      expect(debugDebug.enabled).toBeFalsy();
+      expect(debug.message.enabled).toBeTrue();
+      expect(debug.warn.enabled).toBeTrue();
+      expect(debug.error.enabled).toBeTrue();
+
+      debug.enabled = false;
+
+      expect(debug.enabled).toBeFalse();
+      expect(debugDebug.enabled).toBeFalsy();
+      expect(debug.message.enabled).toBeFalse();
+      expect(debug.warn.enabled).toBeFalse();
+      expect(debug.error.enabled).toBeFalse();
+
+      debug.message.enabled = true;
+
+      expect(debug.enabled).toBeFalse();
+      expect(debugDebug.enabled).toBeFalsy();
+      expect(debug.message.enabled).toBeTrue();
+      expect(debug.warn.enabled).toBeFalse();
+      expect(debug.error.enabled).toBeFalse();
+
+      debugDebug.enabled = true;
+
+      expect(debug.enabled).toBeFalse();
+      expect(debugDebug.enabled).toBeTrue();
+      expect(debug.message.enabled).toBeTrue();
+      expect(debug.warn.enabled).toBeFalse();
+      expect(debug.error.enabled).toBeFalse();
+    });
   });
 
   describe('::extend', () => {

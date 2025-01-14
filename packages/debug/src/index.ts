@@ -305,7 +305,28 @@ export const debugFactory = new Proxy(getDebugger as unknown as ExtendedDebug, {
  */
 export function extendDebugger(instance: InternalDebugger) {
   const extend = instance.extend.bind(instance);
-  const finalInstance = instance as unknown as ExtendedDebugger;
+
+  // ? Work around upstream debug package descriptor "configurable" set to false
+  const finalInstance = new Proxy(instance as unknown as ExtendedDebugger, {
+    set(target, property_, updatedValue) {
+      const property = property_ as keyof typeof target;
+
+      if (property === 'enabled') {
+        const isEnabled = !!updatedValue;
+
+        target[property] = isEnabled;
+
+        for (const subInstanceProperty of extendedDebuggerSubInstanceProperties) {
+          target[subInstanceProperty].enabled = isEnabled;
+        }
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (target[property] as any) = updatedValue;
+      }
+
+      return true;
+    }
+  });
 
   finalInstance[$instances] = Object.create(null);
   finalInstance[$instances].$log = finalInstance;
