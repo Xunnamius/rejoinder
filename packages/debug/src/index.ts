@@ -128,13 +128,15 @@ export type ExtendedDebuggerSubInstanceProperties =
 
 /**
  * The single source of truth for the keys and types of the various convenience
- * sub-instances (e.g. "error", "warn", etc).
+ * sub-instances (e.g. "error", "warn", etc). **If your goal is to iterate over
+ * the sub-instances of an {@link ExtendedDebugger} outside of this file, use
+ * {@link $instances} instead.**
  *
  * This array of property strings is guaranteed to be accurate thanks to
  * internal use of the `DebuggerSubInstanceTypeGuard` type (not publicly
  * exported).
  */
-export const extendedDebuggerSubInstanceProperties = [
+const extendedDebuggerSubInstanceProperties = [
   'message',
   'error',
   'warn'

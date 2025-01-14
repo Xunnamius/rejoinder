@@ -1,5 +1,3 @@
-import { extendedDebuggerSubInstanceProperties } from '@-xun/debug';
-
 import {
   createDebugLogger,
   createGenericLogger,

@@ -7,7 +7,6 @@ import { isPromise } from 'node:util/types';
 import {
   $instances,
   debugFactory,
-  extendedDebuggerSubInstanceProperties,
   type DebuggerExtension,
   type ExtendedDebugger,
   type InternalDebugger,
@@ -302,11 +301,7 @@ export function withMetadataTracking(
   type: Exclude<LoggerType, LoggerType.All>,
   logger: ExtendedDebugger | ExtendedLogger
 ) {
-  metadata[type].push(
-    logger,
-    ...extendedDebuggerSubInstanceProperties.map((property) => logger[property])
-  );
-
+  metadata[type].push(...Object.values(logger[$instances]));
   return logger;
 }
 
