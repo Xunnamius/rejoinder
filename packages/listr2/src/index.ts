@@ -20,8 +20,11 @@ import {
   get$instancesKeys,
   LoggerType,
   metadata,
-  withMetadataTracking
+  withMetadataTracking,
+  type ExtendedLogger
 } from 'rejoinder/internal';
+
+export { ListrErrorTypes } from 'listr2';
 
 /**
  * A pre-customized Listr {@link Manager} instance.
@@ -59,16 +62,33 @@ export function createListrTaskLogger({
    */
   task: GenericListrTask;
 }) {
-  const logger = createGenericLogger({ namespace });
+  const logger = withPatchedExtend(createGenericLogger({ namespace }), task);
+  return withMetadataTracking(LoggerType.GenericOutput, logger);
+}
+
+/**
+ * Recursively patches {@link ExtendedDebugger.extend} so that all debugger
+ * instances are properly tracked.
+ */
+function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const oldExtend = instance.extend;
   const taskLog = (...args: unknown[]) => {
     task.output = args.join(' ').trim();
   };
 
-  for (const instanceProperty of get$instancesKeys(logger)) {
-    logger[$instances][instanceProperty].log = taskLog;
+  for (const instanceProperty of get$instancesKeys(instance)) {
+    instance[$instances][instanceProperty].log = taskLog;
   }
 
-  return withMetadataTracking(LoggerType.GenericOutput, logger);
+  instance.extend = (...args: Parameters<ExtendedLogger['extend']>) => {
+    return withMetadataTracking(
+      LoggerType.DebugOnly,
+      withPatchedExtend(oldExtend(...args), task)
+    );
+  };
+
+  return instance;
 }
 
 /**

@@ -313,12 +313,12 @@ export function withMetadataTracking(
  * instances are properly tracked.
  */
 export function withPatchedExtend(instance: ExtendedDebugger) {
-  const oldExtend = instance.extend.bind(instance);
+  const oldExtend = instance.extend;
 
   // ? We don't use a Proxy here because it's overkill; we don't need access to
   // ? the original extend function's properties. A side effect of not using a
   // ? Proxy is that we need to recursively patch the extend function (below)
-  instance.extend = function (...args: Parameters<ExtendedDebugger['extend']>) {
+  instance.extend = (...args: Parameters<ExtendedDebugger['extend']>) => {
     return withMetadataTracking(
       LoggerType.DebugOnly,
       withPatchedExtend(oldExtend(...args))
@@ -404,7 +404,7 @@ export interface ExtendedLogger extends _ExtendedLogger<ExtendedLogger> {
    * Creates a new instance by appending `namespace` to the current logger's
    * namespace.
    */
-  extend(...args: Parameters<ExtendedDebugger['extend']>): ExtendedLogger;
+  extend: (...args: Parameters<ExtendedDebugger['extend']>) => ExtendedLogger;
 }
 type _ExtendedLogger<T> = Omit<
   ExtendedDebugger,
