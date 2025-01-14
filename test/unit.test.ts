@@ -828,21 +828,28 @@ describe('::getLoggersByType', () => {
     const debug2 = createDebugLogger({ namespace: LoggerType.DebugOnly });
     const log2 = createGenericLogger({ namespace: LoggerType.GenericOutput });
 
+    const debug11 = debug1.extend('1');
+    const log11 = log1.extend('1');
+
     expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([
       ...extractAllLoggers(debug1),
       ...extractAllLoggers(log1),
       ...extractAllLoggers(debug2),
-      ...extractAllLoggers(log2)
+      ...extractAllLoggers(log2),
+      ...extractAllLoggers(debug11),
+      ...extractAllLoggers(log11)
     ]);
 
     expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([
       ...extractAllLoggers(debug1),
-      ...extractAllLoggers(debug2)
+      ...extractAllLoggers(debug2),
+      ...extractAllLoggers(debug11)
     ]);
 
     expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers([
       ...extractAllLoggers(log1),
-      ...extractAllLoggers(log2)
+      ...extractAllLoggers(log2),
+      ...extractAllLoggers(log11)
     ]);
   });
 
@@ -855,17 +862,20 @@ describe('::getLoggersByType', () => {
     const debug2 = createDebugLogger({ namespace: LoggerType.DebugOnly });
     const log2 = createGenericLogger({ namespace: LoggerType.GenericOutput });
 
+    const debug11 = debug1.extend('1');
+    const log11 = log1.extend('1');
+
     expect(
       getLoggersByType({ type: LoggerType.All, includeInternal: false })
-    ).toIncludeSameMembers([debug1, log1, debug2, log2]);
+    ).toIncludeSameMembers([debug1, log1, debug2, log2, debug11, log11]);
 
     expect(
       getLoggersByType({ type: LoggerType.DebugOnly, includeInternal: false })
-    ).toIncludeSameMembers([debug1, debug2]);
+    ).toIncludeSameMembers([debug1, debug2, debug11]);
 
     expect(
       getLoggersByType({ type: LoggerType.GenericOutput, includeInternal: false })
-    ).toIncludeSameMembers([log1, log2]);
+    ).toIncludeSameMembers([log1, log2, log11]);
   });
 
   it('tracks extended loggers', async () => {
