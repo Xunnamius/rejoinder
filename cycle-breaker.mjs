@@ -32,6 +32,8 @@ const prefix = '  symbiote::cycle-breaker:';
 const rejoinderPath = './node_modules/rejoinder';
 const devRejoinderPath = './node_modules/rejoinder~dev';
 const devDebugPath = './node_modules/@-xun/debug~dev';
+const devRejoinderUnhoistedDebugPath =
+  './node_modules/rejoinder~dev/node_modules/@-xun/debug';
 const symbioteUnhoistedDebugPath =
   './node_modules/@-xun/symbiote/node_modules/@-xun/debug';
 const symbioteUnhoistedRejoinderPath =
@@ -40,6 +42,9 @@ const symbioteUnhoistedRejoinderPath =
 const rejoinderExists = await isAccessible(rejoinderPath);
 const devDebugExists = await isAccessible(devDebugPath);
 const devRejoinderExists = await isAccessible(devRejoinderPath);
+const devRejoinderUnhoistedDebugExists = await isAccessible(
+  devRejoinderUnhoistedDebugPath
+);
 const symbioteUnhoistedDebugExists = await isAccessible(symbioteUnhoistedDebugPath);
 const symbioteUnhoistedRejoinderExists = await isAccessible(
   symbioteUnhoistedRejoinderPath
@@ -98,6 +103,24 @@ if (devRejoinderExists) {
   }
 } else {
   logIfDebug(`path does not exist: ${devRejoinderPath}`);
+}
+
+if (devDebugExists && devRejoinderExists) {
+  if (devRejoinderUnhoistedDebugExists) {
+    logIfDebug(`path already exists: ${devRejoinderUnhoistedDebugPath}`);
+  } else {
+    await mkdir(dirname(devRejoinderUnhoistedDebugPath), {
+      recursive: true
+    });
+
+    await cp(devDebugPath, devRejoinderUnhoistedDebugPath, {
+      recursive: true,
+      verbatimSymlinks: true,
+      force: true
+    });
+
+    log(`installed un-hoisted dependency at: ${devRejoinderUnhoistedDebugPath}`);
+  }
 }
 
 // TODO: replace access with isAccessible from @-xun/fs
