@@ -92,6 +92,7 @@
   "devDependencies": {
     "@-xun/debug~dev": "npm:@-xun/debug",
     "@-xun/symbiote": "^2.11.7",
+    "rejoinder~dev": "npm:rejoinder",
     "type-fest": "^4.32.0"
   },
   "engines": {
