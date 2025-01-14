@@ -183,6 +183,67 @@ describe('::createGenericLogger', () => {
       ]);
     });
   });
+
+  it('propagates ::enabled mutations to sub-instances', async () => {
+    expect.hasAssertions();
+
+    await withMockedOutput(({ logSpy, errorSpy }) => {
+      const log = createGenericLogger({ namespace });
+      const extension = log.extend(namespace);
+
+      log('logged: %O', { success: true });
+      log.error('logged: %O', { success: true });
+      log.message('logged: %O', { success: true });
+      log.warn('logged: %O', { success: true });
+
+      log.newline();
+      log.newline('default');
+      log.newline('alternate');
+
+      extension('logged');
+      extension.error('logged');
+      extension.message('logged');
+      extension.warn('logged');
+
+      extension.newline();
+      extension.newline('default');
+      extension.newline(['tag-3', 'tag-4'], 'alternate');
+
+      expect(logSpy.mock.calls).toStrictEqual([
+        expect.arrayContaining([
+          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
+        ]),
+        [''],
+        [''],
+        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
+        [''],
+        ['']
+      ]);
+
+      expect(errorSpy.mock.calls).toStrictEqual([
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)
+        ]),
+        [''],
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::namespace:<error>.+logged/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::namespace:<message>.+logged/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
+        ]),
+        ['']
+      ]);
+    });
+  });
 });
 
 describe('::createDebugLogger', () => {
@@ -248,6 +309,59 @@ describe('::createDebugLogger', () => {
         expect.arrayContaining([
           expect.stringMatching(/(?:namespace::?){2}namespace.+logged/)
         ])
+      ]);
+    });
+  });
+
+  it('propagates ::enabled mutations to sub-instances', async () => {
+    expect.hasAssertions();
+
+    await withMockedOutput(({ errorSpy }) => {
+      const debug = createDebugLogger({ namespace });
+      const extension = debug.extend(namespace);
+
+      debug.enabled = true;
+      extension.enabled = true;
+
+      debug('logged: %O', { success: true });
+      debug.error('logged: %O', { success: true });
+      debug.message('logged: %O', { success: true });
+      debug.warn('logged: %O', { success: true });
+
+      debug.newline();
+
+      extension('logged');
+      extension.error('logged');
+      extension.message('logged');
+      extension.warn('logged');
+
+      extension.newline();
+
+      expect(errorSpy.mock.calls).toStrictEqual([
+        expect.arrayContaining([
+          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)
+        ]),
+        [''],
+        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::namespace:<error>.+logged/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/namespace::namespace:<message>.+logged/)
+        ]),
+        expect.arrayContaining([
+          expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
+        ]),
+        ['']
       ]);
     });
   });
