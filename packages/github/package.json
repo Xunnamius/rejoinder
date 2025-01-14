@@ -17,8 +17,12 @@
   "type": "commonjs",
   "exports": {
     ".": {
-      "types": "./dist/packages/cli/src/index.d.ts",
-      "default": "./dist/packages/cli/src/index.js"
+      "types": "./dist/packages/github/src/index.d.ts",
+      "default": "./dist/packages/github/src/index.js"
+    },
+    "./activator": {
+      "types": "./dist/packages/github/src/activator.d.ts",
+      "default": "./dist/packages/github/src/activator.js"
     },
     "./package": "./package.json",
     "./package.json": "./package.json"
@@ -26,7 +30,10 @@
   "typesVersions": {
     "*": {
       "index": [
-        "dist/packages/cli/src/index.d.ts"
+        "dist/packages/github/src/index.d.ts"
+      ],
+      "activator": [
+        "dist/packages/github/src/activator.d.ts"
       ],
       "package": [
         "package.json"
