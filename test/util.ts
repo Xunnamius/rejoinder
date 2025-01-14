@@ -116,32 +116,30 @@ export async function withMockedOutput(
     // ? caller of withMockedOutput uses the spy (accesses a property).
     let wasAccessed = false;
     // @ts-expect-error: TypeScript isn't smart enough to figure this out
-    spies[name as keyof typeof spies] =
-      //
-      new Proxy(spy, {
-        get(target, property) {
-          if (property === $wasAccessed) {
-            return wasAccessed;
-          }
-
-          wasAccessed = true;
-
-          const value: unknown =
-            // @ts-expect-error: TypeScript isn't smart enough to figure this out
-            target[property];
-
-          // ? It's what the MDN example uses, so we shall use it too
-          // eslint-disable-next-line no-restricted-syntax
-          if (value instanceof Function) {
-            return function (...args: unknown[]) {
-              // ? "this-recovering" code
-              return value.apply(target, args);
-            };
-          }
-
-          return value;
+    spies[name as keyof typeof spies] = new Proxy(spy, {
+      get(target, property) {
+        if (property === $wasAccessed) {
+          return wasAccessed;
         }
-      });
+
+        wasAccessed = true;
+
+        const value: unknown =
+          // @ts-expect-error: TypeScript isn't smart enough to figure this out
+          target[property];
+
+        // ? It's what the MDN example uses, so we shall use it too
+        // eslint-disable-next-line no-restricted-syntax
+        if (value instanceof Function) {
+          return function (...args: unknown[]) {
+            // ? "this-recovering" code
+            return value.apply(target, args);
+          };
+        }
+
+        return value;
+      }
+    });
   }
 
   try {
