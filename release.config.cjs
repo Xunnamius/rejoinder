@@ -16,6 +16,15 @@ module.exports = deepMergeConfig(
   moduleExport(assertEnvironment({ projectRoot: __dirname })),
   {
     // Any custom configs here will be deep merged with moduleExport's result
+    plugins: [
+      [
+        '@semantic-release/exec',
+        {
+          // ? Need to re-apply our fixes after xrelease un-applies them
+          prepareCmd: `node ${__dirname}/cycle-breaker.mjs`
+        }
+      ]
+    ]
   }
 );
 
