@@ -38,7 +38,7 @@ describe('::createGenericLogger', () => {
       log('logged');
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([expect.stringMatching(/namespace.+logged/)])
+        [expect.stringMatching(/namespace.+logged/)]
       ]);
     });
   });
@@ -55,9 +55,7 @@ describe('::createGenericLogger', () => {
       log('logged: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)]
       ]);
     });
   });
@@ -83,11 +81,9 @@ describe('::createGenericLogger', () => {
       extension2('logged');
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([expect.stringMatching(/namespace.+logged/)]),
-        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
-        expect.arrayContaining([
-          expect.stringMatching(/(?:namespace::?){2}namespace.+logged/)
-        ])
+        [expect.stringMatching(/namespace.+logged/)],
+        [expect.stringMatching(/namespace::namespace.+logged/)],
+        [expect.stringMatching(/namespace::namespace:namespace.+logged/)]
       ]);
     });
   });
@@ -149,36 +145,22 @@ describe('::createGenericLogger', () => {
       extension.newline(['tag-3', 'tag-4'], 'alternate');
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
-        ]),
+        [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
-        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
+        [expect.stringMatching(/namespace::namespace.+logged/)],
         [''],
         ['']
       ]);
 
       expect(errorSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)
-        ]),
+        [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
         [''],
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::namespace:<error>.+logged/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::namespace:<message>.+logged/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
-        ]),
+        [expect.stringMatching(/namespace::namespace:<error>.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<message>.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<warn>.+logged/)],
         ['']
       ]);
     });
@@ -210,36 +192,22 @@ describe('::createGenericLogger', () => {
       extension.newline(['tag-3', 'tag-4'], 'alternate');
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
-        ]),
+        [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
-        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
+        [expect.stringMatching(/namespace::namespace.+logged/)],
         [''],
         ['']
       ]);
 
       expect(errorSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)
-        ]),
+        [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
         [''],
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::namespace:<error>.+logged/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::namespace:<message>.+logged/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
-        ]),
+        [expect.stringMatching(/namespace::namespace:<error>.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<message>.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<warn>.+logged/)],
         ['']
       ]);
     });
@@ -257,7 +225,7 @@ describe('::createDebugLogger', () => {
       debug('logged');
 
       expect(errorSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([expect.stringMatching(/namespace.+logged/)])
+        [expect.stringMatching(/namespace.+logged/)]
       ]);
     });
   });
@@ -279,9 +247,7 @@ describe('::createDebugLogger', () => {
       debug('logged: %O', { success: true });
 
       expect(errorSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)]
       ]);
     });
   });
@@ -304,11 +270,9 @@ describe('::createDebugLogger', () => {
       extension2('logged');
 
       expect(errorSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([expect.stringMatching(/namespace.+logged/)]),
-        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
-        expect.arrayContaining([
-          expect.stringMatching(/(?:namespace::?){2}namespace.+logged/)
-        ])
+        [expect.stringMatching(/namespace.+logged/)],
+        [expect.stringMatching(/namespace::namespace.+logged/)],
+        [expect.stringMatching(/namespace::namespace:namespace.+logged/)]
       ]);
     });
   });
@@ -338,29 +302,15 @@ describe('::createDebugLogger', () => {
       extension.newline();
 
       expect(errorSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)
-        ]),
+        [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
         [''],
-        expect.arrayContaining([expect.stringMatching(/namespace::namespace.+logged/)]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::namespace:<error>.+logged/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace::namespace:<message>.+logged/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
-        ]),
+        [expect.stringMatching(/namespace::namespace.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<error>.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<message>.+logged/)],
+        [expect.stringMatching(/namespace::namespace:<warn>.+logged/)],
         ['']
       ]);
     });
@@ -533,7 +483,6 @@ describe('::disableLoggers', () => {
 describe('::enableLoggers', () => {
   const loggers: {
     log: ExtendedLogger;
-    listr: ExtendedLogger;
     debug: ExtendedDebugger;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = {} as any;
@@ -703,12 +652,8 @@ describe('::disableLoggingByTag', () => {
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
     });
 
@@ -719,12 +664,8 @@ describe('::disableLoggingByTag', () => {
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
     });
 
@@ -749,9 +690,7 @@ describe('::disableLoggingByTag', () => {
       generic('message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
     });
   });
@@ -789,12 +728,8 @@ describe('::enableLoggingByTag', () => {
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ]),
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
     });
   });
@@ -810,9 +745,7 @@ describe('::enableLoggingByTag', () => {
       generic('message: %O', { success: true });
 
       expect(logSpy.mock.calls).toStrictEqual([
-        expect.arrayContaining([
-          expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)
-        ])
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
     });
   });
