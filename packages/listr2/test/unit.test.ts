@@ -86,7 +86,7 @@ describe('::createListrTaskLogger', () => {
 
     extension2('logged');
     expect(task.output).toStrictEqual(
-      expect.stringMatching(/(?:namespace::?){2}namespace.+logged/)
+      expect.stringMatching(/namespace::namespace:namespace.+logged/)
     );
   });
 
@@ -123,7 +123,92 @@ describe('::createListrTaskLogger', () => {
       expect.stringMatching(/namespace::namespace.+logged/),
       expect.stringMatching(/namespace::namespace:<error>.+logged/),
       expect.stringMatching(/namespace::namespace:<message>.+logged/),
-      expect.stringMatching(/(?:namespace::?){2}<warn>.+logged/)
+      expect.stringMatching(/namespace::namespace:<warn>.+logged/)
+    ]);
+  });
+
+  it('propagates ::enabled mutations to sub-instances', async () => {
+    expect.hasAssertions();
+
+    const outputHistory: string[] = [];
+    const task = {
+      set output(message: string) {
+        outputHistory.push(message);
+      }
+    } as unknown as GenericListrTask;
+
+    const log = createListrTaskLogger({ namespace, task });
+    const extension = log.extend(namespace);
+
+    log('logged: %O', { success: true });
+    log.error('logged: %O', { success: true });
+    log.message('logged: %O', { success: true });
+    log.warn('logged: %O', { success: true });
+
+    log.newline();
+    log.newline('default');
+    log.newline('alternate');
+
+    extension('logged');
+    extension.error('logged');
+    extension.message('logged');
+    extension.warn('logged');
+
+    extension.newline();
+    extension.newline('default');
+    extension.newline(['tag-3', 'tag-4'], 'alternate');
+
+    expect(outputHistory).toStrictEqual([
+      expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace::namespace.+logged/),
+      expect.stringMatching(/namespace::namespace:<error>.+logged/),
+      expect.stringMatching(/namespace::namespace:<message>.+logged/),
+      expect.stringMatching(/namespace::namespace:<warn>.+logged/)
+    ]);
+  });
+
+  it('outputs correctly given multiple arguments', async () => {
+    expect.hasAssertions();
+
+    const outputHistory: string[] = [];
+    const task = {
+      set output(message: string) {
+        outputHistory.push(message);
+      }
+    } as unknown as GenericListrTask;
+
+    const log = createListrTaskLogger({ namespace, task });
+    log('1', 2, { three: true }, 'four ::five:: six');
+    log.message('1', 2, { three: true }, 'four ::five:: six');
+
+    expect(outputHistory).toStrictEqual([
+      expect.stringMatching(/namespace: 1 2 {.+three:.+true.+} four ::five:: six/),
+      expect.stringMatching(
+        /namespace::<message> 1 2 {.+three:.+true.+} four ::five:: six/
+      )
+    ]);
+  });
+
+  it('works when first argument is not a string', async () => {
+    expect.hasAssertions();
+
+    const outputHistory: string[] = [];
+    const task = {
+      set output(message: string) {
+        outputHistory.push(message);
+      }
+    } as unknown as GenericListrTask;
+
+    const log = createListrTaskLogger({ namespace, task });
+    log({ success: true });
+    log.warn({ success: true });
+
+    expect(outputHistory).toStrictEqual([
+      expect.stringMatching(/namespace: {.+success:.+true.+}/),
+      expect.stringMatching(/namespace::<warn> {.+success:.+true.+}/)
     ]);
   });
 });

@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import util from 'node:util';
+
 import { Manager } from '@listr2/manager';
 
 import {
@@ -84,7 +86,23 @@ function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const oldExtend = instance.extend;
   const taskLog = (...args: unknown[]) => {
-    task.output = args.join(' ').trim();
+    // ? When template strings aren't used, debug will pass the args on to us to
+    // ? pass onto our logger. Since we're not using console.log, we need to
+    // ? emulate some of console.log's features (specifically via util.inspect)
+    task.output = args
+      .map((arg) =>
+        typeof arg === 'string'
+          ? arg
+          : util.inspect(arg, {
+              colors:
+                ['true', '1', 'yes'].includes(process.env.DEBUG_COLORS!) ||
+                (!['false', '0', 'no'].includes(process.env.DEBUG_COLORS!) &&
+                  process.stdout.isTTY),
+              depth: Number.parseInt(process.env.DEBUG_DEPTH || '2') || 0
+            })
+      )
+      .join(' ')
+      .trim();
   };
 
   for (const instanceProperty of get$instancesKeys(instance)) {
