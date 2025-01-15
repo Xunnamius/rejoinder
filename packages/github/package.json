@@ -68,6 +68,9 @@
     "test:package:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit",
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
+  "dependencies": {
+    "core-js": "^3.40.0"
+  },
   "peerDependencies": {
     "rejoinder": ">=1.1.0"
   },

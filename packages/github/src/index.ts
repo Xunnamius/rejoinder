@@ -1,15 +1,22 @@
-import assert from 'node:assert';
-
 import { createGenericLogger } from 'rejoinder';
 
 import {
   LoggerType,
   withMetadataTracking,
+  withoutMetadataTracking,
   type ExtendedLogger
 } from 'rejoinder/internal';
 
 /**
  * Create and return new set of logger instances.
+ *
+ * The pre-extended sub-instances of the returned logger support "titles," which
+ * correspond to GitHub Actions output titles. Set them by providing input of
+ * the form `"title=...::"`, e.g.:
+ *
+ * ```
+ * logger.warn("title=Output For Project X::Real output here!");
+ * ```
  */
 export function createGithubLogger({
   namespace
@@ -22,29 +29,89 @@ export function createGithubLogger({
    */
   namespace: string;
 }) {
-  const logger = createGenericLogger({ namespace });
-  const { log } = logger;
-
-  assert(log);
-
-  logger.message.log = githubLog('notice', log);
-  logger.warn.log = githubLog('warning', log);
-  logger.error.log = githubLog('error', log);
+  const logger = withPatchedExtend(
+    withoutMetadataTracking(LoggerType.GenericOutput, createGenericLogger({ namespace }))
+  );
 
   return withMetadataTracking(LoggerType.GenericOutput, logger);
 }
 
-function githubLog(
-  kind: 'notice' | 'warning' | 'error',
-  log: NonNullable<ExtendedLogger['log']>
-) {
+/**
+ * Recursively patches {@link ExtendedLogger.extend} so that all debugger
+ * instances function properly and are tracked.
+ */
+function withPatchedExtend(instance: ExtendedLogger) {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const oldExtend = instance.extend;
+  const { namespace } = instance;
+
+  instance.log = githubLog('log', namespace);
+  instance.message.log = githubLog('notice', namespace);
+  instance.warn.log = githubLog('warning', namespace);
+  instance.error.log = githubLog('error', namespace);
+
+  instance.extend = (...args: Parameters<ExtendedLogger['extend']>) => {
+    const logger = withoutMetadataTracking(LoggerType.GenericOutput, oldExtend(...args));
+    return withMetadataTracking(LoggerType.GenericOutput, withPatchedExtend(logger));
+  };
+
+  return instance;
+}
+
+function githubLog(kind: 'notice' | 'warning' | 'error' | 'log', rawNamespace: string) {
   return (...args: unknown[]) => {
-    const arg0 = args[0];
-    const arg1 = args.length > 1 ? String(args[1]) : '';
+    const consoleLogArgs = [];
 
-    const title =
-      typeof arg0 === 'string' && arg0.startsWith('title=') ? arg0.slice(6) : undefined;
+    if (kind === 'log') {
+      const namespaceMaybeWithColon = rawNamespace;
+      const endsWithColon = namespaceMaybeWithColon.endsWith(':');
 
-    log(`::${kind}${title ? ` title=${title}` : ''}::${arg1}`, ...args.slice(1));
+      const rawContent = String(args[0])
+        .trim()
+        .split(rawNamespace)
+        .slice(1)
+        .join(rawNamespace)
+        .trim();
+
+      const content =
+        namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ` + rawContent;
+
+      consoleLogArgs.push(content, ...args.slice(1));
+    } else {
+      const kindString = `:<${
+        kind === 'notice' ? 'message' : kind === 'warning' ? 'warn' : 'error'
+      }>`;
+
+      const maybeWithTitle = String(args[0])
+        .trim()
+        .split(kindString)
+        .slice(1)
+        .join(kindString)
+        .trim();
+
+      const namespaceMaybeWithColon = rawNamespace.replace(kindString, '');
+      const endsWithColon = namespaceMaybeWithColon.endsWith(':');
+      const startsWithTitle = maybeWithTitle.startsWith('title=');
+      const hasDoubleColon = maybeWithTitle.includes('::');
+
+      const rawContent = startsWithTitle
+        ? hasDoubleColon
+          ? maybeWithTitle.split('::')[1]
+          : ''
+        : maybeWithTitle;
+
+      const content =
+        namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ` + rawContent;
+
+      const title = startsWithTitle ? maybeWithTitle.split('::')[0] : '';
+
+      consoleLogArgs.push(
+        `::${kind}${startsWithTitle ? ` ${title}` : ''}::${content}`,
+        ...args.slice(1)
+      );
+    }
+
+    // eslint-disable-next-line no-console
+    console.log(...consoleLogArgs);
   };
 }
