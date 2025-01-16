@@ -8,7 +8,7 @@
 
 > **finalizeDebugger**(`instance`): [`UnextendableInternalDebugger`](../interfaces/UnextendableInternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:353](https://github.com/Xunnamius/rejoinder/blob/6a2f2c964cfd9707e5829cabd8d4be94ce6acda1/packages/debug/src/index.ts#L353)
+Defined in: [packages/debug/src/index.ts:376](https://github.com/Xunnamius/rejoinder/blob/11cd3e0539affb5099730b882c9b7bade1c1b092/packages/debug/src/index.ts#L376)
 
 Replace the `extend` method of an [InternalDebugger](../interfaces/InternalDebugger.md) instance with a
 function that always throws.

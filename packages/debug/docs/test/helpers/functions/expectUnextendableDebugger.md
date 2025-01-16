@@ -8,7 +8,7 @@
 
 > **expectUnextendableDebugger**(`instance`): `void`
 
-Defined in: [packages/debug/test/helpers.ts:14](https://github.com/Xunnamius/rejoinder/blob/6a2f2c964cfd9707e5829cabd8d4be94ce6acda1/packages/debug/test/helpers.ts#L14)
+Defined in: [packages/debug/test/helpers.ts:14](https://github.com/Xunnamius/rejoinder/blob/11cd3e0539affb5099730b882c9b7bade1c1b092/packages/debug/test/helpers.ts#L14)
 
 ## Parameters
 

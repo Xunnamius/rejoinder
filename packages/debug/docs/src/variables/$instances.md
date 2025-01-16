@@ -8,7 +8,7 @@
 
 > `const` **$instances**: *typeof* [`$instances`]($instances.md)
 
-Defined in: [packages/debug/src/index.ts:18](https://github.com/Xunnamius/rejoinder/blob/6a2f2c964cfd9707e5829cabd8d4be94ce6acda1/packages/debug/src/index.ts#L18)
+Defined in: [packages/debug/src/index.ts:18](https://github.com/Xunnamius/rejoinder/blob/11cd3e0539affb5099730b882c9b7bade1c1b092/packages/debug/src/index.ts#L18)
 
 Represents a property on a "root" [ExtendedDebugger](../interfaces/ExtendedDebugger.md) instance that
 returns an array of its [UnextendableInternalDebugger](../interfaces/UnextendableInternalDebugger.md) sub-instances

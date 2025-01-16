@@ -20,7 +20,6 @@
 ## Variables
 
 - [$instances](variables/$instances.md)
-- [extendedDebuggerSubInstanceProperties](variables/extendedDebuggerSubInstanceProperties.md)
 
 ## Functions
 
