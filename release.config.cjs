@@ -38,7 +38,9 @@ config.plugins.splice(npmPluginIndex + 1, 0, [
     // ! still pull in various imports (such as rejoinder), which may not be
     // ! desired and could cause crazy errors. To avoid this issue, make sure to
     // ! always invoke this file with NODE_OPTIONS unset.
-    prepareCmd: `NODE_OPTIONS= node ${__dirname}/cycle-breaker.mjs`
+    prepareCmd: `NODE_OPTIONS= node ${__dirname}/cycle-breaker.mjs`,
+    // ? cycle-breaker is meant to be run from the project root only
+    execCwd: __dirname
   }
 ]);
 
