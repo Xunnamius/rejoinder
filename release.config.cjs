@@ -27,6 +27,7 @@ assert(typeof npmPluginIndex === 'number');
 assert(config.plugins);
 
 config.plugins.splice(npmPluginIndex + 1, 0, [
+  // {@symbiote/notExtraneous @semantic-release/exec}
   '@semantic-release/exec',
   {
     // ? Need to re-apply our fixes after xrelease un-applies them
