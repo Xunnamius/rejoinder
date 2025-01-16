@@ -3,7 +3,6 @@
 
 import { deepMergeConfig } from '@-xun/symbiote/assets';
 import { moduleExport } from '@-xun/symbiote/assets/commitlint.config.mjs';
-
 import { createDebugLogger } from 'rejoinder~dev';
 
 const debug = createDebugLogger({ namespace: 'symbiote:config:commitlint' });

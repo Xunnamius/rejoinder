@@ -1,8 +1,8 @@
 // @ts-check
 'use strict';
 
-const os = require('node:os');
 const assert = require('node:assert');
+const os = require('node:os');
 
 const {
   assertEnvironment,
