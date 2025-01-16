@@ -41,7 +41,6 @@ export function createGithubLogger({
  * instances function properly and are tracked.
  */
 function withPatchedExtend(instance: ExtendedLogger) {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const oldExtend = instance.extend;
   const { namespace } = instance;
 

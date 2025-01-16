@@ -83,7 +83,6 @@ export function createListrTaskLogger({
  * instances function properly and are tracked.
  */
 function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const oldExtend = instance.extend;
   const taskLog = (...args: unknown[]) => {
     // ? When template strings aren't used, debug will pass the args on to us to
