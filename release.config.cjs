@@ -1,8 +1,6 @@
 // @ts-check
 'use strict';
 
-const { deepMergeConfig } = require('@-xun/symbiote/assets');
-
 const {
   assertEnvironment,
   moduleExport
@@ -11,21 +9,16 @@ const {
 const { createDebugLogger } = require('rejoinder');
 
 const debug = createDebugLogger({ namespace: 'symbiote:config:release' });
+const config = moduleExport(assertEnvironment({ projectRoot: __dirname }));
 
-module.exports = deepMergeConfig(
-  moduleExport(assertEnvironment({ projectRoot: __dirname })),
+config.plugins?.push([
+  '@semantic-release/exec',
   {
-    // Any custom configs here will be deep merged with moduleExport's result
-    plugins: [
-      [
-        '@semantic-release/exec',
-        {
-          // ? Need to re-apply our fixes after xrelease un-applies them
-          prepareCmd: `node ${__dirname}/cycle-breaker.mjs`
-        }
-      ]
-    ]
+    // ? Need to re-apply our fixes after xrelease un-applies them
+    prepareCmd: `node ${__dirname}/cycle-breaker.mjs`
   }
-);
+]);
+
+module.exports = config;
 
 debug('exported config: %O', module.exports);
