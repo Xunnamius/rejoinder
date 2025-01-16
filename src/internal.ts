@@ -60,10 +60,29 @@ export const ansiRedColorCodes = [1, 9, 88, 124, 160, 196];
 export const ansiYellowColorCodes = [3, 11, 94, 136, 178, 214, 220];
 
 /**
- * These color codes are tough to see on my personal terminals.
+ * These color codes are tough to see on my personal terminals, or they're red (which are only used for errors) or yellow (only used for warnings).
  */
 export const ansiBannedColorCodes = [
-  16, 17, 18, 19, 20, 21, 52, 53, 54, 55, 56, 57, 233, 234, 235, 236, 237, 238
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  233,
+  234,
+  235,
+  236,
+  237,
+  238,
+  ...ansiRedColorCodes,
+  ...ansiYellowColorCodes
 ];
 
 /**
@@ -227,7 +246,7 @@ export function makeExtendedLogger(
       // @ts-expect-error: external types are incongruent
       instance.color = 3;
     } else {
-      ensureInstanceHasNonReservedColor(instance);
+      ensureInstanceHasOkColor(instance);
     }
 
     // ? Ensure our sub-loggers are using the correct underlying logging
@@ -250,7 +269,7 @@ export function makeExtendedLogger(
   // ? output) by default.
   extendedLogger.enabled = true;
 
-  ensureInstanceHasNonReservedColor(extendedLogger);
+  ensureInstanceHasOkColor(extendedLogger);
 
   return extendedLogger;
 
@@ -258,10 +277,12 @@ export function makeExtendedLogger(
     Omit<(typeof extendedDebugger)[typeof $instances], '$log'>
   >;
 
-  function ensureInstanceHasNonReservedColor(
+  function ensureInstanceHasOkColor(
     instance: ExtendedLogger | UnextendableInternalDebugger
   ) {
-    if (ansiRedColorCodes.includes(instance.color as unknown as number)) {
+    const instanceColor = Number.parseInt(instance.color) || 0;
+
+    if (ansiBannedColorCodes.includes(instanceColor)) {
       // ? Ensure only "error"/"warn" outputs can be red/orange respectively
 
       const hiddenInternals = debugFactory as typeof debugFactory & { colors: number[] };
@@ -269,11 +290,7 @@ export function makeExtendedLogger(
 
       const oldAvailableColors = hiddenInternals.colors;
       hiddenInternals.colors = oldAvailableColors.filter((c) => {
-        return (
-          !ansiRedColorCodes.includes(c) &&
-          !ansiYellowColorCodes.includes(c) &&
-          !ansiBannedColorCodes.includes(c)
-        );
+        return !ansiBannedColorCodes.includes(c);
       });
 
       try {
