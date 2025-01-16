@@ -8,7 +8,7 @@
 
 > `const` **TAB**: `string`
 
-Defined in: [src/index.ts:44](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/index.ts#L44)
+Defined in: [src/index.ts:45](https://github.com/Xunnamius/rejoinder/blob/2861b5f2270204243d000318b047b574732b219c/src/index.ts#L45)
 
 A string of spaces representing a CLI "tab" (four space-ish characters). Note
 that space-ish characters will not be `trim()`'d.

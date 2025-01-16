@@ -10,9 +10,14 @@
 
 > **withMetadataTracking**(`type`, `logger`): [`ExtendedLogger`](../interfaces/ExtendedLogger.md)
 
-Defined in: [src/internal.ts:289](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L289)
+Defined in: [src/internal.ts:323](https://github.com/Xunnamius/rejoinder/blob/2861b5f2270204243d000318b047b574732b219c/src/internal.ts#L323)
 
-Make rejoinder's internals aware of a new logger instance.
+Make rejoinder's internals aware of a new logger instance and its
+pre-extended sub-instances.
+
+**This function MUST be invoked, and ONLY AFTER `::log` and
+[$instances](../variables/$instances.md) have been configured on `logger`!** This allows all of
+rejoinder's global enable/disable functions to work.
 
 ### Parameters
 
@@ -32,9 +37,14 @@ Make rejoinder's internals aware of a new logger instance.
 
 > **withMetadataTracking**(`type`, `logger`): [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md)
 
-Defined in: [src/internal.ts:293](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L293)
+Defined in: [src/internal.ts:327](https://github.com/Xunnamius/rejoinder/blob/2861b5f2270204243d000318b047b574732b219c/src/internal.ts#L327)
 
-Make rejoinder's internals aware of a new logger instance.
+Make rejoinder's internals aware of a new logger instance and its
+pre-extended sub-instances.
+
+**This function MUST be invoked, and ONLY AFTER `::log` and
+[$instances](../variables/$instances.md) have been configured on `logger`!** This allows all of
+rejoinder's global enable/disable functions to work.
 
 ### Parameters
 
@@ -54,9 +64,14 @@ Make rejoinder's internals aware of a new logger instance.
 
 > **withMetadataTracking**(`type`, `logger`): [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md) \| [`ExtendedLogger`](../interfaces/ExtendedLogger.md)
 
-Defined in: [src/internal.ts:297](https://github.com/Xunnamius/rejoinder/blob/da115820e8e078fc8d5f9295b571a8c5d1e5f9e7/src/internal.ts#L297)
+Defined in: [src/internal.ts:331](https://github.com/Xunnamius/rejoinder/blob/2861b5f2270204243d000318b047b574732b219c/src/internal.ts#L331)
 
-Make rejoinder's internals aware of a new logger instance.
+Make rejoinder's internals aware of a new logger instance and its
+pre-extended sub-instances.
+
+**This function MUST be invoked, and ONLY AFTER `::log` and
+[$instances](../variables/$instances.md) have been configured on `logger`!** This allows all of
+rejoinder's global enable/disable functions to work.
 
 ### Parameters
 

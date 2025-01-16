@@ -6,7 +6,7 @@
 
 # Interface: ExtendedDebugger()
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:63
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:63
 
 A InternalDebugger interface extended with convenience methods.
 
@@ -16,7 +16,7 @@ A InternalDebugger interface extended with convenience methods.
 
 > **ExtendedDebugger**(...`args`): `void`
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:67
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:67
 
 A InternalDebugger interface extended with convenience methods.
 
@@ -36,7 +36,7 @@ A InternalDebugger interface extended with convenience methods.
 
 > **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: [`ExtendedDebugger`](ExtendedDebugger.md); `error`: `UnextendableInternalDebugger`; `message`: `UnextendableInternalDebugger`; `warn`: `UnextendableInternalDebugger`; \}\>
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:90
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:90
 
 An array of sub-instances (e.g. "error", "warn", etc), including the root
 instance.
@@ -103,7 +103,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **error**: `UnextendableInternalDebugger`
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:118
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:120
 
 A sub-instance for outputting error messages.
 
@@ -117,7 +117,7 @@ A sub-instance for outputting error messages.
 
 > **extend**: (...`args`) => [`ExtendedDebugger`](ExtendedDebugger.md)
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:72
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:72
 
 Creates a new instance by appending `namespace` to the current logger's
 namespace.
@@ -138,7 +138,7 @@ namespace.
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:41
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:41
 
 #### Parameters
 
@@ -160,7 +160,7 @@ Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:41
 
 > **message**: `UnextendableInternalDebugger`
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:114
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:116
 
 A sub-instance for outputting messages to the attention of the reader.
 
@@ -186,7 +186,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:46
 
 > **newline**: () => `void`
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:76
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:76
 
 Send a blank newline to output.
 
@@ -200,7 +200,7 @@ Send a blank newline to output.
 
 > **warn**: `UnextendableInternalDebugger`
 
-Defined in: node\_modules/@-xun/debug/dist/packages/debug/src/index.d.ts:122
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:124
 
 A sub-instance for outputting warning messages.
 

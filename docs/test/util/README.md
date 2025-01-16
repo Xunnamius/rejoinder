@@ -13,6 +13,7 @@
 
 ## Functions
 
+- [extractAllLoggers](functions/extractAllLoggers.md)
 - [isolatedImport](functions/isolatedImport.md)
 - [withMockedEnv](functions/withMockedEnv.md)
 - [withMockedOutput](functions/withMockedOutput.md)
