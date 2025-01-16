@@ -19,6 +19,15 @@
  ** This script breaks the cycle.
  */
 
+// ! BEWARE that symbiote's release command executes with the NODE_OPTIONS
+// ! environment variable set to:
+// !   --require @-xun/symbiote/assets/conventional.config.cjs
+// !
+// ! This means running this file as part of symbiote's release command may
+// ! still pull in various imports (such as rejoinder), which may not be
+// ! desired. To avoid this issue in said context, make sure to invoke this file
+// ! with NODE_OPTIONS unset.
+
 // {@symbiote/notExtraneous @-xun/debug~dev}
 // {@symbiote/notExtraneous rejoinder~dev}
 
