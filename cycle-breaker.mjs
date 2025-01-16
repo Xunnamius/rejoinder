@@ -71,12 +71,12 @@ if (rejoinderExists) {
     `installed dependency symlink: ${rejoinderPath} => ${nodeModulesRelativeProjectRoot}`
   );
 } else {
-  logIfDebug(`path does not exist: ${rejoinderPath}`);
+  log(`path does not exist: ${rejoinderPath}`);
 }
 
 if (devDebugExists) {
   if (symbioteUnhoistedDebugExists) {
-    logIfDebug(`path already exists: ${symbioteUnhoistedDebugPath}`);
+    log(`path already exists: ${symbioteUnhoistedDebugPath}`);
   } else {
     await mkdir(dirname(symbioteUnhoistedDebugPath), {
       recursive: true
@@ -91,12 +91,12 @@ if (devDebugExists) {
     log(`installed un-hoisted dependency at: ${symbioteUnhoistedDebugPath}`);
   }
 } else {
-  logIfDebug(`path does not exist: ${devDebugPath}`);
+  log(`path does not exist: ${devDebugPath}`);
 }
 
 if (devRejoinderExists) {
   if (symbioteUnhoistedRejoinderExists) {
-    logIfDebug(`path already exists: ${symbioteUnhoistedRejoinderPath}`);
+    log(`path already exists: ${symbioteUnhoistedRejoinderPath}`);
   } else {
     await mkdir(dirname(symbioteUnhoistedRejoinderPath), {
       recursive: true
@@ -111,12 +111,12 @@ if (devRejoinderExists) {
     log(`installed un-hoisted dependency at: ${symbioteUnhoistedRejoinderPath}`);
   }
 } else {
-  logIfDebug(`path does not exist: ${devRejoinderPath}`);
+  log(`path does not exist: ${devRejoinderPath}`);
 }
 
 if (devDebugExists && devRejoinderExists) {
   if (devRejoinderUnhoistedDebugExists) {
-    logIfDebug(`path already exists: ${devRejoinderUnhoistedDebugPath}`);
+    log(`path already exists: ${devRejoinderUnhoistedDebugPath}`);
   } else {
     await mkdir(dirname(devRejoinderUnhoistedDebugPath), {
       recursive: true
@@ -142,10 +142,4 @@ function isAccessible(path) {
 
 function log(...args) {
   console.log(prefix, ...args);
-}
-
-function logIfDebug(...args) {
-  if (process.env.DEBUG) {
-    console.debug(prefix, ...args);
-  }
 }
