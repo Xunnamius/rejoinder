@@ -8,10 +8,12 @@
 
 > **createListrTaskLogger**(`__namedParameters`): `ExtendedLogger`
 
-Defined in: [index.ts:44](https://github.com/Xunnamius/rejoinder/blob/133b4f924be655aa01a49d03e5d1594795ffe3bd/packages/listr2/src/index.ts#L44)
+Defined in: [packages/listr2/src/index.ts:54](https://github.com/Xunnamius/rejoinder/blob/0e3aded7feccc2721351813672386997152c90d5/packages/listr2/src/index.ts#L54)
 
 Create and return a new set of logger instances configured to output via a
 Listr2 task.
+
+Note that the `::newline` method of listr2 logger instances is a no-op.
 
 ## Parameters
 

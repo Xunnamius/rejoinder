@@ -4,6 +4,10 @@
 
 # rejoinder-listr2
 
+## Enumerations
+
+- [ListrErrorTypes](enumerations/ListrErrorTypes.md)
+
 ## Type Aliases
 
 - [ListrManager](type-aliases/ListrManager.md)
