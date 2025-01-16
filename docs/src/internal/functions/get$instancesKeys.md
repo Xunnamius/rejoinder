@@ -8,7 +8,7 @@
 
 > **get$instancesKeys**\<`T`\>(`logger`): keyof `T`\[*typeof* [`$instances`](../variables/$instances.md)\][]
 
-Defined in: [src/internal.ts:401](https://github.com/Xunnamius/rejoinder/blob/2861b5f2270204243d000318b047b574732b219c/src/internal.ts#L401)
+Defined in: [src/internal.ts:418](https://github.com/Xunnamius/rejoinder/blob/8fff50d663840973b506f42d097ba932988f893a/src/internal.ts#L418)
 
 Returns all keys in an object's [$instances](../variables/$instances.md) property with proper
 types.

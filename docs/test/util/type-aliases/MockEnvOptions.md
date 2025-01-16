@@ -8,7 +8,7 @@
 
 > **MockEnvOptions**: `object`
 
-Defined in: [test/util.ts:26](https://github.com/Xunnamius/rejoinder/blob/2861b5f2270204243d000318b047b574732b219c/test/util.ts#L26)
+Defined in: [test/util.ts:26](https://github.com/Xunnamius/rejoinder/blob/8fff50d663840973b506f42d097ba932988f893a/test/util.ts#L26)
 
 ## Type declaration
 
