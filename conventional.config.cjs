@@ -6,7 +6,7 @@ const {
   moduleExport
 } = require('@-xun/symbiote/assets/conventional.config.cjs');
 
-const { createDebugLogger } = require('rejoinder');
+const { createDebugLogger } = require('rejoinder~dev');
 
 const debug = createDebugLogger({ namespace: 'symbiote:config:conventional' });
 

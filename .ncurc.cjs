@@ -1,7 +1,7 @@
 // @ts-check
 'use strict';
 
-const { createDebugLogger } = require('rejoinder');
+const { createDebugLogger } = require('rejoinder~dev');
 
 const debug = createDebugLogger({ namespace: 'symbiote:config:ncurc' });
 

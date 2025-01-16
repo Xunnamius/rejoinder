@@ -8,7 +8,7 @@ const {
   moduleExport
 } = require('@-xun/symbiote/assets/release.config.cjs');
 
-const { createDebugLogger } = require('rejoinder');
+const { createDebugLogger } = require('rejoinder~dev');
 
 const debug = createDebugLogger({ namespace: 'symbiote:config:release' });
 const config = moduleExport(assertEnvironment({ projectRoot: __dirname }));
