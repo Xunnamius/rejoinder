@@ -1,3 +1,5 @@
+codecov:
+  branch: main
 coverage:
   range: '75...100'
   status:
