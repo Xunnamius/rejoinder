@@ -1,5 +1,10 @@
-**rejoinder-cli**
+**rejoinder-github-actions**
 
 ***
 
-# rejoinder-cli
+# rejoinder-github-actions
+
+## Modules
+
+- [activator](activator/README.md)
+- [index](index/README.md)
