@@ -1,7 +1,7 @@
 // @ts-check
 'use strict';
 
-import assert from 'node:assert';
+const assert = require('node:assert');
 
 const {
   assertEnvironment,
