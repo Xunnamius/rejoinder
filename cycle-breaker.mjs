@@ -59,6 +59,9 @@ const symbioteUnhoistedRejoinderExists = await isAccessible(
   symbioteUnhoistedRejoinderPath
 );
 
+// eslint-disable-next-line no-restricted-syntax
+log(`cwd: ${process.cwd()}`);
+
 if (rejoinderExists) {
   await rm(rejoinderPath, { maxRetries: 10, recursive: true });
 
