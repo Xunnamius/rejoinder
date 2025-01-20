@@ -8,7 +8,7 @@ import {
 
 import { LoggerType, resetInternalState, type ExtendedLogger } from 'rejoinder/internal';
 
-import { createGithubLogger } from 'rootverse+github:src/index.ts';
+import { createGithubLogger } from 'universe+github';
 
 import { extractAllLoggers, withMockedOutput } from 'testverse:util.ts';
 
