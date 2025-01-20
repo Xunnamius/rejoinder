@@ -1,6 +1,6 @@
 {
   "name": "rejoinder",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A tiny library for creating gorgeous terminal output",
   "keywords": [
     "echo",
@@ -89,7 +89,7 @@
     "test:topological": "symbiote project topology --run test --env NODE_NO_WARNINGS=1"
   },
   "dependencies": {
-    "@-xun/debug": "^1.1.0",
+    "@-xun/debug": "^1.1.1",
     "chalk": "^5.4.1",
     "core-js": "^3.40.0"
   },

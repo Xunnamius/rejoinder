@@ -8,7 +8,7 @@
 
 > **disableLoggers**(`__namedParameters`): `void`
 
-Defined in: [src/index.ts:140](https://github.com/Xunnamius/rejoinder/blob/8fff50d663840973b506f42d097ba932988f893a/src/index.ts#L140)
+Defined in: [src/index.ts:140](https://github.com/Xunnamius/rejoinder/blob/03e489ef814eb76375bd7c5b909232208414323d/src/index.ts#L140)
 
 Disable all logger instances (coarse-grain).
 
