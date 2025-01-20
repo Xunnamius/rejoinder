@@ -114,19 +114,19 @@ npm ci
 To release all packages in a repository:
 
 ```bash
-# Do a Turbo dry run first:
-npx turbo release --dry-run
-# Then do the actual Turbo-based release:
-npx turbo release
+# Do a dry run first if you're not absolutely sure all is as it should be:
+npx run release:topological -- --options --dry-run
+# Then do the actual topological release:
+npx run release:topological
 ```
 
-To release one or more specific packages:
+To release a specific package (without regard for topology):
 
 ```bash
-# Do a Turbo dry run first:
-npx turbo release --filter=pkg-1 --filter=pkg-2 --dry-run
-# Then do the actual Turbo-based release:
-npx turbo release --filter=pkg-1 --filter=pkg-2
+# Do a dry run first if you're not absolutely sure all is as it should be:
+npx -w specific-package-name-here run release -- --dry-run
+# Then do the actual topological release:
+npx -w specific-package-name-here run release
 ```
 
 #### Manual Release Method 2: By Hand
@@ -137,11 +137,11 @@ npx turbo release --filter=pkg-1 --filter=pkg-2
 > a release may result in a non-functional package being released if said
 > package depends on other packages in the project that have unreleased changes.
 >
-> [Turbo][24] solves this problem and should be preferred over building packages
-> by hand.
+> Symbiote's "project topology" command solves this problem and should be
+> preferred over building packages individually.
 
-There are two ways to execute the release procedure by hand. The first is by
-leveraging the release script:
+There are two ways to execute the release procedure of a particular package by
+hand. The first is by leveraging the release script:
 
 ```bash
 # Do a symbiote dry run first:
@@ -357,7 +357,6 @@ Thank you so much for helping to maintain this project!
 [22]: https://docs.npmjs.com/cli/v8/commands/npm-deprecate
 [23]:
   https://docs.npmjs.com/deprecating-and-undeprecating-packages-or-package-versions
-[24]: #manual-release-method-1-semi-automated
 [25]:
   https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/ed32559941719a130bb0327f886d6a32a8cbc2ba/convention.md
 [26]: https://github.com/semantic-release/commit-analyzer
