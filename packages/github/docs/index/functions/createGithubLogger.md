@@ -8,9 +8,15 @@
 
 > **createGithubLogger**(`__namedParameters`): `ExtendedLogger`
 
-Defined in: [index.ts:21](https://github.com/Xunnamius/rejoinder/blob/1eb0ed5e4c5d24570a225edb079ddb80bfe7b814/packages/github/src/index.ts#L21)
+Defined in: [index.ts:27](https://github.com/Xunnamius/rejoinder/blob/723518544e7f253d6d1f0e9b48c9dfebe20bab57/packages/github/src/index.ts#L27)
 
 Create and return new set of logger instances.
+
+Note that the `::newline` method of these logger instances is a no-op.
+
+Also note that, unlike other loggers, calling `::extend` will not return an
+instance with a `::log` function inherited from its parent; a brand new
+`::log` function is generated instead.
 
 The pre-extended sub-instances of the returned logger support "titles," which
 correspond to GitHub Actions output titles. Set them by providing input of
