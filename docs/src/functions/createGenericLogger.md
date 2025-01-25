@@ -8,7 +8,7 @@
 
 > **createGenericLogger**(`__namedParameters`): [`ExtendedLogger`](../internal/interfaces/ExtendedLogger.md)
 
-Defined in: [src/index.ts:50](https://github.com/Xunnamius/rejoinder/blob/03e489ef814eb76375bd7c5b909232208414323d/src/index.ts#L50)
+Defined in: [src/index.ts:50](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/index.ts#L50)
 
 Create and return new set of logger instances.
 

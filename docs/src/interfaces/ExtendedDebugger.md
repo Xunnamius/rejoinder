@@ -36,7 +36,7 @@ A InternalDebugger interface extended with convenience methods.
 
 > **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: [`ExtendedDebugger`](ExtendedDebugger.md); `error`: `UnextendableInternalDebugger`; `message`: `UnextendableInternalDebugger`; `warn`: `UnextendableInternalDebugger`; \}\>
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:90
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:91
 
 An array of sub-instances (e.g. "error", "warn", etc), including the root
 instance.
@@ -103,7 +103,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **error**: `UnextendableInternalDebugger`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:120
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:121
 
 A sub-instance for outputting error messages.
 
@@ -117,10 +117,11 @@ A sub-instance for outputting error messages.
 
 > **extend**: (...`args`) => [`ExtendedDebugger`](ExtendedDebugger.md)
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:72
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:73
 
-Creates a new instance by appending `namespace` to the current logger's
-namespace.
+Creates a new instance by appending `namespace` to the current instance's
+namespace. The new instance will also inherit the current instance's `log`
+function, if one exists.
 
 #### Parameters
 
@@ -160,7 +161,7 @@ Defined in: packages/debug/dist/packages/debug/src/index.d.ts:41
 
 > **message**: `UnextendableInternalDebugger`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:116
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:117
 
 A sub-instance for outputting messages to the attention of the reader.
 
@@ -186,7 +187,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:46
 
 > **newline**: () => `void`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:76
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:77
 
 Send a blank newline to output.
 
@@ -200,7 +201,7 @@ Send a blank newline to output.
 
 > **warn**: `UnextendableInternalDebugger`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:124
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:125
 
 A sub-instance for outputting warning messages.
 

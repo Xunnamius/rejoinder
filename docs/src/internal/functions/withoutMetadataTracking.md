@@ -10,7 +10,7 @@
 
 > **withoutMetadataTracking**(`type`, `logger`): [`ExtendedLogger`](../interfaces/ExtendedLogger.md)
 
-Defined in: [src/internal.ts:369](https://github.com/Xunnamius/rejoinder/blob/03e489ef814eb76375bd7c5b909232208414323d/src/internal.ts#L369)
+Defined in: [src/internal.ts:374](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L374)
 
 Make rejoinder's internals forget a logger instance and its pre-extended
 sub-instances.
@@ -38,7 +38,7 @@ functionality but BEFORE passing that finalized `logger` to
 
 > **withoutMetadataTracking**(`type`, `logger`): [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md)
 
-Defined in: [src/internal.ts:373](https://github.com/Xunnamius/rejoinder/blob/03e489ef814eb76375bd7c5b909232208414323d/src/internal.ts#L373)
+Defined in: [src/internal.ts:378](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L378)
 
 Make rejoinder's internals forget a logger instance and its pre-extended
 sub-instances.
@@ -66,7 +66,7 @@ functionality but BEFORE passing that finalized `logger` to
 
 > **withoutMetadataTracking**(`type`, `logger`): [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md) \| [`ExtendedLogger`](../interfaces/ExtendedLogger.md)
 
-Defined in: [src/internal.ts:377](https://github.com/Xunnamius/rejoinder/blob/03e489ef814eb76375bd7c5b909232208414323d/src/internal.ts#L377)
+Defined in: [src/internal.ts:382](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L382)
 
 Make rejoinder's internals forget a logger instance and its pre-extended
 sub-instances.
