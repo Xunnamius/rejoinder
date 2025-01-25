@@ -6,7 +6,7 @@
 
 # Enumeration: LoggerType
 
-Defined in: [src/internal.ts:432](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L432)
+Defined in: [src/internal.ts:433](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/internal.ts#L433)
 
 An enum representing the types of loggers classified by output target.
 
@@ -16,7 +16,7 @@ An enum representing the types of loggers classified by output target.
 
 > **All**: `"all"`
 
-Defined in: [src/internal.ts:433](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L433)
+Defined in: [src/internal.ts:434](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/internal.ts#L434)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/internal.ts:433](https://github.com/Xunnamius/rejoinder/blob/92
 
 > **DebugOnly**: `"debugger"`
 
-Defined in: [src/internal.ts:435](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L435)
+Defined in: [src/internal.ts:436](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/internal.ts#L436)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [src/internal.ts:435](https://github.com/Xunnamius/rejoinder/blob/92
 
 > **GenericOutput**: `"logger"`
 
-Defined in: [src/internal.ts:434](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L434)
+Defined in: [src/internal.ts:435](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/internal.ts#L435)

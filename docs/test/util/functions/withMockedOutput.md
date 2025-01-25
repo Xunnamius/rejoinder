@@ -8,7 +8,7 @@
 
 > **withMockedOutput**(`test`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [test/util.ts:76](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/test/util.ts#L76)
+Defined in: [test/util.ts:76](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/test/util.ts#L76)
 
 ## Parameters
 

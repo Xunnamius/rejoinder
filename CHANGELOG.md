@@ -23,53 +23,61 @@ this project adheres to [Semantic Versioning][2].
 
 <br />
 
-### 🏗️ Patch rejoinder[@1.2.3][8] (2025-01-25)
+### 🏗️ Patch rejoinder[@1.2.4][8] (2025-01-25)
 
 #### 🪄 Fixes
 
-- Ensure the `ExtendedLogger` returned by `extend()` inherits its parent's `log` function ([6364d65][9])
+- Use current logger function when `newline` is called ([bfc760b][9])
 
 <br />
 
-### 🏗️ Patch rejoinder[@1.2.2][10] (2025-01-20)
+### 🏗️ Patch rejoinder[@1.2.3][10] (2025-01-25)
+
+#### 🪄 Fixes
+
+- Ensure the `ExtendedLogger` returned by `extend()` inherits its parent's `log` function ([6364d65][11])
+
+<br />
+
+### 🏗️ Patch rejoinder[@1.2.2][12] (2025-01-20)
 
 #### ⚙️ Build System
 
-- **package:** update @-xun/symbiote to 2.14.3 ([f37c737][11])
-- Regenerate assets ([d837f2c][12])
+- **package:** update @-xun/symbiote to 2.14.3 ([f37c737][13])
+- Regenerate assets ([d837f2c][14])
 
 <br />
 
-### 🏗️ Patch rejoinder[@1.2.1][13] (2025-01-16)
+### 🏗️ Patch rejoinder[@1.2.1][15] (2025-01-16)
 
 #### 🪄 Fixes
 
-- **src:** ensure loggers (not debuggers) never use banned ansi colors ([8fff50d][14])
+- **src:** ensure loggers (not debuggers) never use banned ansi colors ([8fff50d][16])
 
 <br />
 
-## rejoinder[@1.1.0][15] (2025-01-10)
+## rejoinder[@1.1.0][17] (2025-01-10)
 
 ### ✨ Features
 
-- Split internals from primary exports (available at `rejoinder/internal`) ([8a503eb][16])
+- Split internals from primary exports (available at `rejoinder/internal`) ([8a503eb][18])
 
 <br />
 
-### 🏗️ Patch rejoinder[@1.1.1][17] (2025-01-11)
+### 🏗️ Patch rejoinder[@1.1.1][19] (2025-01-11)
 
 #### ⚙️ Build System
 
-- **babel:** break other dependency cycle between symbiote and rejoinder during build step ([3a2647a][18])
-- Be consistent in use of "pre" vs "post" npm-install script naming ([4f034b1][19])
-- **package:** add pre-npm-install script to break symbiote <=> rejoinder circular dependency ([6425499][20])
-- **package:** skip lint task during release for now due to pre-npm-install side effects ([9223482][21])
-- **package:** use --no-parallel during release process ([ecacc28][22])
-- Regenerate assets ([78424fa][23])
+- **babel:** break other dependency cycle between symbiote and rejoinder during build step ([3a2647a][20])
+- Be consistent in use of "pre" vs "post" npm-install script naming ([4f034b1][21])
+- **package:** add pre-npm-install script to break symbiote <=> rejoinder circular dependency ([6425499][22])
+- **package:** skip lint task during release for now due to pre-npm-install side effects ([9223482][23])
+- **package:** use --no-parallel during release process ([ecacc28][24])
+- Regenerate assets ([78424fa][25])
 
 <br />
 
-## rejoinder[@1.0.0][24] (2025-01-10)
+## rejoinder[@1.0.0][26] (2025-01-10)
 
 ### 💥 BREAKING CHANGES 💥
 
@@ -77,17 +85,17 @@ this project adheres to [Semantic Versioning][2].
 
 ### ⚙️ Build System
 
-- **rejoinder:** jump to 1.0.0 ([49f5a5b][25])
+- **rejoinder:** jump to 1.0.0 ([49f5a5b][27])
 
-## rejoinder[@0.3.21][26] (2025-01-09)
+## rejoinder[@0.3.21][28] (2025-01-09)
 
 #### ⚙️ Build System
 
-- **rejoinder:** split off listr2 functionality from primary package ([1d93349][27])
+- **rejoinder:** split off listr2 functionality from primary package ([1d93349][29])
 
-## rejoinder[@0.3.20][28] (2020-09-16)
+## rejoinder[@0.3.20][30] (2020-09-16)
 
-## rejoinder[@0.3.18][29] (2020-09-15)
+## rejoinder[@0.3.18][31] (2020-09-15)
 
 ## rejoinder\@0.3.17 (2020-05-15)
 
@@ -98,25 +106,27 @@ this project adheres to [Semantic Versioning][2].
 [5]: https://github.com/Xunnamius/rejoinder/commit/a8fc893bb23117400a376d2641b297eb2199956b
 [6]: https://github.com/Xunnamius/rejoinder/commit/b10e6fc514367aef02468efe7382c2a09b7d45d5
 [7]: https://github.com/Xunnamius/rejoinder/commit/571041bf4746363a1355f6eb2e03d6c31e5b0a18
-[8]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.2...rejoinder@1.2.3
-[9]: https://github.com/Xunnamius/rejoinder/commit/6364d654a78668a6aba3808c40b450fcc2389353
-[10]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.1...rejoinder@1.2.2
-[11]: https://github.com/Xunnamius/rejoinder/commit/f37c737d9e65ca1a5c6439eb64cd6b1e3f022245
-[12]: https://github.com/Xunnamius/rejoinder/commit/d837f2cf51d0f744b1acb9f03c50dbfbe4361561
-[13]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.0...rejoinder@1.2.1
-[14]: https://github.com/Xunnamius/rejoinder/commit/8fff50d663840973b506f42d097ba932988f893a
-[15]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.0.0...rejoinder@1.1.0
-[16]: https://github.com/Xunnamius/rejoinder/commit/8a503ebeed2689d0efaa12692a8cdaf933b5902d
-[17]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.1.0...rejoinder@1.1.1
-[18]: https://github.com/Xunnamius/rejoinder/commit/3a2647a4383d23c44984f5fba72936f803375d01
-[19]: https://github.com/Xunnamius/rejoinder/commit/4f034b13c055cd89d409e657a782736ffce01aee
-[20]: https://github.com/Xunnamius/rejoinder/commit/64254992295ef6f5190b0afba24212fdd92feacb
-[21]: https://github.com/Xunnamius/rejoinder/commit/9223482982798f7556a4daad0ef1201567959c38
-[22]: https://github.com/Xunnamius/rejoinder/commit/ecacc284cc93a112a5ebdd9865e0c2198aeab5d2
-[23]: https://github.com/Xunnamius/rejoinder/commit/78424fa8f7badb679969f17dc434d2444f557d0d
-[24]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.21...rejoinder@1.0.0
-[25]: https://github.com/Xunnamius/rejoinder/commit/49f5a5b6bdfa22c9d737f729307f17e76e106dd5
-[26]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.20...rejoinder@0.3.21
-[27]: https://github.com/Xunnamius/rejoinder/commit/1d93349ce956b897a64948edbbd692d6e79bc22d
-[28]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.19...rejoinder@0.3.20
-[29]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.17...rejoinder@0.3.18
+[8]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.3...rejoinder@1.2.4
+[9]: https://github.com/Xunnamius/rejoinder/commit/bfc760b32795efc432b7155b8ae5fa0baca00ee5
+[10]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.2...rejoinder@1.2.3
+[11]: https://github.com/Xunnamius/rejoinder/commit/6364d654a78668a6aba3808c40b450fcc2389353
+[12]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.1...rejoinder@1.2.2
+[13]: https://github.com/Xunnamius/rejoinder/commit/f37c737d9e65ca1a5c6439eb64cd6b1e3f022245
+[14]: https://github.com/Xunnamius/rejoinder/commit/d837f2cf51d0f744b1acb9f03c50dbfbe4361561
+[15]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.2.0...rejoinder@1.2.1
+[16]: https://github.com/Xunnamius/rejoinder/commit/8fff50d663840973b506f42d097ba932988f893a
+[17]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.0.0...rejoinder@1.1.0
+[18]: https://github.com/Xunnamius/rejoinder/commit/8a503ebeed2689d0efaa12692a8cdaf933b5902d
+[19]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@1.1.0...rejoinder@1.1.1
+[20]: https://github.com/Xunnamius/rejoinder/commit/3a2647a4383d23c44984f5fba72936f803375d01
+[21]: https://github.com/Xunnamius/rejoinder/commit/4f034b13c055cd89d409e657a782736ffce01aee
+[22]: https://github.com/Xunnamius/rejoinder/commit/64254992295ef6f5190b0afba24212fdd92feacb
+[23]: https://github.com/Xunnamius/rejoinder/commit/9223482982798f7556a4daad0ef1201567959c38
+[24]: https://github.com/Xunnamius/rejoinder/commit/ecacc284cc93a112a5ebdd9865e0c2198aeab5d2
+[25]: https://github.com/Xunnamius/rejoinder/commit/78424fa8f7badb679969f17dc434d2444f557d0d
+[26]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.21...rejoinder@1.0.0
+[27]: https://github.com/Xunnamius/rejoinder/commit/49f5a5b6bdfa22c9d737f729307f17e76e106dd5
+[28]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.20...rejoinder@0.3.21
+[29]: https://github.com/Xunnamius/rejoinder/commit/1d93349ce956b897a64948edbbd692d6e79bc22d
+[30]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.19...rejoinder@0.3.20
+[31]: https://github.com/Xunnamius/rejoinder/compare/rejoinder@0.3.17...rejoinder@0.3.18

@@ -8,7 +8,7 @@
 
 > **decorateWithTagSupport**\<`T`\>(`fn`, `trapdoorArgsMinLength`): [`WithTagSupport`](../type-aliases/WithTagSupport.md)\<`T`\>
 
-Defined in: [src/internal.ts:318](https://github.com/Xunnamius/rejoinder/blob/9296149d58253119677e1f99010c807c5028c30d/src/internal.ts#L318)
+Defined in: [src/internal.ts:319](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/internal.ts#L319)
 
 Allows logging to be disabled via tags at the fine-grain message level. Set
 `trapdoorArgLength` to the number of params necessary to trigger denylisting.
