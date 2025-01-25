@@ -8,7 +8,7 @@
 
 > **ExtendedDebuggerSubInstanceProperties**: *typeof* `extendedDebuggerSubInstanceProperties`\[`number`\]
 
-Defined in: [packages/debug/src/index.ts:131](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L131)
+Defined in: [packages/debug/src/index.ts:132](https://github.com/Xunnamius/rejoinder/blob/6364d654a78668a6aba3808c40b450fcc2389353/packages/debug/src/index.ts#L132)
 
 ## See
 

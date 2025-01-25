@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalDebugger()
 
-Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L64)
+Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/6364d654a78668a6aba3808c40b450fcc2389353/packages/debug/src/index.ts#L64)
 
 An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended via
 `InternalDebugger.extend`.
@@ -17,7 +17,7 @@ An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended v
 
 > **UnextendableInternalDebugger**(...`args`): `void`
 
-Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L64)
+Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/6364d654a78668a6aba3808c40b450fcc2389353/packages/debug/src/index.ts#L64)
 
 An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended via
 `InternalDebugger.extend`.
@@ -90,7 +90,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **extend**: (...`args`) => `never`
 
-Defined in: [packages/debug/src/index.ts:65](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L65)
+Defined in: [packages/debug/src/index.ts:65](https://github.com/Xunnamius/rejoinder/blob/6364d654a78668a6aba3808c40b450fcc2389353/packages/debug/src/index.ts#L65)
 
 #### Parameters
 
@@ -112,7 +112,7 @@ Defined in: [packages/debug/src/index.ts:65](https://github.com/Xunnamius/rejoin
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: [packages/debug/src/index.ts:58](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L58)
+Defined in: [packages/debug/src/index.ts:58](https://github.com/Xunnamius/rejoinder/blob/6364d654a78668a6aba3808c40b450fcc2389353/packages/debug/src/index.ts#L58)
 
 #### Parameters
 
