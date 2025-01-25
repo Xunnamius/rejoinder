@@ -10,6 +10,12 @@ import {
 /**
  * Create and return new set of logger instances.
  *
+ * Note that the `::newline` method of these logger instances is a no-op.
+ *
+ * Also note that, unlike other loggers, calling `::extend` will not return an
+ * instance with a `::log` function inherited from its parent; a brand new
+ * `::log` function is generated instead.
+ *
  * The pre-extended sub-instances of the returned logger support "titles," which
  * correspond to GitHub Actions output titles. Set them by providing input of
  * the form `"title=...::"`, e.g.:
@@ -48,6 +54,9 @@ function withPatchedExtend(instance: ExtendedLogger) {
   instance.message.log = githubLog('notice', namespace);
   instance.warn.log = githubLog('warning', namespace);
   instance.error.log = githubLog('error', namespace);
+
+  // eslint-disable-next-line no-console
+  instance.newline = () => console.log('');
 
   instance.extend = (...args: Parameters<ExtendedLogger['extend']>) => {
     const logger = withoutMetadataTracking(LoggerType.GenericOutput, oldExtend(...args));

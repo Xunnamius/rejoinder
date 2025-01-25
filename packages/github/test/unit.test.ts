@@ -59,7 +59,7 @@ describe('::createGithubLogger', () => {
 
     await withMockedOutput(({ logSpy }) => {
       const log = createGithubLogger({ namespace });
-      const extension1 = log.extend(namespace);
+      const extension1 = log.extend('extension');
       const extension2 = extension1.extend(namespace);
 
       expect(log.enabled).toBeTrue();
@@ -76,8 +76,8 @@ describe('::createGithubLogger', () => {
 
       expect(logSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged/)],
-        [expect.stringMatching(/namespace::namespace: logged/)],
-        [expect.stringMatching(/namespace::namespace:namespace: logged/)]
+        [expect.stringMatching(/namespace::extension: logged/)],
+        [expect.stringMatching(/namespace::extension:namespace: logged/)]
       ]);
     });
   });
@@ -85,7 +85,7 @@ describe('::createGithubLogger', () => {
   it('can hint at output stream when calling newline (defaults to stdout)', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy, errorSpy }) => {
+    await withMockedOutput(({ logSpy }) => {
       const log = createGithubLogger({ namespace });
       const extension = log.extend(namespace);
 
@@ -93,32 +93,28 @@ describe('::createGithubLogger', () => {
       log.newline('default');
 
       expect(logSpy.mock.calls).toStrictEqual([[''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([]);
 
       log.newline('alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([['']]);
+      expect(logSpy.mock.calls).toStrictEqual([[''], [''], ['']]);
 
       extension.newline();
       extension.newline('default');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([['']]);
+      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], [''], ['']]);
 
       extension.newline('alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([[''], ['']]);
+      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], [''], [''], ['']]);
     });
   });
 
   it('is unaffected by the presence of tags by default', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy, errorSpy }) => {
+    await withMockedOutput(({ logSpy }) => {
       const log = createGithubLogger({ namespace });
-      const extension = log.extend(namespace);
+      const extension = log.extend('extension');
 
       log(['tag-1', 'tag-2'], 'logged: %O', { success: true });
       log.error(['tag-1', 'tag-2'], 'logged: %O', { success: true });
@@ -145,24 +141,24 @@ describe('::createGithubLogger', () => {
         [expect.stringMatching(/^::warning::namespace: logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
-        [expect.stringMatching(/namespace::namespace: logged/)],
-        [expect.stringMatching(/^::error::namespace::namespace: logged/)],
-        [expect.stringMatching(/^::notice::namespace::namespace: logged/)],
-        [expect.stringMatching(/^::warning::namespace::namespace: logged/)],
+        [''],
+        [expect.stringMatching(/namespace::extension: logged/)],
+        [expect.stringMatching(/^::error::namespace::extension: logged/)],
+        [expect.stringMatching(/^::notice::namespace::extension: logged/)],
+        [expect.stringMatching(/^::warning::namespace::extension: logged/)],
+        [''],
         [''],
         ['']
       ]);
-
-      expect(errorSpy.mock.calls).toStrictEqual([[''], ['']]);
     });
   });
 
   it('propagates ::enabled mutations to sub-instances', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy, errorSpy }) => {
+    await withMockedOutput(({ logSpy }) => {
       const log = createGithubLogger({ namespace });
-      const extension = log.extend(namespace);
+      const extension = log.extend('extension');
 
       log('logged: %O', { success: true });
       log.error('logged: %O', { success: true });
@@ -189,15 +185,15 @@ describe('::createGithubLogger', () => {
         [expect.stringMatching(/^::warning::namespace: logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
-        [expect.stringMatching(/namespace::namespace: logged/)],
-        [expect.stringMatching(/^::error::namespace::namespace: logged/)],
-        [expect.stringMatching(/^::notice::namespace::namespace: logged/)],
-        [expect.stringMatching(/^::warning::namespace::namespace: logged/)],
+        [''],
+        [expect.stringMatching(/namespace::extension: logged/)],
+        [expect.stringMatching(/^::error::namespace::extension: logged/)],
+        [expect.stringMatching(/^::notice::namespace::extension: logged/)],
+        [expect.stringMatching(/^::warning::namespace::extension: logged/)],
+        [''],
         [''],
         ['']
       ]);
-
-      expect(errorSpy.mock.calls).toStrictEqual([[''], ['']]);
     });
   });
 
