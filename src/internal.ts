@@ -165,7 +165,11 @@ export function makeExtendedLogger(
               makeExtendedLogger(
                 realExtend(...args),
                 type,
-                underlyingDefaultLogFn,
+                // ? This is guaranteed to be defined below. We use this instead
+                // ? of passing through underlyingDefaultLogFn to preserve the
+                // ? upstream behavior of extended loggers inhering their
+                // ? parents' ::log function.
+                extendedLogger.log!,
                 underlyingAlternateLogFn
               )
             );
@@ -263,6 +267,7 @@ export function makeExtendedLogger(
 
   // ? Ensure our extendedLogger is using the correct underlying logging
   // ? function.
+  // ! extendedLogger.log must be defined!
   extendedLogger.log = underlyingDefaultLogFn;
 
   // ? Ensure our extendedLogger and its sub-loggers are enabled (generates
@@ -484,8 +489,10 @@ export interface ExtendedLogger extends _ExtendedLogger<ExtendedLogger> {
     ...args: [outputMethod?: 'default' | 'alternate']
   ): ReturnType<ExtendedDebugger['newline']>;
   /**
-   * Creates a new instance by appending `namespace` to the current logger's
-   * namespace.
+   * Creates a new instance by appending `namespace` to the current instance's
+   * namespace. The new instance will also inherit the current instance's `log`
+   * function, if one exists, though **the two functions will not be strictly
+   * equal.**
    */
   extend: (...args: Parameters<ExtendedDebugger['extend']>) => ExtendedLogger;
 }

@@ -212,6 +212,28 @@ describe('::createGenericLogger', () => {
       ]);
     });
   });
+
+  it('returns an instance with ::log inherited from its parent when calling ::extend', async () => {
+    expect.hasAssertions();
+
+    {
+      const out: boolean[] = [];
+      const log = createGenericLogger({ namespace });
+
+      log.log = () => out.push(true);
+
+      const extended = log.extend('extended');
+
+      // ? Unlike with ExtendedDebugger, these two functions will not be
+      // ? identical. Probably due to the ::bind call in @-xun/debug + the proxy
+      //expect(log.log).toBe(extended.log);
+
+      log('test');
+      extended('test');
+
+      expect(out).toHaveLength(2);
+    }
+  });
 });
 
 describe('::createDebugLogger', () => {
@@ -314,6 +336,23 @@ describe('::createDebugLogger', () => {
         ['']
       ]);
     });
+  });
+
+  it('returns an instance with ::log inherited from its parent when calling ::extend', async () => {
+    expect.hasAssertions();
+
+    {
+      const debug = createDebugLogger({ namespace });
+      const extended = debug.extend('extended');
+      expect(debug.log).toBe(extended.log);
+    }
+
+    {
+      const debug = createDebugLogger({ namespace });
+      debug.log = () => 'abc';
+      const extended = debug.extend('extended');
+      expect(debug.log).toBe(extended.log);
+    }
   });
 });
 
