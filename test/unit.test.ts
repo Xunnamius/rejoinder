@@ -230,8 +230,10 @@ describe('::createGenericLogger', () => {
 
       log('test');
       extended('test');
+      log.newline();
+      extended.newline();
 
-      expect(out).toHaveLength(2);
+      expect(out).toHaveLength(4);
     }
   });
 });

@@ -131,9 +131,13 @@ export function makeExtendedLogger(
   const baseNewlineFn = decorateWithTagSupport(
     (outputMethod: Parameters<ExtendedLogger['newline']>[0]) => {
       if (extendedLogger.enabled) {
-        (outputMethod === 'alternate'
-          ? underlyingAlternateLogFn
-          : underlyingDefaultLogFn)('');
+        const logMethod =
+          outputMethod === 'alternate'
+            ? underlyingAlternateLogFn
+            : // ? This is guaranteed to be defined below.
+              extendedLogger.log!;
+
+        logMethod('');
       }
     },
     1
@@ -165,10 +169,7 @@ export function makeExtendedLogger(
               makeExtendedLogger(
                 realExtend(...args),
                 type,
-                // ? This is guaranteed to be defined below. We use this instead
-                // ? of passing through underlyingDefaultLogFn to preserve the
-                // ? upstream behavior of extended loggers inhering their
-                // ? parents' ::log function.
+                // ? This is guaranteed to be defined below.
                 extendedLogger.log!,
                 underlyingAlternateLogFn
               )
