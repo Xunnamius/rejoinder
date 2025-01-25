@@ -88,7 +88,7 @@ npm install rejoinder
 
 <!-- TODO -->
 
-TODO
+TODO (logger (not debug) errors and warnings guaranteed to be one color)
 
 <!-- symbiote-template-region-start 5 -->
 
