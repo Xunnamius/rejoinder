@@ -458,6 +458,23 @@ describe('::ExtendedDebugger', () => {
 
       expectExtendedDebugger(extended);
     });
+
+    it('returns an instance with ::log inherited from its parent instance', async () => {
+      expect.hasAssertions();
+
+      {
+        const debug = debugFactory('namespace');
+        const extended = debug.extend('extended');
+        expect(debug.log).toBe(extended.log);
+      }
+
+      {
+        const debug = debugFactory('namespace');
+        debug.log = () => 'abc';
+        const extended = debug.extend('extended');
+        expect(debug.log).toBe(extended.log);
+      }
+    });
   });
 
   describe('::newline', () => {
