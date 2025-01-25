@@ -89,16 +89,16 @@
     "test:topological": "symbiote project topology --run test --env NODE_NO_WARNINGS=1"
   },
   "dependencies": {
-    "@-xun/debug": "^1.1.1",
+    "@-xun/debug": "^1.1.2",
     "chalk": "^5.4.1",
     "core-js": "^3.40.0"
   },
   "devDependencies": {
     "@-xun/debug~dev": "npm:@-xun/debug",
-    "@-xun/symbiote": "^2.14.4",
+    "@-xun/symbiote": "^2.16.1",
     "@semantic-release/exec": "^6.0.3",
     "rejoinder~dev": "npm:rejoinder",
-    "type-fest": "^4.32.0"
+    "type-fest": "^4.33.0"
   },
   "engines": {
     "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
