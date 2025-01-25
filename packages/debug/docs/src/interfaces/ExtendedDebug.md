@@ -6,7 +6,7 @@
 
 # Interface: ExtendedDebug()
 
-Defined in: [packages/debug/src/index.ts:67](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L67)
+Defined in: [packages/debug/src/index.ts:72](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L72)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
@@ -17,7 +17,7 @@ An InternalDebug factory interface that returns
 
 > **ExtendedDebug**(...`args`): [`ExtendedDebugger`](ExtendedDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:71](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L71)
+Defined in: [packages/debug/src/index.ts:76](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L76)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
@@ -34,7 +34,7 @@ An InternalDebug factory interface that returns
 
 > **ExtendedDebug**(...`args`): [`InternalDebugger`](InternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:67](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L67)
+Defined in: [packages/debug/src/index.ts:72](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L72)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
@@ -51,7 +51,7 @@ An InternalDebug factory interface that returns
 
 > **ExtendedDebug**(`namespace`): `Debugger`
 
-Defined in: [packages/debug/src/index.ts:67](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L67)
+Defined in: [packages/debug/src/index.ts:72](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L72)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.

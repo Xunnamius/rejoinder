@@ -6,7 +6,7 @@
 
 # Interface: ExtendedDebugger()
 
-Defined in: [packages/debug/src/index.ts:77](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L77)
+Defined in: [packages/debug/src/index.ts:82](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L82)
 
 A [InternalDebugger](InternalDebugger.md) interface extended with convenience methods.
 
@@ -16,7 +16,7 @@ A [InternalDebugger](InternalDebugger.md) interface extended with convenience me
 
 > **ExtendedDebugger**(...`args`): `void`
 
-Defined in: [packages/debug/src/index.ts:81](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L81)
+Defined in: [packages/debug/src/index.ts:86](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L86)
 
 A [InternalDebugger](InternalDebugger.md) interface extended with convenience methods.
 
@@ -36,7 +36,7 @@ A [InternalDebugger](InternalDebugger.md) interface extended with convenience me
 
 > **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: [`ExtendedDebugger`](ExtendedDebugger.md); `error`: [`UnextendableInternalDebugger`](UnextendableInternalDebugger.md); `message`: [`UnextendableInternalDebugger`](UnextendableInternalDebugger.md); `warn`: [`UnextendableInternalDebugger`](UnextendableInternalDebugger.md); \}\>
 
-Defined in: [packages/debug/src/index.ts:109](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L109)
+Defined in: [packages/debug/src/index.ts:114](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L114)
 
 An array of sub-instances (e.g. "error", "warn", etc), including the root
 instance.
@@ -103,7 +103,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **error**: [`UnextendableInternalDebugger`](UnextendableInternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:158](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L158)
+Defined in: [packages/debug/src/index.ts:163](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L163)
 
 A sub-instance for outputting error messages.
 
@@ -117,7 +117,7 @@ A sub-instance for outputting error messages.
 
 > **extend**: (...`args`) => [`ExtendedDebugger`](ExtendedDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:86](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L86)
+Defined in: [packages/debug/src/index.ts:91](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L91)
 
 Creates a new instance by appending `namespace` to the current logger's
 namespace.
@@ -138,7 +138,7 @@ namespace.
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: [packages/debug/src/index.ts:53](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L53)
+Defined in: [packages/debug/src/index.ts:58](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L58)
 
 #### Parameters
 
@@ -160,7 +160,7 @@ Defined in: [packages/debug/src/index.ts:53](https://github.com/Xunnamius/rejoin
 
 > **message**: [`UnextendableInternalDebugger`](UnextendableInternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:154](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L154)
+Defined in: [packages/debug/src/index.ts:159](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L159)
 
 A sub-instance for outputting messages to the attention of the reader.
 
@@ -186,7 +186,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:46
 
 > **newline**: () => `void`
 
-Defined in: [packages/debug/src/index.ts:90](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L90)
+Defined in: [packages/debug/src/index.ts:95](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L95)
 
 Send a blank newline to output.
 
@@ -200,7 +200,7 @@ Send a blank newline to output.
 
 > **warn**: [`UnextendableInternalDebugger`](UnextendableInternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:162](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L162)
+Defined in: [packages/debug/src/index.ts:167](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L167)
 
 A sub-instance for outputting warning messages.
 

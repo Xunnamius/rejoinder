@@ -13,7 +13,7 @@ via [extendDebugger](extendDebugger.md).
 
 > **debugFactory**(...`args`): [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:220](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L220)
+Defined in: [packages/debug/src/index.ts:225](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L225)
 
 Send an optionally-formatted message to output.
 
@@ -31,7 +31,7 @@ Send an optionally-formatted message to output.
 
 > **debugFactory**(...`args`): [`InternalDebugger`](../interfaces/InternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:220](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L220)
+Defined in: [packages/debug/src/index.ts:225](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L225)
 
 Create and return a new [InternalDebugger](../interfaces/InternalDebugger.md) instance.
 
@@ -49,7 +49,7 @@ Create and return a new [InternalDebugger](../interfaces/InternalDebugger.md) in
 
 > **debugFactory**(`namespace`): `Debugger`
 
-Defined in: [packages/debug/src/index.ts:220](https://github.com/Xunnamius/rejoinder/blob/a641070c8e1704c84d328156f6d9eceb8b9362e5/packages/debug/src/index.ts#L220)
+Defined in: [packages/debug/src/index.ts:225](https://github.com/Xunnamius/rejoinder/blob/3408de1428d053296c3b4a0594d1b1a937d57757/packages/debug/src/index.ts#L225)
 
 ### Parameters
 
