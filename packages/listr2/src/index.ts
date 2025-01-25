@@ -49,7 +49,7 @@ export type GenericListrTask = ListrTaskWrapper<
  * Create and return a new set of logger instances configured to output via a
  * Listr2 task.
  *
- * Note that the `::newline` method of listr2 logger instances is a no-op.
+ * Note that the `::newline` method of these logger instances is a no-op.
  */
 export function createListrTaskLogger({
   namespace,
