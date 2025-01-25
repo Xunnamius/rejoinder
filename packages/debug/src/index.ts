@@ -71,7 +71,7 @@ export interface UnextendableInternalDebugger extends InternalDebugger {
  */
 export interface ExtendedDebug extends InternalDebug {
   /**
-   * Send an optionally-formatted message to output.
+   * Create and return a new {@link ExtendedDebugger} instance.
    */
   (...args: Parameters<InternalDebug>): ExtendedDebugger;
 }
@@ -85,8 +85,9 @@ export interface ExtendedDebugger extends _InternalDebuggerNoExtends, DebuggerEx
    */
   (...args: Parameters<InternalDebugger>): ReturnType<InternalDebugger>;
   /**
-   * Creates a new instance by appending `namespace` to the current logger's
-   * namespace.
+   * Creates a new instance by appending `namespace` to the current instance's
+   * namespace. The new instance will also inherit the current instance's `log`
+   * function, if one exists.
    */
   extend: (...args: Parameters<InternalDebugger['extend']>) => ExtendedDebugger;
   /**
