@@ -181,15 +181,17 @@ type DebuggerSubInstanceTypeGuard<RealType extends object> = RealType &
 /**
  * We append a colon to the end of root namespaces (namespaces without colons)
  * to smooth out a wrinkle in the upstream package's functionality where
- * `DEBUG='my-namespace*'` will activate a debugger with the namespace
- * "my-namespace" but will NOT activate any nested namespaces, like
- * "my-namespace:nested". This means if you have a "root" namespace and also
- * nested namespaces, to see all program output, you have to set `DEBUG` to
- * something inconvenient like `DEBUG='my-namespace*,my-namespace:*'`.
+ * `DEBUG='my-namespace:*'` will activate a debugger with nested namespaces
+ * "my-namespace:nested" but will NOT activate the so-called root "my-namespace"
+ * namespace. This means if you have a root namespace and also nested
+ * namespaces, to see all program output, you have to set `DEBUG` to something
+ * inconvenient like `DEBUG='my-namespace,my-namespace:*'`. The same problem
+ * occurs in reverse for DEBUG='my-namespace*' and trying to activate nested
+ * namespaces.
  *
  * However, if we add a colon to "my-namespace" or any other root namespace when
  * given, we get the more intuitive functionality for free:
- * `DEBUG='my-namespace*'` is enough to activate all namespaces both nested and
+ * `DEBUG='my-namespace:*'` is enough to activate all namespaces both nested and
  * root!
  *
  * This function also splits on space/comma and applies the same transform to
