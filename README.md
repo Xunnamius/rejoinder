@@ -88,7 +88,8 @@ npm install rejoinder
 
 <!-- TODO -->
 
-TODO (logger (not debug) errors and warnings guaranteed to be one color)
+TODO (logger (not debug) errors and warnings guaranteed to be one color; always
+use DEBUG='rootNamespace:\*' for activation, never DEBUG='rootNamespace\*')
 
 <!-- symbiote-template-region-start 5 -->
 
