@@ -95,7 +95,7 @@
   },
   "devDependencies": {
     "@-xun/debug~dev": "npm:@-xun/debug",
-    "@-xun/symbiote": "^2.19.0",
+    "@-xun/symbiote": "^2.20.0",
     "@semantic-release/exec": "^7.0.3",
     "rejoinder~dev": "npm:rejoinder",
     "type-fest": "^4.33.0"
