@@ -1,4 +1,5 @@
 import {
+  createDebugLogger,
   disableLoggers,
   disableLoggingByTag,
   enableLoggers,
@@ -18,13 +19,66 @@ import {
 } from 'testverse:util.ts';
 
 import type { ExtendedLogger } from 'rejoinder/internal';
-import { extractAllLoggers, withMockedOutput } from 'testverse:util.ts';
+
+jest.mock<typeof import('rejoinder')>('rejoinder', () => {
+  return jest.requireActual('rejoinder');
+});
 
 const namespace = 'namespace';
 const globalDummyFilter = new RegExp('g');
 
 beforeEach(() => {
   resetInternalState();
+});
+
+describe('<activator>', () => {
+  it('enables loggers when github actions debugging is enabled', async () => {
+    expect.hasAssertions();
+
+    {
+      const debug = createDebugLogger({ namespace });
+
+      expect(debug.enabled).toBeFalsy();
+
+      isolatedImport<typeof import('universe+github:activator.ts')>(
+        'universe+github:activator.ts'
+      );
+
+      expect(debug.enabled).toBeFalsy();
+
+      await withMockedEnv(
+        () => {
+          isolatedImport<typeof import('universe+github:activator.ts')>(
+            'universe+github:activator.ts'
+          );
+
+          expect(debug.enabled).toBeTrue();
+        },
+        { ACTIONS_RUNNER_DEBUG: 'true' }
+      );
+    }
+
+    {
+      const debug = createDebugLogger({ namespace });
+
+      isolatedImport<typeof import('universe+github:activator.ts')>(
+        'universe+github:activator.ts'
+      );
+
+      expect(debug.enabled).toBeFalsy();
+
+      await withMockedEnv(
+        () => {
+          isolatedImport<typeof import('universe+github:activator.ts')>(
+            'universe+github:activator.ts'
+          );
+
+          expect(debug.enabled).toBeTrue();
+        },
+        { ACTIONS_STEP_DEBUG: 'true' }
+      );
+    }
+  });
 });
 
 describe('::createGithubLogger', () => {
