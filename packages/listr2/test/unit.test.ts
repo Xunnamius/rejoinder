@@ -7,19 +7,17 @@ import {
   enableLoggers,
   enableLoggingByTag,
   getLoggersByType,
-  LoggerType,
-  type ExtendedLogger
+  LoggerType
 } from 'rejoinder';
 
 import { resetInternalState } from 'rejoinder/internal';
 
-import {
-  createListrManager,
-  createListrTaskLogger,
-  type GenericListrTask
-} from 'universe+listr2';
+import { createListrManager, createListrTaskLogger } from 'universe+listr2';
 
 import { extractAllLoggers, withMockedEnv, withMockedOutput } from 'testverse:util.ts';
+
+import type { ExtendedLogger } from 'rejoinder';
+import type { GenericListrTask } from 'universe+listr2';
 
 const namespace = 'namespace';
 const globalDummyFilter = new RegExp(

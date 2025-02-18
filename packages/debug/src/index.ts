@@ -2,8 +2,9 @@
 import util from 'node:util';
 import { isPromise, isSymbolObject } from 'node:util/types';
 
-import getDebugger, { type Debug as _Debug, type Debugger as _Debugger } from 'debug';
+import getDebugger from 'debug';
 
+import type { Debug as _Debug, Debugger as _Debugger } from 'debug';
 import type { Merge } from 'type-fest';
 
 // * https://nodejs.org/api/util.html#util_util_inspect_defaultoptions

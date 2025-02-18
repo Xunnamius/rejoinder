@@ -3,9 +3,10 @@ import { createGenericLogger } from 'rejoinder';
 import {
   LoggerType,
   withMetadataTracking,
-  withoutMetadataTracking,
-  type ExtendedLogger
+  withoutMetadataTracking
 } from 'rejoinder/internal';
+
+import type { ExtendedLogger } from 'rejoinder/internal';
 
 /**
  * Create and return new set of logger instances.
@@ -104,14 +105,14 @@ function githubLog(kind: 'notice' | 'warning' | 'error' | 'log', rawNamespace: s
 
       const rawContent = startsWithTitle
         ? hasDoubleColon
-          ? maybeWithTitle.split('::')[1]
+          ? maybeWithTitle.split('::')[1]!
           : ''
         : maybeWithTitle;
 
       const content =
         namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ` + rawContent;
 
-      const title = startsWithTitle ? maybeWithTitle.split('::')[0] : '';
+      const title = startsWithTitle ? maybeWithTitle.split('::')[0]! : '';
 
       consoleLogArgs.push(
         `::${kind}${startsWithTitle ? ` ${title}` : ''}::${content}`,

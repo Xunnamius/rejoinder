@@ -6,14 +6,14 @@ import {
   enableLoggers,
   enableLoggingByTag,
   getLoggersByType,
-  LoggerType,
-  type ExtendedDebugger,
-  type ExtendedLogger
+  LoggerType
 } from 'universe';
 
 import { resetInternalState } from 'universe:internal.ts';
 
 import { extractAllLoggers, withMockedOutput } from 'testverse:util.ts';
+
+import type { ExtendedDebugger, ExtendedLogger } from 'universe';
 
 const namespace = 'namespace';
 const globalDummyFilter = new RegExp(

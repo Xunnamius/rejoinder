@@ -4,16 +4,16 @@
 import assert from 'node:assert';
 import { isPromise } from 'node:util/types';
 
-import {
-  $instances,
-  debugFactory,
-  type DebuggerExtension,
-  type ExtendedDebugger,
-  type InternalDebugger,
-  type UnextendableInternalDebugger
-} from '@-xun/debug';
+import { $instances, debugFactory } from '@-xun/debug';
 
 import type { Entry } from 'type-fest';
+
+import type {
+  DebuggerExtension,
+  ExtendedDebugger,
+  InternalDebugger,
+  UnextendableInternalDebugger
+} from '@-xun/debug';
 
 // eslint-disable-next-line unicorn/prevent-abbreviations
 const extendedLoggerFnPropsWeakMap = new WeakMap<Function, Function>();

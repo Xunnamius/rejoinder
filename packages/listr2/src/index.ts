@@ -3,18 +3,7 @@
 import util from 'node:util';
 
 import { Manager } from '@listr2/manager';
-
-import {
-  ListrLogger,
-  PRESET_TIMER,
-  PRESET_TIMESTAMP,
-  ProcessOutput,
-  type ListrBaseClassOptions,
-  type ListrContext,
-  type ListrRenderer,
-  type ListrTaskWrapper
-} from 'listr2';
-
+import { ListrLogger, PRESET_TIMER, PRESET_TIMESTAMP, ProcessOutput } from 'listr2';
 import { createGenericLogger } from 'rejoinder';
 
 import {
@@ -23,9 +12,17 @@ import {
   LoggerType,
   metadata,
   withMetadataTracking,
-  withoutMetadataTracking,
-  type ExtendedLogger
+  withoutMetadataTracking
 } from 'rejoinder/internal';
+
+import type {
+  ListrBaseClassOptions,
+  ListrContext,
+  ListrRenderer,
+  ListrTaskWrapper
+} from 'listr2';
+
+import type { ExtendedLogger } from 'rejoinder/internal';
 
 export { ListrErrorTypes } from 'listr2';
 

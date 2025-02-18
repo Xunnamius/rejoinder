@@ -6,10 +6,18 @@ import {
   getLoggersByType
 } from 'rejoinder';
 
-import { LoggerType, resetInternalState, type ExtendedLogger } from 'rejoinder/internal';
+import { LoggerType, resetInternalState } from 'rejoinder/internal';
 
 import { createGithubLogger } from 'universe+github';
 
+import {
+  extractAllLoggers,
+  isolatedImport,
+  withMockedEnv,
+  withMockedOutput
+} from 'testverse:util.ts';
+
+import type { ExtendedLogger } from 'rejoinder/internal';
 import { extractAllLoggers, withMockedOutput } from 'testverse:util.ts';
 
 const namespace = 'namespace';
@@ -327,10 +335,7 @@ describe('::disableLoggers', () => {
 
     loggers.log.enabled = true;
 
-    const parameters = {
-      type: LoggerType.All,
-      filter: globalDummyFilter
-    } as const;
+    const parameters = { type: LoggerType.All, filter: globalDummyFilter } as const;
 
     disableLoggers(parameters);
 

@@ -58,9 +58,10 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -73,14 +74,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -93,14 +95,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace:', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -115,14 +118,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -137,14 +141,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace:*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -157,14 +162,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace:sub-namespace', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -178,14 +184,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace:sub-namespace*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -198,14 +205,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: 'namespace:sub-namespace:*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -216,14 +224,15 @@ describe('::debugFactory', () => {
         expect(extendedDebugger.log).not.toHaveBeenCalled();
       },
       { DEBUG: 'another-namespace*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -238,14 +247,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: '*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -259,14 +269,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: '*,-namespace', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -277,14 +288,15 @@ describe('::debugFactory', () => {
         expect(extendedDebugger.log).not.toHaveBeenCalled();
       },
       { DEBUG: '*,-namespace*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -295,14 +307,15 @@ describe('::debugFactory', () => {
         expect(extendedDebugger.log).not.toHaveBeenCalled();
       },
       { DEBUG: '*,-namespace:*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -316,14 +329,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: '*,-namespace:sub-namespace', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -336,14 +350,15 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: '*,-namespace:sub-namespace*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
 
     await withMockedEnv(
       () => {
-        const extendedDebugger = isolatedImport<typeof import('universe+debug')>({
-          path: 'universe+debug'
-        }).debugFactory('namespace');
+        const extendedDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
 
         extendedDebugger.log = jest.fn();
         extendedDebugger('test message #1');
@@ -357,7 +372,7 @@ describe('::debugFactory', () => {
         ]);
       },
       { DEBUG: '*,-namespace:sub-namespace:*', DEBUG_COLORS: 'false' },
-      { replace: true }
+      { replaceEntireEnv: true }
     );
   });
 });

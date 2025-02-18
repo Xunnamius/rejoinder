@@ -1,4 +1,4 @@
-import { type ExtendedDebugger } from 'universe+debug';
+import type { ExtendedDebugger } from 'universe+debug';
 
 export function expectExtendedDebugger(instance: unknown) {
   const dbg = instance as ExtendedDebugger;
