@@ -130,7 +130,7 @@ function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
  *   - Switches to the verbose renderer when the DEBUG environment variable is
  *     present or any of the debug logger namespaces are enabled.
  */
-export function createListrManager<T = any>(options?: {
+export function createListrManager(options?: {
   /**
    * Properties provided here will override the defaults passed to the
    * {@link Manager} constructor.
