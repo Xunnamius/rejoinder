@@ -1,29 +1,28 @@
 // TODO: add chalk abilities (and also delete the comment on the next line)
 // {@symbiote/notExtraneous chalk}
 
+import nodeConsole from 'node:console';
+
 import {
   get$instancesKeys,
   LoggerType,
   makeExtendedLogger,
   metadata,
   withMetadataTracking,
-  withPatchedExtend,
-  type ExtendedLogger
+  withPatchedExtend
 } from 'universe:internal.ts';
 
-import { $instances, debugFactory, type ExtendedDebugger } from '@-xun/debug';
+import { $instances, debugFactory } from '@-xun/debug';
 
 const consoleLog = (...args: unknown[]) => {
-  // eslint-disable-next-line no-console
-  console.log(...args);
+  nodeConsole.log(...args);
 };
 
 const consoleError = (...args: unknown[]) => {
-  // eslint-disable-next-line no-console
-  console.error(...args);
+  nodeConsole.error(...args);
 };
 
-export { LoggerType, type ExtendedDebugger, type ExtendedLogger };
+export { LoggerType };
 
 /**
  * A string representing a single space (one space-ish character). Note that
@@ -242,5 +241,8 @@ export function enableLoggingByTag({
  * Returns an array of the tags disabled via {@link disableLoggingByTag}.
  */
 export function getDisabledTags() {
-  return new Set(metadata.denylist);
+  return Array.from(new Set(metadata.denylist));
 }
+
+export type { ExtendedLogger } from 'universe:internal.ts';
+export type { ExtendedDebugger } from '@-xun/debug';

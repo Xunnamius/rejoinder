@@ -1,3 +1,5 @@
+import nodeConsole from 'node:console';
+
 import { createGenericLogger } from 'rejoinder';
 
 import {
@@ -7,6 +9,10 @@ import {
 } from 'rejoinder/internal';
 
 import type { ExtendedLogger } from 'rejoinder/internal';
+
+const consoleLog = (...args: unknown[]) => {
+  nodeConsole.log(...args);
+};
 
 /**
  * Create and return new set of logger instances.
@@ -56,8 +62,7 @@ function withPatchedExtend(instance: ExtendedLogger) {
   instance.warn.log = githubLog('warning', namespace);
   instance.error.log = githubLog('error', namespace);
 
-  // eslint-disable-next-line no-console
-  instance.newline = () => console.log('');
+  instance.newline = () => consoleLog('');
 
   instance.extend = (...args: Parameters<ExtendedLogger['extend']>) => {
     const logger = withoutMetadataTracking(LoggerType.GenericOutput, oldExtend(...args));
@@ -120,7 +125,6 @@ function githubLog(kind: 'notice' | 'warning' | 'error' | 'log', rawNamespace: s
       );
     }
 
-    // eslint-disable-next-line no-console
-    console.log(...consoleLogArgs);
+    consoleLog(...consoleLogArgs);
   };
 }
