@@ -56,20 +56,23 @@ describe('::debugFactory', () => {
   it('double-colon workaround preserves and expands simple process.env.DEBUG activation behavior', async () => {
     expect.hasAssertions();
 
+    // * First, verify vanilla behavior
+
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        // ? Ensure log is inherited
+        expect(d.log).toBe(legacyDebugger.log);
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #1')]
         ]);
       },
@@ -79,20 +82,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
-          [expect.stringContaining('test message #1')]
-        ]);
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
       },
       { DEBUG: 'namespace:', DEBUG_COLORS: 'false' },
       { replaceEntireEnv: true }
@@ -100,18 +99,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #1')],
           [expect.stringContaining('test message #2')],
           [expect.stringContaining('test message #3')]
@@ -123,19 +120,18 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
-          [expect.stringContaining('test message #1')],
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          // ? In @-xun/debug, this should work
+          //[expect.stringContaining('test message #1')],
           [expect.stringContaining('test message #2')],
           [expect.stringContaining('test message #3')]
         ]);
@@ -146,18 +142,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #2')]
         ]);
       },
@@ -167,18 +161,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #2')],
           [expect.stringContaining('test message #3')]
         ]);
@@ -189,18 +181,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #3')]
         ]);
       },
@@ -210,18 +200,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(extendedDebugger.log).not.toHaveBeenCalled();
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
       },
       { DEBUG: 'another-namespace*', DEBUG_COLORS: 'false' },
       { replaceEntireEnv: true }
@@ -229,18 +217,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #1')],
           [expect.stringContaining('test message #2')],
           [expect.stringContaining('test message #3')]
@@ -252,18 +238,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #2')],
           [expect.stringContaining('test message #3')]
         ]);
@@ -274,18 +258,37 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(extendedDebugger.log).not.toHaveBeenCalled();
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: '*,-namespace:', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
       },
       { DEBUG: '*,-namespace*', DEBUG_COLORS: 'false' },
       { replaceEntireEnv: true }
@@ -293,18 +296,19 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(extendedDebugger.log).not.toHaveBeenCalled();
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          // ? In @-xun/debug, this should NOT work
+          [expect.stringContaining('test message #1')]
+        ]);
       },
       { DEBUG: '*,-namespace:*', DEBUG_COLORS: 'false' },
       { replaceEntireEnv: true }
@@ -312,18 +316,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #1')],
           [expect.stringContaining('test message #3')]
         ]);
@@ -334,18 +336,16 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #1')]
         ]);
       },
@@ -355,23 +355,442 @@ describe('::debugFactory', () => {
 
     await withMockedEnv(
       () => {
-        const extendedDebugger =
-          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
-            'namespace'
-          );
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
 
-        extendedDebugger.log = jest.fn();
-        extendedDebugger('test message #1');
-        const d = extendedDebugger.extend('sub-namespace');
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
         d('test message #2');
         d.extend('sub-sub-namespace')('test message #3');
 
-        expect(jest.mocked(extendedDebugger.log).mock.calls).toStrictEqual([
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
           [expect.stringContaining('test message #1')],
           [expect.stringContaining('test message #2')]
         ]);
       },
       { DEBUG: '*,-namespace:sub-namespace:*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: 'namespace*,-*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('debug')>('debug')('namespace');
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: 'namespace:*,-*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    // * Next, verify we preserve and expand on vanilla behavior as promised
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        // ? Ensure log is inherited
+        expect(d.log).toBe(legacyDebugger.log);
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')]
+        ]);
+      },
+      { DEBUG: 'namespace', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: 'namespace:', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: 'namespace*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          // ? In upstream debug, this does NOT work (bad)
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: 'namespace:*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #2')]
+        ]);
+      },
+      { DEBUG: 'namespace:sub-namespace', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: 'namespace:sub-namespace*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: 'namespace:sub-namespace:*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: 'another-namespace*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: '*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: '*,-namespace', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #2')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: '*,-namespace:', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: '*,-namespace*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          // ? In upstream debug, this DOES work (bad)
+          //[expect.stringContaining('test message #1')]
+        ]);
+      },
+      { DEBUG: '*,-namespace:*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #3')]
+        ]);
+      },
+      { DEBUG: '*,-namespace:sub-namespace', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')]
+        ]);
+      },
+      { DEBUG: '*,-namespace:sub-namespace*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(jest.mocked(legacyDebugger.log).mock.calls).toStrictEqual([
+          [expect.stringContaining('test message #1')],
+          [expect.stringContaining('test message #2')]
+        ]);
+      },
+      { DEBUG: '*,-namespace:sub-namespace:*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: 'namespace*,-*', DEBUG_COLORS: 'false' },
+      { replaceEntireEnv: true }
+    );
+
+    await withMockedEnv(
+      () => {
+        const legacyDebugger =
+          isolatedImport<typeof import('universe+debug')>('universe+debug').debugFactory(
+            'namespace'
+          );
+
+        legacyDebugger.log = jest.fn();
+        legacyDebugger('test message #1');
+        const d = legacyDebugger.extend('sub-namespace');
+        d('test message #2');
+        d.extend('sub-sub-namespace')('test message #3');
+
+        expect(legacyDebugger.log).not.toHaveBeenCalled();
+      },
+      { DEBUG: 'namespace:*,-*', DEBUG_COLORS: 'false' },
       { replaceEntireEnv: true }
     );
   });

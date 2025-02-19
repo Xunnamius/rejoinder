@@ -2,7 +2,7 @@
 import util from 'node:util';
 import { isPromise, isSymbolObject } from 'node:util/types';
 
-import getDebugger from 'debug';
+import internalDebuggerFactory from 'debug';
 
 import type { Debug as _Debug, Debugger as _Debugger } from 'debug';
 import type { Merge } from 'type-fest';
@@ -179,136 +179,118 @@ type DebuggerSubInstanceTypeGuard<RealType extends object> = RealType &
     Record<(typeof extendedDebuggerSubInstanceProperties)[number], unknown>
   >;
 
-/**
- * We append a colon to the end of root namespaces (namespaces without colons)
- * to smooth out a wrinkle in the upstream package's functionality where
- * `DEBUG='my-namespace:*'` will activate a debugger with nested namespaces
- * "my-namespace:nested" but will NOT activate the so-called root "my-namespace"
- * namespace. This means if you have a root namespace and also nested
- * namespaces, to see all program output, you have to set `DEBUG` to something
- * inconvenient like `DEBUG='my-namespace,my-namespace:*'`. The same problem
- * occurs in reverse for DEBUG='my-namespace*' and trying to activate nested
- * namespaces.
- *
- * However, if we add a colon to "my-namespace" or any other root namespace when
- * given, we get the more intuitive functionality for free:
- * `DEBUG='my-namespace:*'` is enough to activate all namespaces both nested and
- * root!
- *
- * This function also splits on space/comma and applies the same transform to
- * each split-off namespace.
- */
 function maybeAppendColon(str: string, delimiter: string) {
-  return !str
-    ? str
-    : str
-        .split(debugStringSplitterRegExp)
-        .map((subStr) => {
-          switch (subStr) {
-            case '':
-            case '*':
-            case '-*': {
-              return subStr;
-            }
+  if (!str) {
+    return str;
+  }
 
-            default: {
-              return (
-                subStr +
-                (subStr.includes(delimiter) || subStr.endsWith('*') ? '' : delimiter)
-              );
-            }
-          }
-        })
-        .join(',');
+  return str
+    .split(debugStringSplitterRegExp)
+    .map((subStr) => {
+      switch (subStr) {
+        case '':
+        case '*':
+        case '-*': {
+          return subStr;
+        }
+
+        default: {
+          return `${subStr}${
+            subStr.includes(delimiter) || subStr.endsWith('*') ? '' : delimiter
+          }`;
+        }
+      }
+    })
+    .join(',');
 }
 
 /**
  * An `ExtendedDebug` instance that returns an {@link ExtendedDebugger} instance
  * via {@link extendDebugger}.
  */
-export const debugFactory = new Proxy(getDebugger as unknown as ExtendedDebug, {
-  apply(_target, _this: unknown, args: Parameters<InternalDebug>) {
-    const originalNamespace = args[0];
-    const ourNamespace = (args[0] = maybeAppendColon(originalNamespace, ':'));
+export const debugFactory = new Proxy(
+  internalDebuggerFactory as unknown as ExtendedDebug,
+  {
+    apply(_target, _this: unknown, args: Parameters<InternalDebug>) {
+      const originalNamespace = args[0];
+      const namespaceWithColon = (args[0] = maybeAppendColon(originalNamespace, ':'));
 
-    // ? Interop necessary to preserve (and expand!) "rootNamespace:*"
-    // ? activation behavior
-    if (
-      process.env.DEBUG &&
-      !originalNamespace.includes(':') &&
-      !originalNamespace.endsWith('*')
-    ) {
-      getDebugger.enable(
-        process.env.DEBUG.split(debugStringSplitterRegExp)
-          .map(function (incomingNamespace_) {
-            const incomingNamespaceNegation = incomingNamespace_.startsWith('-')
-              ? '-'
-              : '';
+      // ? Interop necessary to preserve (and expand!) "rootNamespace:*"
+      // ? activation behavior
+      if (
+        process.env.DEBUG &&
+        !originalNamespace.includes(':') &&
+        !originalNamespace.endsWith('*')
+      ) {
+        internalDebuggerFactory.enable(
+          process.env.DEBUG.split(debugStringSplitterRegExp)
+            .map(function (incomingNamespace_) {
+              const incomingNamespaceNegation = incomingNamespace_.startsWith('-')
+                ? '-'
+                : '';
 
-            const incomingNamespace = incomingNamespaceNegation
-              ? incomingNamespace_.slice(1)
-              : incomingNamespace_;
+              const incomingNamespace = incomingNamespaceNegation
+                ? incomingNamespace_.slice(1)
+                : incomingNamespace_;
 
-            if (incomingNamespace === originalNamespace) {
-              return incomingNamespaceNegation + incomingNamespace + ':';
-            }
+              if (incomingNamespace === originalNamespace) {
+                return incomingNamespaceNegation + incomingNamespace + ':';
+              }
 
-            const outgoingNamespace =
-              incomingNamespace !== ourNamespace &&
-              incomingNamespace.startsWith(ourNamespace) &&
-              !incomingNamespace.startsWith(ourNamespace + ':') &&
-              !incomingNamespace.startsWith(ourNamespace + '*')
-                ? incomingNamespace.slice(0, ourNamespace.length) +
-                  ':' +
-                  incomingNamespace.slice(ourNamespace.length)
-                : incomingNamespace;
+              const outgoingNamespace =
+                incomingNamespace.startsWith(namespaceWithColon) &&
+                !incomingNamespace.startsWith(namespaceWithColon + ':') &&
+                !incomingNamespace.startsWith(namespaceWithColon + '*')
+                  ? incomingNamespace.slice(0, namespaceWithColon.length) +
+                    ':' +
+                    incomingNamespace.slice(namespaceWithColon.length)
+                  : incomingNamespace;
 
-            return incomingNamespaceNegation + outgoingNamespace;
-          })
-          .join(',')
-      );
-    }
+              return incomingNamespaceNegation + outgoingNamespace;
+            })
+            .join(',')
+        );
+      }
 
-    return extendDebugger(getDebugger(...args));
-  },
-  get(target, property: PropertyKey, proxy: ExtendedDebug) {
-    const value: unknown = target[property as keyof typeof target];
-    const isSymbolOrOwnProperty =
-      typeof property === 'string' &&
-      (isSymbolObject(property) ||
-        Object.hasOwn(getDebugger, property) ||
-        Object.hasOwn(Object.getPrototypeOf(getDebugger), property));
+      return extendDebugger(internalDebuggerFactory(...args));
+    },
+    get(target, property: PropertyKey, proxy: ExtendedDebug) {
+      const value: unknown = target[property as keyof typeof target];
+      const isSymbolOrOwnProperty =
+        typeof property === 'string' &&
+        (isSymbolObject(property) ||
+          Object.hasOwn(internalDebuggerFactory, property) ||
+          Object.hasOwn(Object.getPrototypeOf(internalDebuggerFactory), property));
 
-    if (isSymbolOrOwnProperty && typeof value === 'function') {
-      return function (...args: unknown[]) {
-        if (
-          typeof args[0] === 'string' &&
-          ['enable', 'enabled', 'selectColor'].includes(property)
-        ) {
-          // TODO: if the delimiter ever becomes available on the debug factory
-          // TODO: object, use it here:
-          args[0] = maybeAppendColon(args[0], ':');
-        }
+      if (isSymbolOrOwnProperty && typeof value === 'function') {
+        return function (...args: unknown[]) {
+          if (
+            typeof args[0] === 'string' &&
+            ['enable', 'enabled', 'selectColor'].includes(property)
+          ) {
+            args[0] = maybeAppendColon(args[0], ':');
+          }
 
-        // ? This is "this-recovering" code.
-        const returnValue = value.apply(target, args);
-        // ? Whenever we'd return an InternalDebugger instance, return the proxy
-        // ? instead.
-        /* istanbul ignore next */
-        return isPromise(returnValue)
-          ? returnValue.then((realReturnValue) => maybeReturnProxy(realReturnValue))
-          : maybeReturnProxy(returnValue);
-      };
-    }
+          // ? This is "this-recovering" code.
+          const returnValue = value.apply(target, args);
+          // ? Whenever we'd return an InternalDebugger instance, return the proxy
+          // ? instead.
+          /* istanbul ignore next */
+          return isPromise(returnValue)
+            ? returnValue.then((realReturnValue) => maybeReturnProxy(realReturnValue))
+            : maybeReturnProxy(returnValue);
+        };
+      }
 
-    return value;
+      return value;
 
-    /* istanbul ignore next */
-    function maybeReturnProxy(returnValue: unknown) {
-      return returnValue === target ? proxy : returnValue;
+      /* istanbul ignore next */
+      function maybeReturnProxy(returnValue: unknown) {
+        return returnValue === target ? proxy : returnValue;
+      }
     }
   }
-});
+);
 
 /**
  * Extends a {@link InternalDebugger} instance with several convenience methods,
