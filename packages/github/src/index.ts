@@ -88,7 +88,7 @@ function githubLog(kind: 'notice' | 'warning' | 'error' | 'log', rawNamespace: s
         .trim();
 
       const content =
-        namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ` + rawContent;
+        namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ${rawContent}`;
 
       consoleLogArgs.push(content, ...args.slice(1));
     } else {
@@ -115,7 +115,7 @@ function githubLog(kind: 'notice' | 'warning' | 'error' | 'log', rawNamespace: s
         : maybeWithTitle;
 
       const content =
-        namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ` + rawContent;
+        namespaceMaybeWithColon + `${endsWithColon ? '' : ':'} ${rawContent}`;
 
       const title = startsWithTitle ? maybeWithTitle.split('::')[0]! : '';
 

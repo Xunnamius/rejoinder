@@ -10,7 +10,8 @@ import {
   reconfigureJestGlobalsToSkipTestsInThisFileIfRequested
 } from 'testverse:util.ts';
 
-import { createDebugLogger } from 'rejoinder';
+// {@symbiote/notInvalid rejoinder~dev}
+import { createDebugLogger } from 'rejoinder~dev';
 
 const TEST_IDENTIFIER = `${packageName.split('/').at(-1)!}-integration-smoke`;
 const debug = createDebugLogger({ namespace: 'rejoinder' }).extend(TEST_IDENTIFIER);

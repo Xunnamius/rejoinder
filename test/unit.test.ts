@@ -5,11 +5,12 @@ import {
   disableLoggingByTag,
   enableLoggers,
   enableLoggingByTag,
+  getDisabledTags,
   getLoggersByType,
   LoggerType
 } from 'universe';
 
-import { resetInternalState } from 'universe:internal.ts';
+import { resetInternalState, withoutMetadataTracking } from 'universe:internal.ts';
 
 import { extractAllLoggers, withMockedOutput } from 'testverse:util.ts';
 
@@ -29,7 +30,7 @@ describe('::createGenericLogger', () => {
   it('returns ExtendedLogger instance', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGenericLogger({ namespace });
 
       expect(log.enabled).toBeTrue();
@@ -37,7 +38,7 @@ describe('::createGenericLogger', () => {
 
       log('logged');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged/)]
       ]);
     });
@@ -46,7 +47,7 @@ describe('::createGenericLogger', () => {
   it('returns instance capable of handling complex input', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGenericLogger({ namespace });
 
       expect(log.enabled).toBeTrue();
@@ -54,7 +55,7 @@ describe('::createGenericLogger', () => {
 
       log('logged: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)]
       ]);
     });
@@ -63,7 +64,7 @@ describe('::createGenericLogger', () => {
   it('returns extensions that can themselves be extended', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGenericLogger({ namespace });
       const extension1 = log.extend(namespace);
       const extension2 = extension1.extend(namespace);
@@ -80,7 +81,7 @@ describe('::createGenericLogger', () => {
       extension1('logged');
       extension2('logged');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged/)],
         [expect.stringMatching(/namespace::namespace.+logged/)],
         [expect.stringMatching(/namespace::namespace:namespace.+logged/)]
@@ -91,38 +92,38 @@ describe('::createGenericLogger', () => {
   it('can hint at output stream when calling newline (defaults to stdout)', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy, errorSpy }) => {
+    await withMockedOutput(({ nodeLogSpy, nodeErrorSpy }) => {
       const log = createGenericLogger({ namespace });
       const extension = log.extend(namespace);
 
       log.newline();
       log.newline('default');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], ['']]);
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([]);
 
       log.newline('alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], ['']]);
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([['']]);
 
       extension.newline();
       extension.newline('default');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], [''], [''], ['']]);
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([['']]);
 
       extension.newline('alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], ['']]);
-      expect(errorSpy.mock.calls).toStrictEqual([[''], ['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], [''], [''], ['']]);
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([[''], ['']]);
     });
   });
 
   it('is unaffected by the presence of tags by default', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy, errorSpy }) => {
+    await withMockedOutput(({ nodeLogSpy, nodeErrorSpy }) => {
       const log = createGenericLogger({ namespace });
       const extension = log.extend(namespace);
 
@@ -144,7 +145,7 @@ describe('::createGenericLogger', () => {
       extension.newline(['tag-3', 'tag-4'], 'default');
       extension.newline(['tag-3', 'tag-4'], 'alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
@@ -153,7 +154,7 @@ describe('::createGenericLogger', () => {
         ['']
       ]);
 
-      expect(errorSpy.mock.calls).toStrictEqual([
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
@@ -169,7 +170,7 @@ describe('::createGenericLogger', () => {
   it('propagates ::enabled mutations to sub-instances', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy, errorSpy }) => {
+    await withMockedOutput(({ nodeLogSpy, nodeErrorSpy }) => {
       const log = createGenericLogger({ namespace });
       const extension = log.extend(namespace);
 
@@ -191,7 +192,7 @@ describe('::createGenericLogger', () => {
       extension.newline('default');
       extension.newline(['tag-3', 'tag-4'], 'alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
@@ -200,7 +201,7 @@ describe('::createGenericLogger', () => {
         ['']
       ]);
 
-      expect(errorSpy.mock.calls).toStrictEqual([
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
@@ -236,19 +237,32 @@ describe('::createGenericLogger', () => {
       expect(out).toHaveLength(4);
     }
   });
+
+  it('does not output a newline when ::newline invoked on disabled instance', async () => {
+    expect.hasAssertions();
+
+    await withMockedOutput(({ nodeLogSpy }) => {
+      const log = createGenericLogger({ namespace });
+
+      log.enabled = false;
+      log.newline();
+
+      expect(nodeLogSpy).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe('::createDebugLogger', () => {
   it('returns ExtendedDebugger instance', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ errorSpy }) => {
+    await withMockedOutput(({ nodeErrorSpy }) => {
       const debug = createDebugLogger({ namespace });
 
       debug.enabled = true;
       debug('logged');
 
-      expect(errorSpy.mock.calls).toStrictEqual([
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged/)]
       ]);
     });
@@ -264,13 +278,13 @@ describe('::createDebugLogger', () => {
   it('returns instance capable of handling complex input', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ errorSpy }) => {
+    await withMockedOutput(({ nodeErrorSpy }) => {
       const debug = createDebugLogger({ namespace });
 
       debug.enabled = true;
       debug('logged: %O', { success: true });
 
-      expect(errorSpy.mock.calls).toStrictEqual([
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)]
       ]);
     });
@@ -279,7 +293,7 @@ describe('::createDebugLogger', () => {
   it('returns extensions that can themselves be extended', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ errorSpy }) => {
+    await withMockedOutput(({ nodeErrorSpy }) => {
       const debug = createDebugLogger({ namespace });
       const extension1 = debug.extend(namespace);
       const extension2 = extension1.extend(namespace);
@@ -293,7 +307,7 @@ describe('::createDebugLogger', () => {
       extension2.enabled = true;
       extension2('logged');
 
-      expect(errorSpy.mock.calls).toStrictEqual([
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged/)],
         [expect.stringMatching(/namespace::namespace.+logged/)],
         [expect.stringMatching(/namespace::namespace:namespace.+logged/)]
@@ -304,7 +318,7 @@ describe('::createDebugLogger', () => {
   it('propagates ::enabled mutations to sub-instances', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ errorSpy }) => {
+    await withMockedOutput(({ nodeErrorSpy }) => {
       const debug = createDebugLogger({ namespace });
       const extension = debug.extend(namespace);
 
@@ -325,7 +339,7 @@ describe('::createDebugLogger', () => {
 
       extension.newline();
 
-      expect(errorSpy.mock.calls).toStrictEqual([
+      expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
@@ -450,10 +464,7 @@ describe('::disableLoggers', () => {
     loggers.log.enabled = true;
     loggers.debug.enabled = true;
 
-    const parameters = {
-      type: LoggerType.All,
-      filter: globalDummyFilter
-    } as const;
+    const parameters = { type: LoggerType.All, filter: globalDummyFilter } as const;
 
     disableLoggers(parameters);
 
@@ -688,11 +699,11 @@ describe('::disableLoggingByTag', () => {
     const generic = createGenericLogger({ namespace });
     const genericExtended = generic.extend(namespace);
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
@@ -700,11 +711,11 @@ describe('::disableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-2'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
@@ -712,11 +723,11 @@ describe('::disableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toBeEmpty();
+      expect(nodeLogSpy.mock.calls).toBeEmpty();
     });
   });
 
@@ -727,65 +738,10 @@ describe('::disableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic('message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
-        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
-      ]);
-    });
-  });
-});
-
-describe('::enableLoggingByTag', () => {
-  it('can enable logging across logger types including sub-loggers by tag', async () => {
-    expect.hasAssertions();
-
-    const generic = createGenericLogger({ namespace });
-    const genericExtended = generic.extend(namespace);
-
-    disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
-
-    await withMockedOutput(({ logSpy }) => {
-      generic(['tag-1'], 'message: %O', { success: true });
-      genericExtended(['tag-1'], 'message: %O', { success: true });
-
-      expect(logSpy.mock.calls).toBeEmpty();
-    });
-
-    enableLoggingByTag({ tags: ['tag-2'] });
-
-    await withMockedOutput(({ logSpy }) => {
-      generic(['tag-1'], 'message: %O', { success: true });
-      genericExtended(['tag-1'], 'message: %O', { success: true });
-
-      expect(logSpy.mock.calls).toBeEmpty();
-    });
-
-    enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
-
-    await withMockedOutput(({ logSpy }) => {
-      generic(['tag-1'], 'message: %O', { success: true });
-      genericExtended(['tag-1'], 'message: %O', { success: true });
-
-      expect(logSpy.mock.calls).toStrictEqual([
-        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
-      ]);
-    });
-  });
-
-  it('does not prevent tag-less log calls from executing successfully', async () => {
-    expect.hasAssertions();
-
-    const generic = createGenericLogger({ namespace });
-
-    enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
-
-    await withMockedOutput(({ logSpy }) => {
-      generic('message: %O', { success: true });
-
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
       ]);
     });
@@ -883,5 +839,160 @@ describe('::getLoggersByType', () => {
       ...extractAllLoggers(logLog),
       ...extractAllLoggers(logLogLog)
     ]);
+  });
+});
+
+describe('::enableLoggingByTag', () => {
+  it('can enable logging across logger types including sub-loggers by tag', async () => {
+    expect.hasAssertions();
+
+    const generic = createGenericLogger({ namespace });
+    const genericExtended = generic.extend(namespace);
+
+    disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
+
+    await withMockedOutput(({ nodeLogSpy }) => {
+      generic(['tag-1'], 'message: %O', { success: true });
+      genericExtended(['tag-1'], 'message: %O', { success: true });
+
+      expect(nodeLogSpy.mock.calls).toBeEmpty();
+    });
+
+    enableLoggingByTag({ tags: ['tag-2'] });
+
+    await withMockedOutput(({ nodeLogSpy }) => {
+      generic(['tag-1'], 'message: %O', { success: true });
+      genericExtended(['tag-1'], 'message: %O', { success: true });
+
+      expect(nodeLogSpy.mock.calls).toBeEmpty();
+    });
+
+    enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
+
+    await withMockedOutput(({ nodeLogSpy }) => {
+      generic(['tag-1'], 'message: %O', { success: true });
+      genericExtended(['tag-1'], 'message: %O', { success: true });
+
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
+      ]);
+    });
+  });
+
+  it('does not prevent tag-less log calls from executing successfully', async () => {
+    expect.hasAssertions();
+
+    const generic = createGenericLogger({ namespace });
+
+    enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
+
+    await withMockedOutput(({ nodeLogSpy }) => {
+      generic('message: %O', { success: true });
+
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
+        [expect.stringMatching(/namespace.+message:.+{.+success:.+true.+}/)]
+      ]);
+    });
+  });
+});
+
+describe('::getDisabledTags', () => {
+  it('returns an array of disabled tags', async () => {
+    expect.hasAssertions();
+
+    disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
+    disableLoggingByTag({ tags: ['tag-a', 'tag-2', 'tag-b'] });
+
+    expect(getDisabledTags()).toStrictEqual([
+      'tag-1',
+      'tag-2',
+      'tag-3',
+      'tag-a',
+      'tag-b'
+    ]);
+  });
+});
+
+describe('<internals>', () => {
+  describe('::withoutMetadataTracking', () => {
+    it('makes rejoinder forget a logger instance and its sub-instances', async () => {
+      expect.hasAssertions();
+
+      const debug1 = createDebugLogger({ namespace: LoggerType.DebugOnly });
+      const log1 = createGenericLogger({ namespace: LoggerType.GenericOutput });
+
+      const debug2 = createDebugLogger({ namespace: LoggerType.DebugOnly });
+      const log2 = createGenericLogger({ namespace: LoggerType.GenericOutput });
+
+      const debug11 = debug1.extend('1');
+      const log11 = log1.extend('1');
+
+      expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([
+        ...extractAllLoggers(debug1),
+        ...extractAllLoggers(log1),
+        ...extractAllLoggers(debug2),
+        ...extractAllLoggers(log2),
+        ...extractAllLoggers(debug11),
+        ...extractAllLoggers(log11)
+      ]);
+
+      expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([
+        ...extractAllLoggers(debug1),
+        ...extractAllLoggers(debug2),
+        ...extractAllLoggers(debug11)
+      ]);
+
+      expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers([
+        ...extractAllLoggers(log1),
+        ...extractAllLoggers(log2),
+        ...extractAllLoggers(log11)
+      ]);
+
+      withoutMetadataTracking(LoggerType.GenericOutput, log1);
+      withoutMetadataTracking(LoggerType.GenericOutput, log2);
+
+      expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([
+        ...extractAllLoggers(debug1),
+        ...extractAllLoggers(debug2),
+        ...extractAllLoggers(debug11),
+        ...extractAllLoggers(log11)
+      ]);
+
+      expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([
+        ...extractAllLoggers(debug1),
+        ...extractAllLoggers(debug2),
+        ...extractAllLoggers(debug11)
+      ]);
+
+      expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers([
+        ...extractAllLoggers(log11)
+      ]);
+
+      withoutMetadataTracking(LoggerType.DebugOnly, debug1);
+      withoutMetadataTracking(LoggerType.DebugOnly, debug2);
+
+      expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([
+        ...extractAllLoggers(debug11),
+        ...extractAllLoggers(log11)
+      ]);
+
+      expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([
+        ...extractAllLoggers(debug11)
+      ]);
+
+      expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers([
+        ...extractAllLoggers(log11)
+      ]);
+
+      withoutMetadataTracking(LoggerType.GenericOutput, log11);
+      withoutMetadataTracking(LoggerType.DebugOnly, debug11);
+
+      expect(getLoggersByType({ type: LoggerType.All })).toIncludeSameMembers([]);
+      expect(getLoggersByType({ type: LoggerType.DebugOnly })).toIncludeSameMembers([]);
+      expect(getLoggersByType({ type: LoggerType.GenericOutput })).toIncludeSameMembers(
+        []
+      );
+    });
   });
 });

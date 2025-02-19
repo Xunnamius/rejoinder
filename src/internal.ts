@@ -37,9 +37,7 @@ export type WithExtendedParameters<
  */
 export type WithTagSupport<T extends (...args: any[]) => any, Optional = true> = ((
   ...args: WithExtendedParameters<T, Optional>
-) => ReturnType<T> | undefined) & {
-  [P in keyof T]: T[P];
-};
+) => ReturnType<T> | undefined) & { [P in keyof T]: T[P] };
 
 /**
  * An `ExtendedDebugger` function-object decorated with support for an initial
@@ -125,6 +123,7 @@ export function makeExtendedLogger(
    * `::newline(..., 'alternate')` and `::error(...)`, `::warn(...)`,
    * `::message(...)`, etc are called.
    */
+  // istanbul ignore next
   underlyingAlternateLogFn: NonNullable<InternalDebugger['log']> = underlyingDefaultLogFn
 ): ExtendedLogger {
   const baseLoggerFn = decorateWithTagSupport(extendedDebugger, 2);
@@ -286,6 +285,7 @@ export function makeExtendedLogger(
   function ensureInstanceHasOkColor(
     instance: ExtendedLogger | UnextendableInternalDebugger
   ) {
+    /* istanbul ignore next */
     const instanceColor = Number.parseInt(instance.color) || 0;
 
     if (ansiBannedColorCodes.includes(instanceColor)) {
@@ -301,7 +301,7 @@ export function makeExtendedLogger(
 
       try {
         const selectedColor = hiddenInternals.selectColor(extendedDebugger.namespace);
-        assert(typeof selectedColor === 'number' || typeof selectedColor === 'string');
+        assert(['number', 'string'].includes(typeof selectedColor));
 
         // @ts-expect-error: external types are incongruent
         instance.color = selectedColor;

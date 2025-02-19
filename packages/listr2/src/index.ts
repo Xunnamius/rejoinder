@@ -87,6 +87,7 @@ function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
     // ? emulate some of console.log's features (specifically via util.inspect)
     task.output = args
       .map((arg) =>
+        /* istanbul ignore next */
         typeof arg === 'string'
           ? arg
           : util.inspect(arg, {
@@ -130,7 +131,7 @@ function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
  *   - Switches to the verbose renderer when the DEBUG environment variable is
  *     present or any of the debug logger namespaces are enabled.
  */
-export function createListrManager(options?: {
+export function createListrManager<ListrContext = any>(options?: {
   /**
    * Properties provided here will override the defaults passed to the
    * {@link Manager} constructor.
@@ -140,9 +141,10 @@ export function createListrManager(options?: {
   const processOutput = new ProcessOutput();
   // ? Since we use the fallback logger whenever we're in debug mode, let's
   // ? allow debug traffic to hit stderr live.
+  /* istanbul ignore next */
   processOutput.hijack = processOutput.release = () => undefined /* noop */;
 
-  const manager = new Manager<T, 'default', 'verbose' | 'simple'>({
+  const manager = new Manager<ListrContext, 'default', 'verbose' | 'simple'>({
     concurrent: false,
     collectErrors: 'minimal',
     exitOnError: true,

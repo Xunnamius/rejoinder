@@ -7,9 +7,13 @@
 // * also be run locally.
 
 import { toAbsolutePath, toDirname } from '@-xun/fs';
-import { createDebugLogger } from 'rejoinder';
+// {@symbiote/notInvalid rejoinder~dev}
+import { createDebugLogger } from 'rejoinder~dev';
 
-import { exports as packageExports, name as packageName } from 'rootverse:package.json';
+import {
+  exports as packageExports,
+  name as packageName
+} from 'rootverse+debug:package.json';
 
 import {
   ensurePackageHasBeenBuilt,
@@ -26,7 +30,7 @@ reconfigureJestGlobalsToSkipTestsInThisFileIfRequested({ it: true, test: true })
 
 beforeAll(async () => {
   await ensurePackageHasBeenBuilt(
-    toDirname(toAbsolutePath(require.resolve('rootverse:package.json'))),
+    toDirname(toAbsolutePath(require.resolve('rootverse+debug:package.json'))),
     packageName,
     packageExports
   );

@@ -85,7 +85,7 @@ describe('::createGithubLogger', () => {
   it('returns ExtendedLogger instance', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
 
       expect(log.enabled).toBeTrue();
@@ -93,7 +93,7 @@ describe('::createGithubLogger', () => {
 
       log('logged');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged/)]
       ]);
     });
@@ -102,7 +102,7 @@ describe('::createGithubLogger', () => {
   it('returns instance capable of handling complex input', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
 
       expect(log.enabled).toBeTrue();
@@ -110,7 +110,7 @@ describe('::createGithubLogger', () => {
 
       log('logged: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged:.+{.+success:.+true.+}/)]
       ]);
     });
@@ -119,7 +119,7 @@ describe('::createGithubLogger', () => {
   it('returns extensions that can themselves be extended', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       const extension1 = log.extend('extension');
       const extension2 = extension1.extend(namespace);
@@ -136,7 +136,7 @@ describe('::createGithubLogger', () => {
       extension1('logged');
       extension2('logged');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged/)],
         [expect.stringMatching(/namespace::extension: logged/)],
         [expect.stringMatching(/namespace::extension:namespace: logged/)]
@@ -147,34 +147,34 @@ describe('::createGithubLogger', () => {
   it('can hint at output stream when calling newline (defaults to stdout)', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       const extension = log.extend(namespace);
 
       log.newline();
       log.newline('default');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], ['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], ['']]);
 
       log.newline('alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], ['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], [''], ['']]);
 
       extension.newline();
       extension.newline('default');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], [''], ['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], [''], [''], [''], ['']]);
 
       extension.newline('alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([[''], [''], [''], [''], [''], ['']]);
+      expect(nodeLogSpy.mock.calls).toStrictEqual([[''], [''], [''], [''], [''], ['']]);
     });
   });
 
   it('is unaffected by the presence of tags by default', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       const extension = log.extend('extension');
 
@@ -196,7 +196,7 @@ describe('::createGithubLogger', () => {
       extension.newline(['tag-3', 'tag-4'], 'default');
       extension.newline(['tag-3', 'tag-4'], 'alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/^::error::namespace: logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/^::notice::namespace: logged:.+{.+success:.+true.+}/)],
@@ -218,7 +218,7 @@ describe('::createGithubLogger', () => {
   it('propagates ::enabled mutations to sub-instances', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       const extension = log.extend('extension');
 
@@ -240,7 +240,7 @@ describe('::createGithubLogger', () => {
       extension.newline('default');
       extension.newline(['tag-3', 'tag-4'], 'alternate');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/^::error::namespace: logged:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/^::notice::namespace: logged:.+{.+success:.+true.+}/)],
@@ -262,12 +262,13 @@ describe('::createGithubLogger', () => {
   it('allows setting title using first string argument', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       log.warn('title=Title Is Here::logged: %O', { success: true });
       log.warn('not a title=Title Is Here::logged: %O', { success: true });
+      log.message('title=Title By Itself', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [
           expect.stringMatching(
             /^::warning title=Title Is Here::namespace: logged:.+{.+success:.+true.+}/
@@ -277,7 +278,8 @@ describe('::createGithubLogger', () => {
           expect.stringMatching(
             /^::warning::namespace: not a title=Title Is Here::logged:.+{.+success:.+true.+}/
           )
-        ]
+        ],
+        ['::notice title=Title By Itself::namespace: ', { success: true }]
       ]);
     });
   });
@@ -285,12 +287,12 @@ describe('::createGithubLogger', () => {
   it('outputs correctly given multiple arguments', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       log('1', 2, { three: true }, 'four ::five:: six');
       log.message('1', 2, { three: true }, 'four ::five:: six');
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [
           expect.stringMatching(/^namespace: 1/),
           2,
@@ -310,12 +312,12 @@ describe('::createGithubLogger', () => {
   it('works when first argument is not a string', async () => {
     expect.hasAssertions();
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       const log = createGithubLogger({ namespace });
       log({ success: true });
       log.warn({ success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/^namespace: {.+success:.+true.+}/)],
         [expect.stringMatching(/^::warning::namespace: {.+success:.+true.+}/)]
       ]);
@@ -580,11 +582,11 @@ describe('::disableLoggingByTag', () => {
     const generic = createGithubLogger({ namespace });
     const genericExtended = generic.extend(namespace);
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)]
       ]);
@@ -592,11 +594,11 @@ describe('::disableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-2'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)]
       ]);
@@ -604,11 +606,11 @@ describe('::disableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toBeEmpty();
+      expect(nodeLogSpy.mock.calls).toBeEmpty();
     });
   });
 
@@ -619,10 +621,10 @@ describe('::disableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic('message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)]
       ]);
     });
@@ -638,29 +640,29 @@ describe('::enableLoggingByTag', () => {
 
     disableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toBeEmpty();
+      expect(nodeLogSpy.mock.calls).toBeEmpty();
     });
 
     enableLoggingByTag({ tags: ['tag-2'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toBeEmpty();
+      expect(nodeLogSpy.mock.calls).toBeEmpty();
     });
 
     enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic(['tag-1'], 'message: %O', { success: true });
       genericExtended(['tag-1'], 'message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)],
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)]
       ]);
@@ -674,10 +676,10 @@ describe('::enableLoggingByTag', () => {
 
     enableLoggingByTag({ tags: ['tag-1', 'tag-2', 'tag-3'] });
 
-    await withMockedOutput(({ logSpy }) => {
+    await withMockedOutput(({ nodeLogSpy }) => {
       generic('message: %O', { success: true });
 
-      expect(logSpy.mock.calls).toStrictEqual([
+      expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: message:.+{.+success:.+true.+}/)]
       ]);
     });

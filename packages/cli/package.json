@@ -61,6 +61,9 @@
     "test:package:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit type",
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
+  "devDependencies": {
+    "@-xun/fs": "^1.0.0"
+  },
   "peerDependencies": {
     "rejoinder": ">=1.1.0"
   },
