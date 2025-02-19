@@ -5,6 +5,7 @@
 // * filesystem mocking) in favor of testing a "fully integrated" system.
 
 import { toAbsolutePath, toDirname } from '@-xun/fs';
+import { createDebugLogger } from 'rejoinder~dev';
 
 import { exports as packageExports, name as packageName } from 'rootverse:package.json';
 
@@ -14,7 +15,6 @@ import {
 } from 'testverse:util.ts';
 
 // {@symbiote/notInvalid rejoinder~dev}
-import { createDebugLogger } from 'rejoinder~dev';
 
 const TEST_IDENTIFIER = `${packageName.split('/').at(-1)!}-integration-client`;
 const debug = createDebugLogger({ namespace: 'rejoinder' }).extend(TEST_IDENTIFIER);

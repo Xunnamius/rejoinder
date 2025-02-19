@@ -2,6 +2,7 @@
 // * and, when it is, exits cleanly. Functionality testing is not the goal here.
 
 import { toAbsolutePath, toDirname } from '@-xun/fs';
+import { createDebugLogger } from 'rejoinder~dev';
 
 import { exports as packageExports, name as packageName } from 'rootverse:package.json';
 
@@ -11,7 +12,6 @@ import {
 } from 'testverse:util.ts';
 
 // {@symbiote/notInvalid rejoinder~dev}
-import { createDebugLogger } from 'rejoinder~dev';
 
 const TEST_IDENTIFIER = `${packageName.split('/').at(-1)!}-integration-smoke`;
 const debug = createDebugLogger({ namespace: 'rejoinder' }).extend(TEST_IDENTIFIER);
