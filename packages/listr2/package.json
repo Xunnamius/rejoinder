@@ -75,13 +75,13 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
-    "@listr2/manager": "^2.0.13",
     "core-js": "^3.40.0"
   },
   "devDependencies": {
     "@-xun/fs": "^1.0.0"
   },
   "peerDependencies": {
+    "@listr2/manager": "^2.0.13",
     "listr2": "^8.2.5",
     "rejoinder": ">=1.1.0"
   },
