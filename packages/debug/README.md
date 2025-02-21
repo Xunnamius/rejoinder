@@ -47,7 +47,7 @@ This package is the workhorse on which [`rejoinder`][1] is built.
 
 - [Install](#install)
 - [Usage](#usage)
-  - [Special `process.env.DEBUG` activation functionality](#special-processenvdebug-activation-functionality)
+  - [Special `process.env.DEBUG` Activation Functionality](#special-processenvdebug-activation-functionality)
 - [Appendix](#appendix)
   - [Published Package Details](#published-package-details)
   - [License](#license)
