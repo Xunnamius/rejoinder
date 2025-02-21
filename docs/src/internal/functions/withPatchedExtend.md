@@ -8,7 +8,7 @@
 
 > **withPatchedExtend**(`instance`): [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md)
 
-Defined in: [src/internal.ts:404](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/internal.ts#L404)
+Defined in: [src/internal.ts:404](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L404)
 
 Recursively patches [ExtendedDebugger.extend](../../interfaces/ExtendedDebugger.md#extend) so that all debugger
 instances are properly tracked.

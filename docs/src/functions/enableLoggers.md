@@ -8,7 +8,7 @@
 
 > **enableLoggers**(`__namedParameters`): `void`
 
-Defined in: [src/index.ts:177](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/index.ts#L177)
+Defined in: [src/index.ts:176](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/index.ts#L176)
 
 Enable all logger instances (coarse-grain).
 
@@ -16,7 +16,7 @@ Enable all logger instances (coarse-grain).
 
 ### \_\_namedParameters
 
-#### filter
+#### filter?
 
 `string` \| `RegExp`
 

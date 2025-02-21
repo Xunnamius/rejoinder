@@ -8,7 +8,7 @@
 
 > **MockedOutputOptions**: `object`
 
-Defined in: [test/util.ts:60](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/test/util.ts#L60)
+Defined in: node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:5
 
 ## Type declaration
 
@@ -16,8 +16,15 @@ Defined in: [test/util.ts:60](https://github.com/Xunnamius/rejoinder/blob/f0345f
 
 > `optional` **passthrough**: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]
 
-Call `::mockRestore` on one or more output functions currently being spied
-upon.
+Prevent mocking the implementation of one or more output spies, allowing
+output to be passed through to the original function. Said spies will
+remain functional.
+
+#### Default
+
+```ts
+[]
+```
 
 ### passthroughOutputIfDebugging?
 
@@ -32,3 +39,7 @@ debug output to make it to the screen.
 ```ts
 true
 ```
+
+## See
+
+[withMockedOutput](../functions/withMockedOutput.md)

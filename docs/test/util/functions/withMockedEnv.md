@@ -6,9 +6,15 @@
 
 # Function: withMockedEnv()
 
-> **withMockedEnv**(`test`, `simulatedEnv`, `options`): `Promise`\<`void`\>
+> **withMockedEnv**(`test`, `simulatedEnv`, `__namedParameters`?): `Promise`\<`void`\>
 
-Defined in: [test/util.ts:36](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/test/util.ts#L36)
+Defined in: node\_modules/@-xun/test-mock-env/dist/packages/test-mock-env/src/index.d.ts:40
+
+Mock `process.env` within the scope of `test`. Guaranteed to return
+`process.env` to its original state no matter how `test` terminates.
+
+**WARNING: it is not safe to run this function concurrently (e.g. with
+`Promise.all`).**
 
 ## Parameters
 
@@ -20,9 +26,9 @@ Defined in: [test/util.ts:36](https://github.com/Xunnamius/rejoinder/blob/f0345f
 
 `Record`\<`string`, `string`\>
 
-### options
+### \_\_namedParameters?
 
-[`MockEnvOptions`](../type-aliases/MockEnvOptions.md) = `...`
+[`MockedEnvOptions`](../type-aliases/MockedEnvOptions.md)
 
 ## Returns
 

@@ -6,11 +6,12 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`T`\>(`args`): `T`
+> **isolatedImport**\<`Module`\>(`specifier`, `options`?): `Module`
 
-Defined in: [test/util.ts:189](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/test/util.ts#L189)
+Defined in: node\_modules/@-xun/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
 
-Performs a module import as if it were being imported for the first time.
+Performs a CJS module import (via `require`) as if it were being imported for
+the first time.
 
 Note that this function breaks the "require caching" expectation of Node.js
 modules. Problems can arise, for example, when closing an app-wide database
@@ -21,26 +22,22 @@ test to hang unexpectedly, even when all tests pass.
 
 ## Type Parameters
 
-• **T** = `unknown`
+• **Module**
 
 ## Parameters
 
-### args
+### specifier
 
-#### path
+Specifier or absolute path to the module under test. Module resolution is
+handled by `require`, therefore the specifier, if a filesystem path, should
+never be relative and must always use unix-style separators (i.e. `/`).
 
-`string`
+`string` | `AbsolutePath`
 
-Path to the module to import. Module resolution is handled by `require`.
+### options?
 
-#### useDefault
-
-`boolean`
-
-By default, if `module.__esModule === true`, the default export will be
-returned instead. Use `useDefault` to override this behavior in either
-direction.
+[`IsolatedImportOptions`](../type-aliases/IsolatedImportOptions.md)
 
 ## Returns
 
-`T`
+`Module`

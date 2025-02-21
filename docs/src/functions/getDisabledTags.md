@@ -6,12 +6,12 @@
 
 # Function: getDisabledTags()
 
-> **getDisabledTags**(): `Set`\<`string`\>
+> **getDisabledTags**(): `string`[]
 
-Defined in: [src/index.ts:244](https://github.com/Xunnamius/rejoinder/blob/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69/src/index.ts#L244)
+Defined in: [src/index.ts:243](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/index.ts#L243)
 
 Returns an array of the tags disabled via [disableLoggingByTag](disableLoggingByTag.md).
 
 ## Returns
 
-`Set`\<`string`\>
+`string`[]
