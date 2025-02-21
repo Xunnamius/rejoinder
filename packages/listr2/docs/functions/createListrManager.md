@@ -6,9 +6,9 @@
 
 # Function: createListrManager()
 
-> **createListrManager**\<`T`\>(`options`?): `Manager`\<`T`, `"simple"` \| `"verbose"`\>
+> **createListrManager**\<`ListrContext`\>(`options`?): `Manager`\<`ListrContext`, `"default"`, `"simple"` \| `"verbose"`\>
 
-Defined in: [packages/listr2/src/index.ts:136](https://github.com/Xunnamius/rejoinder/blob/fbe3bdcbacd203efaddce858e9751b150e2a6511/packages/listr2/src/index.ts#L136)
+Defined in: [packages/listr2/src/index.ts:134](https://github.com/Xunnamius/rejoinder/blob/8bad0977e8c8ead29ff2da293d34c9aab8060d89/packages/listr2/src/index.ts#L134)
 
 Create and return a new Listr2 Manager instance pre-configured to
 work in harmony with rejoinder.
@@ -22,19 +22,19 @@ Specifically, this instance:
 
 ## Type Parameters
 
-• **T** = `any`
+• **ListrContext** = `any`
 
 ## Parameters
 
 ### options?
 
-#### overrides
+#### overrides?
 
-`ListrBaseClassOptions`
+`ListrBaseClassOptions`\<`any`, `"default"`, `"simple"`\>
 
 Properties provided here will override the defaults passed to the
 Manager constructor.
 
 ## Returns
 
-`Manager`\<`T`, `"simple"` \| `"verbose"`\>
+`Manager`\<`ListrContext`, `"default"`, `"simple"` \| `"verbose"`\>
