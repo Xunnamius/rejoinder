@@ -24,19 +24,27 @@ this project adheres to [Semantic Versioning][2].
 
 <br />
 
-### 🏗️ Patch rejoinder-github-actions[@1.0.2][12] (2025-01-25)
+### 🏗️ Patch rejoinder-github-actions[@1.0.3][12] (2025-02-21)
 
 #### 🪄 Fixes
 
-- **packages/github:** ensure `newline` function works consistently in extended instances ([f0345f9][13])
+- Replace useage of `globalThis.console` with `node:console` ([03b3613][13])
 
 <br />
 
-### 🏗️ Patch rejoinder-github-actions[@1.0.1][14] (2025-01-20)
+### 🏗️ Patch rejoinder-github-actions[@1.0.2][14] (2025-01-25)
+
+#### 🪄 Fixes
+
+- **packages/github:** ensure `newline` function works consistently in extended instances ([f0345f9][15])
+
+<br />
+
+### 🏗️ Patch rejoinder-github-actions[@1.0.1][16] (2025-01-20)
 
 #### ⚙️ Build System
 
-- Regenerate assets ([d837f2c][15])
+- Regenerate assets ([d837f2c][17])
 
 [1]: https://conventionalcommits.org
 [2]: https://semver.org
@@ -49,7 +57,9 @@ this project adheres to [Semantic Versioning][2].
 [9]: https://github.com/Xunnamius/rejoinder/commit/78424fa8f7badb679969f17dc434d2444f557d0d
 [10]: https://github.com/Xunnamius/rejoinder/commit/571041bf4746363a1355f6eb2e03d6c31e5b0a18
 [11]: https://github.com/Xunnamius/rejoinder/commit/5526095585c560786bb4716fe2181814ff33c2ac
-[12]: https://github.com/Xunnamius/rejoinder/compare/rejoinder-github-actions@1.0.1...rejoinder-github-actions@1.0.2
-[13]: https://github.com/Xunnamius/rejoinder/commit/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69
-[14]: https://github.com/Xunnamius/rejoinder/compare/rejoinder-github-actions@1.0.0...rejoinder-github-actions@1.0.1
-[15]: https://github.com/Xunnamius/rejoinder/commit/d837f2cf51d0f744b1acb9f03c50dbfbe4361561
+[12]: https://github.com/Xunnamius/rejoinder/compare/rejoinder-github-actions@1.0.2...rejoinder-github-actions@1.0.3
+[13]: https://github.com/Xunnamius/rejoinder/commit/03b3613ea5521daeec1921ccb4f8819f94b7098e
+[14]: https://github.com/Xunnamius/rejoinder/compare/rejoinder-github-actions@1.0.1...rejoinder-github-actions@1.0.2
+[15]: https://github.com/Xunnamius/rejoinder/commit/f0345f969b3e8ccfc9a4dc96e3a670ff5e335f69
+[16]: https://github.com/Xunnamius/rejoinder/compare/rejoinder-github-actions@1.0.0...rejoinder-github-actions@1.0.1
+[17]: https://github.com/Xunnamius/rejoinder/commit/d837f2cf51d0f744b1acb9f03c50dbfbe4361561
