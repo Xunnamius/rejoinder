@@ -97,7 +97,7 @@
   },
   "devDependencies": {
     "@-xun/fs": "^1.0.0",
-    "@-xun/symbiote": "^3.3.2",
+    "@-xun/symbiote": "^3.3.3",
     "type-fest": "^4.35.0"
   },
   "engines": {
