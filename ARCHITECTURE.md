@@ -21,11 +21,11 @@ document.
 
 ## Cycle Breaker
 
-This project employs a "cycle-breaker" script that relies on the presence of a
-["\~dev" version of one or more dependencies (under `devDependencies`)][3] to
-stabilize the development environment. See [`cycle-breaker.mjs`][4] for details.
+This project employs a "cycle-breaker" script that relies on the presence of
+`rejoinder~dev` (symlinked into the bundled version of rejoinder from symbiote)
+to stabilize the development environment. See [`cycle-breaker.mjs`][4] for
+details.
 
 [1]: https://github.com/Xunnamius/symbiote/wiki/Generic-Project-Architecture
 [2]: https://github.com/Xunnamius/symbiote
-[3]: ./package.json
 [4]: ./cycle-breaker.mjs
