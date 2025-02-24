@@ -3,74 +3,49 @@
 /**
  ** This file is NOT managed by symbiote. It is run directly (via node) as part
  ** of the "prepare" and "release" npm scripts. The goal of this file is to
- ** use the version of rejoinder (and @-xun/debug) bundled with symbiote.
+ ** create a pseudo-package (rejoinder~dev) so we can rely on the versions of
+ ** rejoinder and @-xun/debug bundled with symbiote.
  */
-
-// ! BEWARE that symbiote's release command executes with the NODE_OPTIONS
-// ! environment variable set to:
-// !   --require @-xun/symbiote/assets/conventional.config.cjs
-// !
-// ! This means running this file as part of symbiote's release command may
-// ! still pull in various imports (such as rejoinder), which may not be
-// ! desired. To avoid this issue in said context, make sure to invoke this file
-// ! with NODE_OPTIONS unset.
 
 // {@symbiote/notExtraneous rejoinder~dev}
 
 import assert from 'node:assert';
-import { access, rm, symlink } from 'node:fs/promises';
+import { access, symlink } from 'node:fs/promises';
 
-import { toDirname, toRelativePath } from '@-xun/fs';
+import { toAbsolutePath, toPath, toRelativePath } from '@-xun/fs';
 
 const { createGenericLogger } = await import('rejoinder~dev').catch(
   () => import('rejoinder')
 );
 
-const rejoinderPath = './node_modules/rejoinder';
-const devRejoinderPath = './node_modules/rejoinder~dev';
-const symbioteBundledRejoinderPath =
-  './node_modules/@-xun/symbiote/node_modules/rejoinder';
+const thisDir = toAbsolutePath(import.meta.dirname);
+const devRejoinderPath = toPath(thisDir, 'node_modules/rejoinder~dev');
 
-const rejoinderExists = await isAccessible(rejoinderPath);
+const symbioteBundledRejoinderPath = toPath(
+  thisDir,
+  'node_modules/@-xun/symbiote/node_modules/rejoinder'
+);
+
 const devRejoinderExists = await isAccessible(devRejoinderPath);
 const symbioteBundledRejoinderExists = await isAccessible(symbioteBundledRejoinderPath);
 
 assert(symbioteBundledRejoinderExists);
 
 const log = createGenericLogger({ namespace: 'symbiote' }).extend('cycle-breaker');
+const relativeDevRejoinderPath = toRelativePath(thisDir, devRejoinderPath);
 
 // eslint-disable-next-line no-restricted-syntax
 log('cwd: %O', process.cwd());
 
-if (rejoinderExists) {
-  const nodeModulesRelativeProjectRoot = toRelativePath(toDirname(rejoinderPath), '.');
-
-  await rm(rejoinderPath, { maxRetries: 10, recursive: true });
-  await symlink(nodeModulesRelativeProjectRoot, rejoinderPath, 'junction');
-
-  log(
-    'installed dependency symlink: %O => %O',
-    rejoinderPath,
-    nodeModulesRelativeProjectRoot
-  );
-} else {
-  log('path does not exist: %O', rejoinderPath);
-}
-
 if (devRejoinderExists) {
-  log('path already exists: %O', devRejoinderPath);
+  log('path already exists: %O', relativeDevRejoinderPath);
 } else {
-  const nodeModulesRelativeBundledRejoinder = toRelativePath(
-    toDirname(rejoinderPath),
-    symbioteBundledRejoinderPath
-  );
-
-  await symlink(nodeModulesRelativeBundledRejoinder, devRejoinderPath, 'junction');
+  await symlink(symbioteBundledRejoinderPath, devRejoinderPath, 'junction');
 
   log(
     `installed dependency symlink: %O => %O`,
-    devRejoinderPath,
-    nodeModulesRelativeBundledRejoinder
+    relativeDevRejoinderPath,
+    toRelativePath(thisDir, symbioteBundledRejoinderPath)
   );
 }
 
