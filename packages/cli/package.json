@@ -41,7 +41,7 @@
   ],
   "scripts": {
     "#build": "npm run build:dist --",
-    "#release": "symbiote release --env NODE_NO_WARNINGS=1 --no-parallel",
+    "#release": "symbiote release --env NODE_NO_WARNINGS=1",
     "build:changelog": "symbiote build changelog --env NODE_NO_WARNINGS=1",
     "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal",
     "build:docs": "symbiote build docs --env NODE_NO_WARNINGS=1",
