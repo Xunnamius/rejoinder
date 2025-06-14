@@ -72,7 +72,7 @@
     "core-js": "^3.43.0"
   },
   "devDependencies": {
-    "@-xun/fs": "^1.0.0"
+    "@-xun/fs": "^2.0.0"
   },
   "peerDependencies": {
     "rejoinder": ">=1.1.0"
