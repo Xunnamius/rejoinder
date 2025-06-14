@@ -138,8 +138,8 @@ describe('::createGithubLogger', () => {
 
       expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace: logged/)],
-        [expect.stringMatching(/namespace::extension: logged/)],
-        [expect.stringMatching(/namespace::extension:namespace: logged/)]
+        [expect.stringMatching(/namespace:extension: logged/)],
+        [expect.stringMatching(/namespace:extension:namespace: logged/)]
       ]);
     });
   });
@@ -204,10 +204,10 @@ describe('::createGithubLogger', () => {
         [''],
         [''],
         [''],
-        [expect.stringMatching(/namespace::extension: logged/)],
-        [expect.stringMatching(/^::error::namespace::extension: logged/)],
-        [expect.stringMatching(/^::notice::namespace::extension: logged/)],
-        [expect.stringMatching(/^::warning::namespace::extension: logged/)],
+        [expect.stringMatching(/namespace:extension: logged/)],
+        [expect.stringMatching(/^::error::namespace:extension: logged/)],
+        [expect.stringMatching(/^::notice::namespace:extension: logged/)],
+        [expect.stringMatching(/^::warning::namespace:extension: logged/)],
         [''],
         [''],
         ['']
@@ -248,10 +248,10 @@ describe('::createGithubLogger', () => {
         [''],
         [''],
         [''],
-        [expect.stringMatching(/namespace::extension: logged/)],
-        [expect.stringMatching(/^::error::namespace::extension: logged/)],
-        [expect.stringMatching(/^::notice::namespace::extension: logged/)],
-        [expect.stringMatching(/^::warning::namespace::extension: logged/)],
+        [expect.stringMatching(/namespace:extension: logged/)],
+        [expect.stringMatching(/^::error::namespace:extension: logged/)],
+        [expect.stringMatching(/^::notice::namespace:extension: logged/)],
+        [expect.stringMatching(/^::warning::namespace:extension: logged/)],
         [''],
         [''],
         ['']

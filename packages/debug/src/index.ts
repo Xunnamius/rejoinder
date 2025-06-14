@@ -13,8 +13,6 @@ util.inspect.defaultOptions.maxStringLength = Infinity;
 
 type _InternalDebuggerNoExtends = Omit<InternalDebugger, 'extend'>;
 
-const debugStringSplitterRegExp = /[\s,]+/;
-
 /**
  * Represents a property on a "root" {@link ExtendedDebugger} instance that
  * returns an array of its {@link UnextendableInternalDebugger} sub-instances
@@ -179,31 +177,6 @@ type DebuggerSubInstanceTypeGuard<RealType extends object> = RealType &
     Record<(typeof extendedDebuggerSubInstanceProperties)[number], unknown>
   >;
 
-function maybeAppendColon(str: string, delimiter: string) {
-  if (!str) {
-    return str;
-  }
-
-  return str
-    .split(debugStringSplitterRegExp)
-    .map((subStr) => {
-      switch (subStr) {
-        case '':
-        case '*':
-        case '-*': {
-          return subStr;
-        }
-
-        default: {
-          return `${subStr}${
-            subStr.includes(delimiter) || subStr.endsWith('*') ? '' : delimiter
-          }`;
-        }
-      }
-    })
-    .join(',');
-}
-
 /**
  * An `ExtendedDebug` instance that returns an {@link ExtendedDebugger} instance
  * via {@link extendDebugger}.
@@ -212,46 +185,6 @@ export const debugFactory = new Proxy(
   internalDebuggerFactory as unknown as ExtendedDebug,
   {
     apply(_target, _this: unknown, args: Parameters<InternalDebug>) {
-      const originalNamespace = args[0];
-      const namespaceWithColon = (args[0] = maybeAppendColon(originalNamespace, ':'));
-
-      // ? Interop necessary to preserve (and expand!) "rootNamespace:*"
-      // ? activation behavior
-      if (
-        process.env.DEBUG &&
-        !originalNamespace.includes(':') &&
-        !originalNamespace.endsWith('*')
-      ) {
-        internalDebuggerFactory.enable(
-          process.env.DEBUG.split(debugStringSplitterRegExp)
-            .map(function (incomingNamespace_) {
-              const incomingNamespaceNegation = incomingNamespace_.startsWith('-')
-                ? '-'
-                : '';
-
-              const incomingNamespace = incomingNamespaceNegation
-                ? incomingNamespace_.slice(1)
-                : incomingNamespace_;
-
-              if (incomingNamespace === originalNamespace) {
-                return incomingNamespaceNegation + incomingNamespace + ':';
-              }
-
-              const outgoingNamespace =
-                incomingNamespace.startsWith(namespaceWithColon) &&
-                !incomingNamespace.startsWith(namespaceWithColon + ':') &&
-                !incomingNamespace.startsWith(namespaceWithColon + '*')
-                  ? incomingNamespace.slice(0, namespaceWithColon.length) +
-                    ':' +
-                    incomingNamespace.slice(namespaceWithColon.length)
-                  : incomingNamespace;
-
-              return incomingNamespaceNegation + outgoingNamespace;
-            })
-            .join(',')
-        );
-      }
-
       return extendDebugger(internalDebuggerFactory(...args));
     },
     get(target, property: PropertyKey, proxy: ExtendedDebug) {
@@ -264,13 +197,6 @@ export const debugFactory = new Proxy(
 
       if (isSymbolOrOwnProperty && typeof value === 'function') {
         return function (...args: unknown[]) {
-          if (
-            typeof args[0] === 'string' &&
-            ['enable', 'enabled', 'selectColor'].includes(property)
-          ) {
-            args[0] = maybeAppendColon(args[0], ':');
-          }
-
           // ? This is "this-recovering" code.
           const returnValue = value.apply(target, args);
           // ? Whenever we'd return an InternalDebugger instance, return the proxy

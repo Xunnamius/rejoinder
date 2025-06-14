@@ -79,12 +79,12 @@ describe('::createListrTaskLogger', () => {
 
     extension1('logged');
     expect(task.output).toStrictEqual(
-      expect.stringMatching(/namespace::namespace.+logged/)
+      expect.stringMatching(/namespace:namespace.+logged/)
     );
 
     extension2('logged');
     expect(task.output).toStrictEqual(
-      expect.stringMatching(/namespace::namespace:namespace.+logged/)
+      expect.stringMatching(/namespace:namespace:namespace.+logged/)
     );
   });
 
@@ -115,13 +115,13 @@ describe('::createListrTaskLogger', () => {
 
     expect(outputHistory).toStrictEqual([
       expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::namespace.+logged/),
-      expect.stringMatching(/namespace::namespace:<error>.+logged/),
-      expect.stringMatching(/namespace::namespace:<message>.+logged/),
-      expect.stringMatching(/namespace::namespace:<warn>.+logged/)
+      expect.stringMatching(/namespace:<error>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace:<message>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace:<warn>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace:namespace.+logged/),
+      expect.stringMatching(/namespace:namespace:<error>.+logged/),
+      expect.stringMatching(/namespace:namespace:<message>.+logged/),
+      expect.stringMatching(/namespace:namespace:<warn>.+logged/)
     ]);
   });
 
@@ -158,13 +158,13 @@ describe('::createListrTaskLogger', () => {
 
     expect(outputHistory).toStrictEqual([
       expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/),
-      expect.stringMatching(/namespace::namespace.+logged/),
-      expect.stringMatching(/namespace::namespace:<error>.+logged/),
-      expect.stringMatching(/namespace::namespace:<message>.+logged/),
-      expect.stringMatching(/namespace::namespace:<warn>.+logged/)
+      expect.stringMatching(/namespace:<error>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace:<message>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace:<warn>.+logged:.+{.+success:.+true.+}/),
+      expect.stringMatching(/namespace:namespace.+logged/),
+      expect.stringMatching(/namespace:namespace:<error>.+logged/),
+      expect.stringMatching(/namespace:namespace:<message>.+logged/),
+      expect.stringMatching(/namespace:namespace:<warn>.+logged/)
     ]);
   });
 
@@ -183,9 +183,9 @@ describe('::createListrTaskLogger', () => {
     log.message('1', 2, { three: true }, 'four ::five:: six');
 
     expect(outputHistory).toStrictEqual([
-      expect.stringMatching(/namespace: 1 2 {.+three:.+true.+} four ::five:: six/),
+      expect.stringMatching(/namespace 1 2 {.+three:.+true.+} four ::five:: six/),
       expect.stringMatching(
-        /namespace::<message> 1 2 {.+three:.+true.+} four ::five:: six/
+        /namespace:<message> 1 2 {.+three:.+true.+} four ::five:: six/
       )
     ]);
   });
@@ -205,8 +205,8 @@ describe('::createListrTaskLogger', () => {
     log.warn({ success: true });
 
     expect(outputHistory).toStrictEqual([
-      expect.stringMatching(/namespace: {.+success:.+true.+}/),
-      expect.stringMatching(/namespace::<warn> {.+success:.+true.+}/)
+      expect.stringMatching(/namespace {.+success:.+true.+}/),
+      expect.stringMatching(/namespace:<warn> {.+success:.+true.+}/)
     ]);
   });
 });

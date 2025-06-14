@@ -67,9 +67,7 @@ describe('debug-js feature parity', () => {
       log.log = () => undefined;
 
       const logBar = log.extend('bar');
-      // ? Since we differentiate between root namespaces and other namespaces,
-      // ? we expect a double-delimiter as the first delimiter
-      expect(logBar.namespace).toBe('foo::bar');
+      expect(logBar.namespace).toBe('foo:bar');
     });
 
     it('should extend namespace with custom delimiter', () => {
@@ -80,9 +78,7 @@ describe('debug-js feature parity', () => {
       log.log = () => undefined;
 
       const logBar = log.extend('bar', '--');
-      // ? Since we differentiate between root namespaces and other namespaces,
-      // ? we expect to see both delimiters
-      expect(logBar.namespace).toBe('foo:--bar');
+      expect(logBar.namespace).toBe('foo--bar');
     });
 
     it('should extend namespace with empty delimiter', () => {
@@ -93,9 +89,7 @@ describe('debug-js feature parity', () => {
       log.log = () => undefined;
 
       const logBar = log.extend('bar', '');
-      // ? Since we differentiate between root namespaces and other namespaces,
-      // ? we expect a delimiter appended to the root namespace
-      expect(logBar.namespace).toBe('foo:bar');
+      expect(logBar.namespace).toBe('foobar');
     });
 
     it('should keep the log function between extensions', () => {
@@ -115,9 +109,7 @@ describe('debug-js feature parity', () => {
 
       debug.enable('test,abc*,-abc');
       const namespaces = debug.disable();
-      // ? Since we differentiate between root namespaces and other namespaces,
-      // ? we expect a delimiter appended to the root namespace
-      expect(namespaces).toBe('test:,abc*,-abc:');
+      expect(namespaces).toBe('test,abc*,-abc');
     });
 
     it('handles empty', () => {
@@ -153,7 +145,7 @@ describe('debug-js feature parity', () => {
       const oldNames = [...debug.names];
       const oldSkips = [...debug.skips];
       const namespaces = debug.disable();
-      expect(namespaces).toBe('test:,abc*,-abc:');
+      expect(namespaces).toBe('test,abc*,-abc');
       debug.enable(namespaces);
       expect(oldNames.map(String)).toStrictEqual(debug.names.map(String));
       expect(oldSkips.map(String)).toStrictEqual(debug.skips.map(String));

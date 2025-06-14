@@ -83,8 +83,8 @@ describe('::createGenericLogger', () => {
 
       expect(nodeLogSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged/)],
-        [expect.stringMatching(/namespace::namespace.+logged/)],
-        [expect.stringMatching(/namespace::namespace:namespace.+logged/)]
+        [expect.stringMatching(/namespace:namespace.+logged/)],
+        [expect.stringMatching(/namespace:namespace:namespace.+logged/)]
       ]);
     });
   });
@@ -149,19 +149,19 @@ describe('::createGenericLogger', () => {
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
-        [expect.stringMatching(/namespace::namespace.+logged/)],
+        [expect.stringMatching(/namespace:namespace.+logged/)],
         [''],
         ['']
       ]);
 
       expect(nodeErrorSpy.mock.calls).toStrictEqual([
-        [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<error>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<message>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<warn>.+logged:.+{.+success:.+true.+}/)],
         [''],
-        [expect.stringMatching(/namespace::namespace:<error>.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<message>.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<warn>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<error>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<message>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<warn>.+logged/)],
         ['']
       ]);
     });
@@ -196,19 +196,19 @@ describe('::createGenericLogger', () => {
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
         [''],
         [''],
-        [expect.stringMatching(/namespace::namespace.+logged/)],
+        [expect.stringMatching(/namespace:namespace.+logged/)],
         [''],
         ['']
       ]);
 
       expect(nodeErrorSpy.mock.calls).toStrictEqual([
-        [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<error>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<message>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<warn>.+logged:.+{.+success:.+true.+}/)],
         [''],
-        [expect.stringMatching(/namespace::namespace:<error>.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<message>.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<warn>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<error>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<message>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<warn>.+logged/)],
         ['']
       ]);
     });
@@ -309,8 +309,8 @@ describe('::createDebugLogger', () => {
 
       expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged/)],
-        [expect.stringMatching(/namespace::namespace.+logged/)],
-        [expect.stringMatching(/namespace::namespace:namespace.+logged/)]
+        [expect.stringMatching(/namespace:namespace.+logged/)],
+        [expect.stringMatching(/namespace:namespace:namespace.+logged/)]
       ]);
     });
   });
@@ -341,14 +341,14 @@ describe('::createDebugLogger', () => {
 
       expect(nodeErrorSpy.mock.calls).toStrictEqual([
         [expect.stringMatching(/namespace.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<error>.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<message>.+logged:.+{.+success:.+true.+}/)],
-        [expect.stringMatching(/namespace::<warn>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<error>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<message>.+logged:.+{.+success:.+true.+}/)],
+        [expect.stringMatching(/namespace:<warn>.+logged:.+{.+success:.+true.+}/)],
         [''],
-        [expect.stringMatching(/namespace::namespace.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<error>.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<message>.+logged/)],
-        [expect.stringMatching(/namespace::namespace:<warn>.+logged/)],
+        [expect.stringMatching(/namespace:namespace.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<error>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<message>.+logged/)],
+        [expect.stringMatching(/namespace:namespace:<warn>.+logged/)],
         ['']
       ]);
     });
