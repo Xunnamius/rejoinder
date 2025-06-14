@@ -98,8 +98,11 @@ export function createDebugLogger({
 
 /**
  * Return an array of all known loggers of a specific type: either `stdout`,
- * `debug`, or both (`all`). Pre-extended loggers (e.g. `::message`,
- * `::warn`, and `::error`) are excluded unless `includeInternal` is `true`.
+ * `debug`, or both (`all`). Pre-extended loggers (e.g. `::message`, `::warn`,
+ * and `::error`) are excluded unless `includeInternal` is `true`.
+ *
+ * Note: to get all currently-enabled or currently-disabled loggers, provide
+ * `type=all` and filter the results by their ::enabled property.
  */
 export function getLoggersByType({
   type,
