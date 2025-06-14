@@ -6,15 +6,19 @@
 
 # Type Alias: WithExtendedParameters\<T, Optional\>
 
-> **WithExtendedParameters**\<`T`, `Optional`\>: `Optional` *extends* `true` ? \[`string`[], `...Parameters<T>`\] : \[`string`[], `...Parameters<T>`\]
+> **WithExtendedParameters**\<`T`, `Optional`\> = `Optional` *extends* `true` ? \[`string`[], `...Parameters<T>`\] : \[`string`[], `...Parameters<T>`\]
 
-Defined in: [src/internal.ts:27](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L27)
+Defined in: [src/internal.ts:26](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L26)
 
 Decorate a function `T` with an initial potentially-optional `tags`
 parameter.
 
 ## Type Parameters
 
-• **T** *extends* (...`args`) => `any`
+### T
 
-• **Optional** = `true`
+`T` *extends* (...`args`) => `any`
+
+### Optional
+
+`Optional` = `true`

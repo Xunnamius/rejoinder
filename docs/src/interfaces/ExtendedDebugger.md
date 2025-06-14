@@ -34,7 +34,7 @@ A InternalDebugger interface extended with convenience methods.
 
 ### \[$instances\]
 
-> **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: [`ExtendedDebugger`](ExtendedDebugger.md); `error`: `UnextendableInternalDebugger`; `message`: `UnextendableInternalDebugger`; `warn`: `UnextendableInternalDebugger`; \}\>
+> **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: `ExtendedDebugger`; `error`: `UnextendableInternalDebugger`; `message`: `UnextendableInternalDebugger`; `warn`: `UnextendableInternalDebugger`; \}\>
 
 Defined in: packages/debug/dist/packages/debug/src/index.d.ts:91
 
@@ -115,7 +115,7 @@ A sub-instance for outputting error messages.
 
 ### extend()
 
-> **extend**: (...`args`) => [`ExtendedDebugger`](ExtendedDebugger.md)
+> **extend**: (...`args`) => `ExtendedDebugger`
 
 Defined in: packages/debug/dist/packages/debug/src/index.d.ts:73
 
@@ -131,7 +131,7 @@ function, if one exists.
 
 #### Returns
 
-[`ExtendedDebugger`](ExtendedDebugger.md)
+`ExtendedDebugger`
 
 ***
 

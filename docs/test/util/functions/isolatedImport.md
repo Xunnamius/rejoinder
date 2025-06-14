@@ -6,9 +6,9 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`Module`\>(`specifier`, `options`?): `Module`
+> **isolatedImport**\<`Module`\>(`specifier`, `options?`): `Module`
 
-Defined in: node\_modules/@-xun/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
 
 Performs a CJS module import (via `require`) as if it were being imported for
 the first time.
@@ -22,7 +22,9 @@ test to hang unexpectedly, even when all tests pass.
 
 ## Type Parameters
 
-• **Module**
+### Module
+
+`Module`
 
 ## Parameters
 

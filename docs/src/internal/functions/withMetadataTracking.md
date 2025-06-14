@@ -10,7 +10,7 @@
 
 > **withMetadataTracking**(`type`, `logger`): [`ExtendedLogger`](../interfaces/ExtendedLogger.md)
 
-Defined in: [src/internal.ts:346](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L346)
+Defined in: [src/internal.ts:345](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L345)
 
 Make rejoinder's internals aware of a new logger instance and its
 pre-extended sub-instances.
@@ -37,7 +37,7 @@ rejoinder's global enable/disable functions to work.
 
 > **withMetadataTracking**(`type`, `logger`): [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md)
 
-Defined in: [src/internal.ts:350](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L350)
+Defined in: [src/internal.ts:349](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L349)
 
 Make rejoinder's internals aware of a new logger instance and its
 pre-extended sub-instances.
@@ -64,7 +64,7 @@ rejoinder's global enable/disable functions to work.
 
 > **withMetadataTracking**(`type`, `logger`): [`ExtendedLogger`](../interfaces/ExtendedLogger.md) \| [`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md)
 
-Defined in: [src/internal.ts:354](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L354)
+Defined in: [src/internal.ts:353](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L353)
 
 Make rejoinder's internals aware of a new logger instance and its
 pre-extended sub-instances.

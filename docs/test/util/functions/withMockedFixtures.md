@@ -8,7 +8,7 @@
 
 > **withMockedFixtures**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(`test`, `fixtures`, `options`): `Promise`\<`void`\>
 
-Defined in: node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:25
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:25
 
 Create a mock or "dummy" filesystem structure used to simulate one or more
 runtime environments for the package under test.
@@ -19,11 +19,17 @@ any additional options and context where necessary.
 
 ## Type Parameters
 
-• **Fixtures** *extends* [`GenericMockFixtureFunctions`](../type-aliases/GenericMockFixtureFunctions.md)
+### Fixtures
 
-• **AdditionalOptions** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+`Fixtures` *extends* [`GenericMockFixtureFunctions`](../type-aliases/GenericMockFixtureFunctions.md)
 
-• **AdditionalContext** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+### AdditionalOptions
+
+`AdditionalOptions` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+
+### AdditionalContext
+
+`AdditionalContext` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
 
 ## Parameters
 

@@ -8,7 +8,7 @@
 
 > **mockFixturesFactory**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(...`__namedParameters`): (...`args`) => `Promise`\<`void`\>
 
-Defined in: node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:49
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:49
 
 Returns a function allowing for the creation of many mock (or "dummy")
 filesystem structures, each used to simulate one or more runtime environments
@@ -16,11 +16,17 @@ for the package under test.
 
 ## Type Parameters
 
-• **Fixtures** *extends* [`GenericMockFixtureFunctions`](../type-aliases/GenericMockFixtureFunctions.md)
+### Fixtures
 
-• **AdditionalOptions** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+`Fixtures` *extends* [`GenericMockFixtureFunctions`](../type-aliases/GenericMockFixtureFunctions.md)
 
-• **AdditionalContext** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+### AdditionalOptions
+
+`AdditionalOptions` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+
+### AdditionalContext
+
+`AdditionalContext` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
 
 ## Parameters
 
@@ -30,7 +36,7 @@ for the package under test.
 
 ## Returns
 
-`Function`
+> (...`args`): `Promise`\<`void`\>
 
 ### Parameters
 

@@ -8,7 +8,7 @@
 
 > `const` **metadata**: `object`
 
-Defined in: [src/internal.ts:91](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L91)
+Defined in: [src/internal.ts:90](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L90)
 
 Keeps track of our various "logger" (i.e. debug) instances and their
 associated metadata. Also keeps track of those tags for which we disable

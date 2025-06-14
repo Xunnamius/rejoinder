@@ -6,9 +6,9 @@
 
 # Type Alias: DescribeRootFixture
 
-> **DescribeRootFixture**: [`MockFixture`](MockFixture.md)\<*typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`DescribeRootFixtureOptions`](DescribeRootFixtureOptions.md)\>\>
+> **DescribeRootFixture** = [`MockFixture`](MockFixture.md)\<*typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`DescribeRootFixtureOptions`](DescribeRootFixtureOptions.md)\>\>
 
-Defined in: node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:9
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:9
 
 A [MockFixture](MockFixture.md) instantiation of this fixture.
 

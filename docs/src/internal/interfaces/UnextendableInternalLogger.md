@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalLogger()
 
-Defined in: [src/internal.ts:443](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L443)
+Defined in: [src/internal.ts:442](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L442)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -15,54 +15,60 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 - `UnextendableInternalDebugger`
 
+## Call Signature
+
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:447](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L447)
+Defined in: [src/internal.ts:446](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L446)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`any`, `...args: any[]`\]
 
-## Returns
+### Returns
 
 `void`
 
+## Call Signature
+
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:451](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L451)
+Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L450)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`string`[], `any`, `...args: any[]`\]
 
-## Returns
+### Returns
 
 `void`
 
+## Call Signature
+
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:443](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L443)
+Defined in: [src/internal.ts:442](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L442)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`any`, `...args: any[]`\]
 
-## Returns
+### Returns
 
 `void`
 

@@ -8,7 +8,7 @@
 
 > **extractAllLoggers**(`logger`): ([`ExtendedDebugger`](../../../src/interfaces/ExtendedDebugger.md) \| `UnextendableInternalDebugger`)[]
 
-Defined in: [test/util.ts:19](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/test/util.ts#L19)
+Defined in: [test/util.ts:19](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/test/util.ts#L19)
 
 Returns the logger that was passed in along with any of its properties that
 are themselves loggers (like `::warn` and `::message`).

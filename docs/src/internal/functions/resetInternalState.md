@@ -8,7 +8,7 @@
 
 > **resetInternalState**(): `void`
 
-Defined in: [src/internal.ts:102](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L102)
+Defined in: [src/internal.ts:101](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L101)
 
 A function that resets the internal logger cache. Essentially, calling this
 function causes rejoinder to forget any disabled tags or loggers created

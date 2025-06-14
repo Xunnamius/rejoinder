@@ -8,7 +8,7 @@
 
 > **createDebugLogger**(`__namedParameters`): [`ExtendedDebugger`](../interfaces/ExtendedDebugger.md)
 
-Defined in: [src/index.ts:74](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/index.ts#L74)
+Defined in: [src/index.ts:76](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/index.ts#L76)
 
 Create a new debug logger instance.
 

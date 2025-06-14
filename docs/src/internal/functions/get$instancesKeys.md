@@ -8,14 +8,16 @@
 
 > **get$instancesKeys**\<`T`\>(`logger`): keyof `T`\[*typeof* [`$instances`](../variables/$instances.md)\][]
 
-Defined in: [src/internal.ts:424](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L424)
+Defined in: [src/internal.ts:423](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L423)
 
 Returns all keys in an object's [$instances](../variables/$instances.md) property with proper
 types.
 
 ## Type Parameters
 
-• **T** *extends* `Pick`\<[`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md), *typeof* [`$instances`](../variables/$instances.md)\>
+### T
+
+`T` *extends* `Pick`\<[`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md), *typeof* [`$instances`](../variables/$instances.md)\>
 
 ## Parameters
 

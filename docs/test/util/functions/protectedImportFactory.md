@@ -6,9 +6,9 @@
 
 # Function: protectedImportFactory()
 
-> **protectedImportFactory**\<`Module`\>(...`__namedParameters`): \<`LocalModule`\>(`__namedParameters`?) => `Promise`\<`LocalModule`\>
+> **protectedImportFactory**\<`Module`\>(...`__namedParameters`): \<`LocalModule`\>(`__namedParameters?`) => `Promise`\<`LocalModule`\>
 
-Defined in: node\_modules/@-xun/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:52
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:52
 
 Returns a function that, when invoked, performs a CJS module import (via
 `require`) as if it were being imported for the first time. Also awaits the
@@ -20,7 +20,9 @@ specific exit code.
 
 ## Type Parameters
 
-• **Module**
+### Module
+
+`Module`
 
 ## Parameters
 
@@ -30,11 +32,13 @@ specific exit code.
 
 ## Returns
 
-`Function`
+> \<`LocalModule`\>(`__namedParameters?`): `Promise`\<`LocalModule`\>
 
 ### Type Parameters
 
-• **LocalModule** = `Module`
+#### LocalModule
+
+`LocalModule` = `Module`
 
 ### Parameters
 

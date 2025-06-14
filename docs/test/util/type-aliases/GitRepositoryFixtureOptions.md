@@ -6,9 +6,9 @@
 
 # Type Alias: GitRepositoryFixtureOptions
 
-> **GitRepositoryFixtureOptions**: `Tagged`\<\{ `setupGit`: (`git`) => `Promisable`\<`void`\>; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
+> **GitRepositoryFixtureOptions** = `Tagged`\<\{ `setupGit?`: (`git`) => `Promisable`\<`void`\>; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
 
-Defined in: node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:20
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:20
 
 Contains any additional options properties this fixture expects or allows.
 

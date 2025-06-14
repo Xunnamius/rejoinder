@@ -6,46 +6,50 @@
 
 # Interface: ExtendedLogger()
 
-Defined in: [src/internal.ts:458](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L458)
+Defined in: [src/internal.ts:457](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L457)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
 ## Extends
 
-- `_ExtendedLogger`\<[`ExtendedLogger`](ExtendedLogger.md)\>
+- `_ExtendedLogger`\<`ExtendedLogger`\>
+
+## Call Signature
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:462](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L462)
+Defined in: [src/internal.ts:461](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L461)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`any`, `...args: any[]`\]
 
-## Returns
+### Returns
 
 `void`
 
+## Call Signature
+
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:466](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L466)
+Defined in: [src/internal.ts:465](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L465)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`string`[], `any`, `...args: any[]`\]
 
-## Returns
+### Returns
 
 `void`
 
@@ -53,7 +57,7 @@ mere "debug" logger to general purpose "logger".
 
 ### \[$instances\]
 
-> **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: [`ExtendedLogger`](ExtendedLogger.md); `error`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); `message`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); `warn`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); \}\>
+> **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: `ExtendedLogger`; `error`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); `message`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); `warn`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); \}\>
 
 Defined in: packages/debug/dist/packages/debug/src/index.d.ts:91
 
@@ -134,9 +138,9 @@ A sub-instance for outputting error messages.
 
 ### extend()
 
-> **extend**: (...`args`) => [`ExtendedLogger`](ExtendedLogger.md)
+> **extend**: (...`args`) => `ExtendedLogger`
 
-Defined in: [src/internal.ts:498](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L498)
+Defined in: [src/internal.ts:497](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L497)
 
 Creates a new instance by appending `namespace` to the current instance's
 namespace. The new instance will also inherit the current instance's `log`
@@ -151,7 +155,7 @@ equal.**
 
 #### Returns
 
-[`ExtendedLogger`](ExtendedLogger.md)
+`ExtendedLogger`
 
 ***
 
@@ -223,7 +227,7 @@ A sub-instance for outputting warning messages.
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:475](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L475)
+Defined in: [src/internal.ts:474](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L474)
 
 Send a blank newline to output.
 
@@ -246,7 +250,7 @@ stdout (`"default"`) and stderr (`"alternate"`).
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:489](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L489)
+Defined in: [src/internal.ts:488](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L488)
 
 Send a blank newline to output.
 

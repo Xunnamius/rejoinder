@@ -6,9 +6,9 @@
 
 # Type Alias: GitRepositoryFixtureContext
 
-> **GitRepositoryFixtureContext**: `Tagged`\<\{ `git`: `SimpleGit`; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
+> **GitRepositoryFixtureContext** = `Tagged`\<\{ `git`: `SimpleGit`; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
 
-Defined in: node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:41
+Defined in: node\_modules/@-xun/symbiote/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:41
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

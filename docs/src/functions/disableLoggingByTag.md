@@ -8,7 +8,7 @@
 
 > **disableLoggingByTag**(`__namedParameters`): `void`
 
-Defined in: [src/index.ts:213](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/index.ts#L213)
+Defined in: [src/index.ts:215](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/index.ts#L215)
 
 Prevents logs with the specified tags from being sent to output.
 

@@ -8,7 +8,7 @@
 
 > `const` **ansiYellowColorCodes**: `number`[]
 
-Defined in: [src/internal.ts:58](https://github.com/Xunnamius/rejoinder/blob/ca03dc95b439565d6c2438e8d0f7697514c85819/src/internal.ts#L58)
+Defined in: [src/internal.ts:57](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L57)
 
 These color codes correspond to a yellowish color on the console.
 https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124?permalink_comment_id=4481079#gistcomment-4481079
