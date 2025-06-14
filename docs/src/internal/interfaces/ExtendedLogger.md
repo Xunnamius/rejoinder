@@ -6,20 +6,20 @@
 
 # Interface: ExtendedLogger()
 
-Defined in: [src/internal.ts:457](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L457)
+Defined in: [src/internal.ts:465](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L465)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
 
 ## Extends
 
-- `_ExtendedLogger`\<`ExtendedLogger`\>
+- `_ExtendedLogger`
 
 ## Call Signature
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:461](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L461)
+Defined in: [src/internal.ts:469](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L469)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -38,7 +38,7 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:465](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L465)
+Defined in: [src/internal.ts:473](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L473)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -54,21 +54,6 @@ mere "debug" logger to general purpose "logger".
 `void`
 
 ## Properties
-
-### \[$instances\]
-
-> **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: `ExtendedLogger`; `error`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); `message`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); `warn`: [`UnextendableInternalLogger`](UnextendableInternalLogger.md); \}\>
-
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:91
-
-An array of sub-instances (e.g. "error", "warn", etc), including the root
-instance.
-
-#### Inherited from
-
-`_ExtendedLogger.[$instances]`
-
-***
 
 ### color
 
@@ -124,9 +109,9 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 ### error
 
-> **error**: [`UnextendableInternalLogger`](UnextendableInternalLogger.md)
+> **error**: `UnextendableInternalDebugger` & [`UnextendableInternalLogger`](UnextendableInternalLogger.md)
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:121
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:127
 
 A sub-instance for outputting error messages.
 
@@ -140,7 +125,7 @@ A sub-instance for outputting error messages.
 
 > **extend**: (...`args`) => `ExtendedLogger`
 
-Defined in: [src/internal.ts:497](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L497)
+Defined in: [src/internal.ts:505](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L505)
 
 Creates a new instance by appending `namespace` to the current instance's
 namespace. The new instance will also inherit the current instance's `log`
@@ -183,9 +168,9 @@ Defined in: packages/debug/dist/packages/debug/src/index.d.ts:41
 
 ### message
 
-> **message**: [`UnextendableInternalLogger`](UnextendableInternalLogger.md)
+> **message**: `UnextendableInternalDebugger` & [`UnextendableInternalLogger`](UnextendableInternalLogger.md)
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:117
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:123
 
 A sub-instance for outputting messages to the attention of the reader.
 
@@ -209,9 +194,9 @@ Defined in: node\_modules/@types/debug/index.d.ts:46
 
 ### warn
 
-> **warn**: [`UnextendableInternalLogger`](UnextendableInternalLogger.md)
+> **warn**: `UnextendableInternalDebugger` & [`UnextendableInternalLogger`](UnextendableInternalLogger.md)
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:125
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:131
 
 A sub-instance for outputting warning messages.
 
@@ -227,7 +212,7 @@ A sub-instance for outputting warning messages.
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:474](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L474)
+Defined in: [src/internal.ts:482](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L482)
 
 Send a blank newline to output.
 
@@ -250,7 +235,7 @@ stdout (`"default"`) and stderr (`"alternate"`).
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:488](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L488)
+Defined in: [src/internal.ts:496](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L496)
 
 Send a blank newline to output.
 

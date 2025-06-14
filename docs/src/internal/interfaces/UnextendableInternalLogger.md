@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalLogger()
 
-Defined in: [src/internal.ts:442](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L442)
+Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L450)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -19,7 +19,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:446](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L446)
+Defined in: [src/internal.ts:454](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L454)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -38,7 +38,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L450)
+Defined in: [src/internal.ts:458](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L458)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -57,7 +57,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:442](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/internal.ts#L442)
+Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L450)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).

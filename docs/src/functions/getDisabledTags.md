@@ -8,7 +8,7 @@
 
 > **getDisabledTags**(): `string`[]
 
-Defined in: [src/index.ts:245](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/index.ts#L245)
+Defined in: [src/index.ts:251](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/index.ts#L251)
 
 Returns an array of the tags disabled via [disableLoggingByTag](disableLoggingByTag.md).
 

@@ -8,7 +8,7 @@
 
 > **enableLoggers**(`__namedParameters`): `void`
 
-Defined in: [src/index.ts:178](https://github.com/Xunnamius/rejoinder/blob/2e193401f811190578a6daed325a2ddce540538d/src/index.ts#L178)
+Defined in: [src/index.ts:184](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/index.ts#L184)
 
 Enable all logger instances (coarse-grain).
 

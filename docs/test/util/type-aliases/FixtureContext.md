@@ -16,9 +16,9 @@ The context object passed around between every [MockFixture](MockFixture.md).
 
 ### debug
 
-> **debug**: [`ExtendedDebugger`](../../../src/interfaces/ExtendedDebugger.md)
+> **debug**: `ExtendedDebugger`
 
-An [ExtendedDebugger](../../../src/interfaces/ExtendedDebugger.md) instance extended specifically for use by the
+An ExtendedDebugger instance extended specifically for use by the
 current fixture.
 
 ### fixtures

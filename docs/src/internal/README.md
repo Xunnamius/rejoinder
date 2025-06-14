@@ -18,6 +18,7 @@
 ## Type Aliases
 
 - [ExtendedLoggerParameters](type-aliases/ExtendedLoggerParameters.md)
+- [With$instances](type-aliases/With$instances.md)
 - [WithExtendedParameters](type-aliases/WithExtendedParameters.md)
 - [WithTagSupport](type-aliases/WithTagSupport.md)
 

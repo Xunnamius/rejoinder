@@ -32,21 +32,6 @@ A InternalDebugger interface extended with convenience methods.
 
 ## Properties
 
-### \[$instances\]
-
-> **\[$instances\]**: `DebuggerSubInstanceTypeGuard`\<\{ `$log`: `ExtendedDebugger`; `error`: `UnextendableInternalDebugger`; `message`: `UnextendableInternalDebugger`; `warn`: `UnextendableInternalDebugger`; \}\>
-
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:91
-
-An array of sub-instances (e.g. "error", "warn", etc), including the root
-instance.
-
-#### Inherited from
-
-`DebuggerExtension.[$instances]`
-
-***
-
 ### color
 
 > **color**: `string`
@@ -103,7 +88,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **error**: `UnextendableInternalDebugger`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:121
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:127
 
 A sub-instance for outputting error messages.
 
@@ -161,7 +146,7 @@ Defined in: packages/debug/dist/packages/debug/src/index.d.ts:41
 
 > **message**: `UnextendableInternalDebugger`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:117
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:123
 
 A sub-instance for outputting messages to the attention of the reader.
 
@@ -201,7 +186,7 @@ Send a blank newline to output.
 
 > **warn**: `UnextendableInternalDebugger`
 
-Defined in: packages/debug/dist/packages/debug/src/index.d.ts:125
+Defined in: packages/debug/dist/packages/debug/src/index.d.ts:131
 
 A sub-instance for outputting warning messages.
 
