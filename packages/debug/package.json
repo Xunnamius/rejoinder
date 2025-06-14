@@ -68,7 +68,6 @@
   },
   "dependencies": {
     "@types/debug": "^4.1.12",
-    "core-js": "^3.43.0",
     "debug": "^4.4.1",
     "supports-color": "^8.1.1",
     "type-fest": "^4.41.0"
