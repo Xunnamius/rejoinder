@@ -6,63 +6,65 @@
 
 # Interface: ExtendedDebug()
 
-Defined in: [packages/debug/src/index.ts:73](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L73)
+Defined in: [packages/debug/src/index.ts:71](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L71)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
 
-## Extends
-
-- `InternalDebug`
+## Call Signature
 
 > **ExtendedDebug**(...`args`): [`ExtendedDebugger`](ExtendedDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:77](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L77)
+Defined in: [packages/debug/src/index.ts:75](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L75)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`string`\]
 
-## Returns
+### Returns
 
 [`ExtendedDebugger`](ExtendedDebugger.md)
 
+## Call Signature
+
 > **ExtendedDebug**(...`args`): [`InternalDebugger`](InternalDebugger.md)
 
-Defined in: [packages/debug/src/index.ts:73](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L73)
+Defined in: [packages/debug/src/index.ts:71](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L71)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
 
-## Parameters
+### Parameters
 
-### args
+#### args
 
 ...\[`string`\]
 
-## Returns
+### Returns
 
 [`InternalDebugger`](InternalDebugger.md)
 
+## Call Signature
+
 > **ExtendedDebug**(`namespace`): `Debugger`
 
-Defined in: [packages/debug/src/index.ts:73](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L73)
+Defined in: [packages/debug/src/index.ts:71](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L71)
 
 An InternalDebug factory interface that returns
 [ExtendedDebugger](ExtendedDebugger.md) instances.
 
-## Parameters
+### Parameters
 
-### namespace
+#### namespace
 
 `string`
 
-## Returns
+### Returns
 
 `Debugger`
 
@@ -190,37 +192,45 @@ Defined in: node\_modules/@types/debug/index.d.ts:21
 
 ### humanize()
 
-> **humanize**: (`value`, `options`?) => `string`(`value`) => `number`
+> **humanize**: \{(`value`, `options?`): `string`; (`value`): `number`; \}
 
 Defined in: node\_modules/@types/debug/index.d.ts:16
 
+#### Call Signature
+
+> (`value`, `options?`): `string`
+
 Short/Long format for `value`.
 
-#### Parameters
+##### Parameters
 
-##### value
+###### value
 
 `number`
 
-##### options?
+###### options?
 
 ###### long
 
 `boolean`
 
-#### Returns
+##### Returns
 
 `string`
 
+#### Call Signature
+
+> (`value`): `number`
+
 Parse the given `value` and return milliseconds.
 
-#### Parameters
+##### Parameters
 
-##### value
+###### value
 
 `StringValue`
 
-#### Returns
+##### Returns
 
 `number`
 

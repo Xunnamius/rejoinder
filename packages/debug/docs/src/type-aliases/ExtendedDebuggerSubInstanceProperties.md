@@ -6,9 +6,9 @@
 
 # Type Alias: ExtendedDebuggerSubInstanceProperties
 
-> **ExtendedDebuggerSubInstanceProperties**: *typeof* `extendedDebuggerSubInstanceProperties`\[`number`\]
+> **ExtendedDebuggerSubInstanceProperties** = *typeof* `extendedDebuggerSubInstanceProperties`\[`number`\]
 
-Defined in: [packages/debug/src/index.ts:133](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L133)
+Defined in: [packages/debug/src/index.ts:131](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L131)
 
 ## See
 

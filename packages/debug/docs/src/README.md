@@ -20,9 +20,9 @@
 ## Variables
 
 - [$instances](variables/$instances.md)
+- [debugFactory](variables/debugFactory.md)
 
 ## Functions
 
-- [debugFactory](functions/debugFactory.md)
 - [extendDebugger](functions/extendDebugger.md)
 - [finalizeDebugger](functions/finalizeDebugger.md)

@@ -8,7 +8,7 @@
 
 > **expectExtendedDebugger**(`instance`): `void`
 
-Defined in: [packages/debug/test/helpers.ts:3](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/test/helpers.ts#L3)
+Defined in: [packages/debug/test/helpers.ts:3](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/test/helpers.ts#L3)
 
 ## Parameters
 

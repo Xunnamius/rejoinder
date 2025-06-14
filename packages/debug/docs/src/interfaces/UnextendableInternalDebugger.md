@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalDebugger()
 
-Defined in: [packages/debug/src/index.ts:65](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L65)
+Defined in: [packages/debug/src/index.ts:63](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L63)
 
 An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended via
 `InternalDebugger.extend`.
@@ -17,7 +17,7 @@ An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended v
 
 > **UnextendableInternalDebugger**(...`args`): `void`
 
-Defined in: [packages/debug/src/index.ts:65](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L65)
+Defined in: [packages/debug/src/index.ts:63](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L63)
 
 An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended via
 `InternalDebugger.extend`.
@@ -90,7 +90,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **extend**: (...`args`) => `never`
 
-Defined in: [packages/debug/src/index.ts:66](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L66)
+Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L64)
 
 #### Parameters
 
@@ -112,7 +112,7 @@ Defined in: [packages/debug/src/index.ts:66](https://github.com/Xunnamius/rejoin
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: [packages/debug/src/index.ts:59](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L59)
+Defined in: [packages/debug/src/index.ts:57](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L57)
 
 #### Parameters
 
@@ -138,4 +138,4 @@ Defined in: node\_modules/@types/debug/index.d.ts:46
 
 #### Inherited from
 
-[`InternalDebugger`](InternalDebugger.md).[`namespace`](InternalDebugger.md#namespace-2)
+[`InternalDebugger`](InternalDebugger.md).[`namespace`](InternalDebugger.md#namespace)

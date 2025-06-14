@@ -6,7 +6,7 @@
 
 # Interface: InternalDebugger()
 
-Defined in: [packages/debug/src/index.ts:51](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L51)
+Defined in: [packages/debug/src/index.ts:49](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L49)
 
 The base `Debugger` interface coming from the [debug](https://npm.im/debug)
 package.
@@ -21,7 +21,7 @@ package.
 
 > **InternalDebugger**(...`args`): `void`
 
-Defined in: [packages/debug/src/index.ts:55](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L55)
+Defined in: [packages/debug/src/index.ts:53](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L53)
 
 The base `Debugger` interface coming from the [debug](https://npm.im/debug)
 package.
@@ -92,7 +92,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 ### extend()
 
-> **extend**: (`namespace`, `delimiter`?) => `Debugger`
+> **extend**: (`namespace`, `delimiter?`) => `Debugger`
 
 Defined in: node\_modules/@types/debug/index.d.ts:48
 
@@ -120,7 +120,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:48
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: [packages/debug/src/index.ts:59](https://github.com/Xunnamius/rejoinder/blob/cea65e14bbc115b3245cd3920912f80db8340a26/packages/debug/src/index.ts#L59)
+Defined in: [packages/debug/src/index.ts:57](https://github.com/Xunnamius/rejoinder/blob/dd2fd7448223b17b0b7fad4f16950e431fddfc71/packages/debug/src/index.ts#L57)
 
 #### Parameters
 
