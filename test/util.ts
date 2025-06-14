@@ -6,10 +6,10 @@
 // ? @-xun/jest will always come from @-xun/symbiote (i.e. transitively)
 // {@symbiote/notInvalid @-xun/jest}
 
-import { $instances } from 'universe+debug';
+import { $instances } from 'universe:internal.ts';
 
 import type { ExtendedDebugger, ExtendedLogger } from 'universe';
-import type { With$instances } from 'universe+debug';
+import type { With$instances } from 'universe:internal.ts';
 
 export * from '@-xun/jest';
 

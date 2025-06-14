@@ -18,6 +18,7 @@ import type {
 
 const extendedLoggerFnPropsWeakMap = new WeakMap<Function, Function>();
 
+export type { With$instances };
 export { $instances };
 
 /**
