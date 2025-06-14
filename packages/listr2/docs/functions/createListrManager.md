@@ -8,7 +8,7 @@
 
 > **createListrManager**\<`ListrContext`\>(`options?`): `Manager`\<`ListrContext`, `"default"`, `"simple"` \| `"verbose"`\>
 
-Defined in: [packages/listr2/src/index.ts:134](https://github.com/Xunnamius/rejoinder/blob/5895f90afed824f3ae6f43dc429a04f1055f6c5b/packages/listr2/src/index.ts#L134)
+Defined in: [packages/listr2/src/index.ts:139](https://github.com/Xunnamius/rejoinder/blob/5bc1ad3ac2ec35fd6ea7303f62742d4acff84f60/packages/listr2/src/index.ts#L139)
 
 Create and return a new Listr2 Manager instance pre-configured to
 work in harmony with rejoinder.
