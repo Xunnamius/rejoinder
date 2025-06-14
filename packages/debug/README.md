@@ -47,7 +47,6 @@ This package is the workhorse on which [`rejoinder`][1] is built.
 
 - [Install](#install)
 - [Usage](#usage)
-  - [Special `process.env.DEBUG` Activation Functionality](#special-processenvdebug-activation-functionality)
 - [Appendix](#appendix)
   - [Published Package Details](#published-package-details)
   - [License](#license)
@@ -75,34 +74,6 @@ npm install @-xun/debug
 <!-- TODO -->
 
 TODO
-
-### Special `process.env.DEBUG` Activation Functionality
-
-In older versions of the `debug` package's functionality, `DEBUG='namespace*'`
-would activate the `namespace:sub-namespace` debugger but not the `namespace`
-debugger. `@-xun/debug` worked around this DX issue by appending a colon to the
-so-called "root namespace" (i.e. `namespace` in these examples) at creation
-time, which ensured `DEBUG='namespace*'` activated all `namespace` debuggers and
-sub-debuggers.
-
-To maintain functional parity with `debug`'s activation functionality,
-`@-xun/debug` appends a colon to the root namespace in `DEBUG` strings.
-`@-xun/debug` also splits on space/comma and applies the same transform to each
-split-off namespace string, including negated namespace strings (e.g.
-`DEBUG='*,-namespace'`).
-
-This means `DEBUG='namespace*'` and `DEBUG='namespace:*'` (as well as
-`DEBUG='*,-namespace*'` and `DEBUG='*,-namespace:*'`) have identical meanings to
-`@-xun/debug`, but _not_ to the upstream `debug` package.
-
-**Note that this does NOT mean `DEBUG='namespace:sub-namespace*'` and
-`DEBUG='namespace:sub-namespace:*'` have identical meanings. They do not.**
-
-> [!NOTE]
->
-> As of 2025, it seems `debug` has fixed this DX issue upstream. What is
-> described above is no longer a workaround; instead, the extra-colon root
-> namespace is just a feature of `@-xun/debug` now 😄
 
 <!-- symbiote-template-region-start 5 -->
 

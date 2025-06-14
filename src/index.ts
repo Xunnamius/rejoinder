@@ -1,6 +1,8 @@
 // TODO: add chalk abilities (and also delete the comment on the next line)
 // {@symbiote/notExtraneous chalk}
 
+// TODO: also, getLoggerByType should be able to return enabled / disabled only
+
 import nodeConsole from 'node:console';
 
 import {

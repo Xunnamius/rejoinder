@@ -21,6 +21,14 @@ module.exports = deepMergeConfig(
   }),
   {
     // Any custom configs here will be deep merged with moduleExport's result
+    // You may wish to enable explicit exports references for improved testing
+    // DX, but be aware that it is currently a wee buggy as of 5/2025 (fix it!)
+    //
+    // env: {
+    //   test: {
+    //     plugins: ['babel-plugin-explicit-exports-references']
+    //   }
+    // }
   }
 );
 
@@ -39,11 +47,6 @@ function getBabelAliases() {
     '^multiverse\\+debug$': './packages/debug/src/index.js',
     '^multiverse\\+github$': './packages/github/src/index.js',
     '^multiverse\\+listr2$': './packages/listr2/src/index.js',
-    '^rootverse\\+cli:(.+)$': './packages/cli/$1',
-    '^rootverse\\+debug:(.+)$': './packages/debug/$1',
-    '^rootverse\\+github:(.+)$': './packages/github/$1',
-    '^rootverse\\+listr2:(.+)$': './packages/listr2/$1',
-    '^rootverse:(.+)$': './$1',
     '^universe\\+cli:(.+)$': './packages/cli/src/$1',
     '^universe\\+debug:(.+)$': './packages/debug/src/$1',
     '^universe\\+github:(.+)$': './packages/github/src/$1',
@@ -59,6 +62,11 @@ function getBabelAliases() {
     '^testverse\\+github:(.+)$': './packages/github/test/$1',
     '^testverse\\+listr2:(.+)$': './packages/listr2/test/$1',
     '^testverse:(.+)$': './test/$1',
-    '^typeverse:(.+)$': './types/$1'
+    '^typeverse:(.+)$': './types/$1',
+    '^rootverse\\+cli:(.+)$': './packages/cli/$1',
+    '^rootverse\\+debug:(.+)$': './packages/debug/$1',
+    '^rootverse\\+github:(.+)$': './packages/github/$1',
+    '^rootverse\\+listr2:(.+)$': './packages/listr2/$1',
+    '^rootverse:(.+)$': './$1'
   };
 }
