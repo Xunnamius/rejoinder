@@ -15,7 +15,6 @@ import type {
   UnextendableInternalDebugger
 } from '@-xun/debug';
 
-// eslint-disable-next-line unicorn/prevent-abbreviations
 const extendedLoggerFnPropsWeakMap = new WeakMap<Function, Function>();
 
 export { $instances };
