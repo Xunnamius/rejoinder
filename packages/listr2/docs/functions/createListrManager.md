@@ -6,9 +6,9 @@
 
 # Function: createListrManager()
 
-> **createListrManager**\<`ListrContext`\>(`options`?): `Manager`\<`ListrContext`, `"default"`, `"simple"` \| `"verbose"`\>
+> **createListrManager**\<`ListrContext`\>(`options?`): `Manager`\<`ListrContext`, `"default"`, `"simple"` \| `"verbose"`\>
 
-Defined in: [packages/listr2/src/index.ts:134](https://github.com/Xunnamius/rejoinder/blob/8bad0977e8c8ead29ff2da293d34c9aab8060d89/packages/listr2/src/index.ts#L134)
+Defined in: [packages/listr2/src/index.ts:134](https://github.com/Xunnamius/rejoinder/blob/5895f90afed824f3ae6f43dc429a04f1055f6c5b/packages/listr2/src/index.ts#L134)
 
 Create and return a new Listr2 Manager instance pre-configured to
 work in harmony with rejoinder.
@@ -22,7 +22,9 @@ Specifically, this instance:
 
 ## Type Parameters
 
-• **ListrContext** = `any`
+### ListrContext
+
+`ListrContext` = `any`
 
 ## Parameters
 

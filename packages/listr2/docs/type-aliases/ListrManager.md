@@ -6,12 +6,14 @@
 
 # Type Alias: ListrManager\<T\>
 
-> **ListrManager**\<`T`\>: `Manager`\<`T`, `"default"` \| `"verbose"`\>
+> **ListrManager**\<`T`\> = `Manager`\<`T`, `"default"` \| `"verbose"`\>
 
-Defined in: [packages/listr2/src/index.ts:32](https://github.com/Xunnamius/rejoinder/blob/8bad0977e8c8ead29ff2da293d34c9aab8060d89/packages/listr2/src/index.ts#L32)
+Defined in: [packages/listr2/src/index.ts:32](https://github.com/Xunnamius/rejoinder/blob/5895f90afed824f3ae6f43dc429a04f1055f6c5b/packages/listr2/src/index.ts#L32)
 
 A pre-customized Listr Manager instance.
 
 ## Type Parameters
 
-• **T** = `any`
+### T
+
+`T` = `any`
