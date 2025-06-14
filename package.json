@@ -91,7 +91,7 @@
     "test:topological": "symbiote project topology --run test --env NODE_NO_WARNINGS=1"
   },
   "dependencies": {
-    "@-xun/debug": "^2.0.0",
+    "@-xun/debug": "^2.0.1",
     "chalk": "^5.4.1",
     "core-js": "^3.43.0"
   },
