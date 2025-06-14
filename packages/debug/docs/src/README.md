@@ -16,6 +16,7 @@
 ## Type Aliases
 
 - [ExtendedDebuggerSubInstanceProperties](type-aliases/ExtendedDebuggerSubInstanceProperties.md)
+- [With$instances](type-aliases/With$instances.md)
 
 ## Variables
 
