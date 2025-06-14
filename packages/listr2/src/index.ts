@@ -15,6 +15,8 @@ import {
   withoutMetadataTracking
 } from 'rejoinder/internal';
 
+import type { With$instances } from '@-xun/debug';
+
 import type {
   ListrBaseClassOptions,
   ListrContext,
@@ -102,8 +104,11 @@ function withPatchedExtend(instance: ExtendedLogger, task: GenericListrTask) {
       .trim();
   };
 
-  for (const instanceProperty of get$instancesKeys(instance)) {
-    instance[$instances][instanceProperty].log = taskLog;
+  for (const instanceProperty of get$instancesKeys(
+    instance as With$instances<typeof instance>
+  )) {
+    (instance as With$instances<typeof instance>)[$instances][instanceProperty].log =
+      taskLog;
   }
 
   instance.extend = (...args: Parameters<ExtendedLogger['extend']>) => {

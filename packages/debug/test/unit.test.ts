@@ -12,6 +12,8 @@ import {
   expectUnextendableDebugger
 } from 'testverse+debug:helpers.ts';
 
+import type { ExtendedDebugger, With$instances } from 'universe+debug';
+
 const factoryLogFn = jest.fn();
 debugFactory.log = factoryLogFn;
 
@@ -200,7 +202,13 @@ describe('::ExtendedDebugger', () => {
 
       const debug = debugFactory('namespace');
       const extended = debug.extend('namespace');
-      const { $log: log, message, warn, error, ...rest } = debug[$instances];
+      const {
+        $log: log,
+        message,
+        warn,
+        error,
+        ...rest
+      } = (debug as With$instances<ExtendedDebugger>)[$instances];
 
       expect(rest).toStrictEqual({});
       expect(log).toBe(debug);

@@ -27,7 +27,7 @@ export const $instances = Symbol.for('@xunnamius:debug-builtin-sub-instances');
  *
  * @internal
  */
-export type InstanceKey = keyof ExtendedDebugger[typeof $instances];
+export type InstanceKey = keyof With$instances<ExtendedDebugger>[typeof $instances];
 
 /**
  * The base `Debug` interface coming from the [debug](https://npm.im/debug)
@@ -102,28 +102,31 @@ export interface ExtendedDebugger extends _InternalDebuggerNoExtends, DebuggerEx
  *
  * @internal
  */
-export type DebuggerExtension<
-  T = UnextendableInternalDebugger,
-  U = ExtendedDebugger
-> = DebuggerSubInstanceTypeGuard<
-  _DebuggerSubInstances<T> & {
-    /**
-     * An array of sub-instances (e.g. "error", "warn", etc), including the root
-     * instance.
-     */
-    [$instances]: DebuggerSubInstanceTypeGuard<
-      Merge<
-        _DebuggerSubInstances<T>,
-        {
-          /**
-           * A cyclical reference to the current logger.
-           */
-          $log: U;
-        }
-      >
-    >;
-  }
->;
+export type DebuggerExtension<T = UnextendableInternalDebugger> =
+  DebuggerSubInstanceTypeGuard<_DebuggerSubInstances<T>>;
+
+/**
+ * Exposes "secret" {@link $instances} access.
+ *
+ * @see {@link DebuggerSubInstanceTypeGuard}
+ */
+export type With$instances<Wrapped> = Wrapped & {
+  /**
+   * An array of sub-instances (e.g. "error", "warn", etc), including the root
+   * instance.
+   */
+  [$instances]: DebuggerSubInstanceTypeGuard<
+    Merge<
+      _DebuggerSubInstances,
+      {
+        /**
+         * A cyclical reference to the current logger.
+         */
+        $log: Wrapped;
+      }
+    >
+  >;
+};
 
 /**
  * @see {@link extendedDebuggerSubInstanceProperties}
@@ -222,30 +225,33 @@ export const debugFactory = new Proxy(
  * Extends a {@link InternalDebugger} instance with several convenience methods,
  * returning an {@link ExtendedDebugger} instance.
  */
-export function extendDebugger(instance: InternalDebugger) {
+export function extendDebugger(instance: InternalDebugger): ExtendedDebugger {
   const extend = instance.extend.bind(instance);
 
   // ? Work around upstream debug package descriptor "configurable" set to false
-  const finalInstance = new Proxy(instance as unknown as ExtendedDebugger, {
-    set(target, property_, updatedValue) {
-      const property = property_ as keyof typeof target;
+  const finalInstance = new Proxy(
+    instance as unknown as With$instances<ExtendedDebugger>,
+    {
+      set(target, property_, updatedValue) {
+        const property = property_ as keyof typeof target;
 
-      if (property === 'enabled') {
-        const isEnabled = !!updatedValue;
+        if (property === 'enabled') {
+          const isEnabled = !!updatedValue;
 
-        target[property] = isEnabled;
+          target[property] = isEnabled;
 
-        for (const subInstanceProperty of extendedDebuggerSubInstanceProperties) {
-          target[subInstanceProperty].enabled = isEnabled;
+          for (const subInstanceProperty of extendedDebuggerSubInstanceProperties) {
+            target[subInstanceProperty].enabled = isEnabled;
+          }
+        } else {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (target[property] as any) = updatedValue;
         }
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (target[property] as any) = updatedValue;
-      }
 
-      return true;
+        return true;
+      }
     }
-  });
+  );
 
   finalInstance[$instances] = Object.create(null);
   finalInstance[$instances].$log = finalInstance;
@@ -283,7 +289,7 @@ export function extendDebugger(instance: InternalDebugger) {
     }
   };
 
-  return finalInstance;
+  return finalInstance as ExtendedDebugger;
 }
 
 /**

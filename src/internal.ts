@@ -12,7 +12,8 @@ import type {
   DebuggerExtension,
   ExtendedDebugger,
   InternalDebugger,
-  UnextendableInternalDebugger
+  UnextendableInternalDebugger,
+  With$instances
 } from '@-xun/debug';
 
 const extendedLoggerFnPropsWeakMap = new WeakMap<Function, Function>();
@@ -237,9 +238,9 @@ export function makeExtendedLogger(
   });
 
   // ? Decorate the pre-extended instances (error, warn, etc) with tag support.
-  for (const [key, instance] of Object.entries(extendedDebugger[$instances]).filter(
-    (o): o is LoggerExtensionEntry => o[0] !== '$log'
-  )) {
+  for (const [key, instance] of Object.entries(
+    (extendedDebugger as With$instances<ExtendedDebugger>)[$instances]
+  ).filter((o): o is LoggerExtensionEntry => o[0] !== '$log')) {
     if (key === 'error') {
       // ? Ensure "error" outputs are always red (color = 1 === red).
       // @ts-expect-error: external types are incongruent
@@ -257,12 +258,14 @@ export function makeExtendedLogger(
     instance.log = underlyingAlternateLogFn;
 
     // ? Decorate the sub-logger with tag support.
-    extendedLogger[$instances][key] = decorateWithTagSupport(instance, 2);
+    (extendedLogger as With$instances<typeof extendedLogger>)[$instances][key] =
+      decorateWithTagSupport(instance, 2);
   }
 
   // ? Ensure the special $log circular reference points back to us instead of
   // ? the original debug logger.
-  extendedLogger[$instances].$log = extendedLogger;
+  (extendedLogger as With$instances<typeof extendedLogger>)[$instances].$log =
+    extendedLogger;
 
   // ? Ensure our extendedLogger is using the correct underlying logging
   // ? function.
@@ -278,7 +281,7 @@ export function makeExtendedLogger(
   return extendedLogger;
 
   type LoggerExtensionEntry = Entry<
-    Omit<(typeof extendedDebugger)[typeof $instances], '$log'>
+    Omit<With$instances<ExtendedDebugger>[typeof $instances], '$log'>
   >;
 
   function ensureInstanceHasOkColor(
@@ -358,7 +361,9 @@ export function withMetadataTracking(
   type: Exclude<LoggerType, LoggerType.All>,
   logger: ExtendedDebugger | ExtendedLogger
 ) {
-  metadata[type].push(...Object.values(logger[$instances]));
+  metadata[type].push(
+    ...Object.values((logger as With$instances<typeof logger>)[$instances])
+  );
   return logger;
 }
 
@@ -387,7 +392,9 @@ export function withoutMetadataTracking(
   type: Exclude<LoggerType, LoggerType.All>,
   logger: ExtendedDebugger | ExtendedLogger
 ) {
-  const instancesToExclude = Object.values(logger[$instances]);
+  const instancesToExclude = Object.values(
+    (logger as With$instances<typeof logger>)[$instances]
+  );
 
   metadata[type] = metadata[type].filter(
     (instance) => !instancesToExclude.includes(instance)
@@ -420,9 +427,9 @@ export function withPatchedExtend(instance: ExtendedDebugger) {
  * Returns all keys in an object's {@link $instances} property with proper
  * types.
  */
-export function get$instancesKeys<T extends Pick<ExtendedDebugger, typeof $instances>>(
-  logger: T
-) {
+export function get$instancesKeys<
+  T extends Pick<With$instances<ExtendedDebugger>, typeof $instances>
+>(logger: T) {
   return Object.keys(logger[$instances]) as (keyof (typeof logger)[typeof $instances])[];
 }
 
@@ -454,7 +461,7 @@ export interface UnextendableInternalLogger extends UnextendableInternalDebugger
  * A wrapper around {@link ExtendedDebugger } representing the extension from
  * mere "debug" logger to general purpose "logger".
  */
-export interface ExtendedLogger extends _ExtendedLogger<ExtendedLogger> {
+export interface ExtendedLogger extends _ExtendedLogger {
   /**
    * Send an optionally-formatted message to output.
    */
@@ -496,8 +503,5 @@ export interface ExtendedLogger extends _ExtendedLogger<ExtendedLogger> {
    */
   extend: (...args: Parameters<ExtendedDebugger['extend']>) => ExtendedLogger;
 }
-type _ExtendedLogger<T> = Omit<
-  ExtendedDebugger,
-  keyof DebuggerExtension | 'newline' | 'extend'
-> &
-  DebuggerExtension<UnextendableInternalLogger, T>;
+type _ExtendedLogger = Omit<ExtendedDebugger, 'newline' | 'extend'> &
+  DebuggerExtension<UnextendableInternalLogger>;

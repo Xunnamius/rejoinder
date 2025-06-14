@@ -1,8 +1,6 @@
 // TODO: add chalk abilities (and also delete the comment on the next line)
 // {@symbiote/notExtraneous chalk}
 
-// TODO: also, getLoggerByType should be able to return enabled / disabled only
-
 import nodeConsole from 'node:console';
 
 import {
@@ -15,6 +13,8 @@ import {
 } from 'universe:internal.ts';
 
 import { $instances, debugFactory } from '@-xun/debug';
+
+import type { With$instances } from '@-xun/debug';
 
 const consoleLog = (...args: unknown[]) => {
   nodeConsole.log(...args);
@@ -86,8 +86,11 @@ export function createDebugLogger({
 }) {
   const debug = withPatchedExtend(debugFactory(namespace));
 
-  for (const instanceProperty of get$instancesKeys(debug)) {
-    debug[$instances][instanceProperty].log = consoleError;
+  for (const instanceProperty of get$instancesKeys(
+    debug as With$instances<typeof debug>
+  )) {
+    (debug as With$instances<typeof debug>)[$instances][instanceProperty].log =
+      consoleError;
   }
 
   return withMetadataTracking(LoggerType.DebugOnly, debug);

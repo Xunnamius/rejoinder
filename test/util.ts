@@ -6,9 +6,10 @@
 // ? @-xun/jest will always come from @-xun/symbiote (i.e. transitively)
 // {@symbiote/notInvalid @-xun/jest}
 
-import { $instances } from 'universe:internal.ts';
+import { $instances } from 'universe+debug';
 
 import type { ExtendedDebugger, ExtendedLogger } from 'universe';
+import type { With$instances } from 'universe+debug';
 
 export * from '@-xun/jest';
 
@@ -17,5 +18,5 @@ export * from '@-xun/jest';
  * are themselves loggers (like `::warn` and `::message`).
  */
 export function extractAllLoggers(logger: ExtendedLogger | ExtendedDebugger) {
-  return Object.values(logger[$instances]);
+  return Object.values((logger as With$instances<typeof logger>)[$instances]);
 }
