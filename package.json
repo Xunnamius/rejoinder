@@ -93,7 +93,7 @@
   "dependencies": {
     "@-xun/debug": "^2.0.1",
     "chalk": "^5.4.1",
-    "core-js": "^3.43.0"
+    "core-js": "^3.44.0"
   },
   "devDependencies": {
     "@-xun/fs": "^2.0.0",
