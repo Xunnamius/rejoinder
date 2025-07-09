@@ -81,9 +81,9 @@
     "@-xun/fs": "^2.0.0"
   },
   "peerDependencies": {
-    "@listr2/manager": "^2.0.13",
-    "listr2": "^8.2.5",
-    "rejoinder": ">=1.1.0"
+    "@listr2/manager": ">=2",
+    "listr2": ">=9",
+    "rejoinder": ">=2"
   },
   "engines": {
     "node": "^20.18.0 || ^22.12.0 || >=23.3.0"
