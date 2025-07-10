@@ -18,7 +18,7 @@ A InternalDebugger interface extended with convenience methods.
 
 Defined in: packages/debug/dist/packages/debug/src/index.d.ts:67
 
-A InternalDebugger interface extended with convenience methods.
+Send an optionally-formatted message to output.
 
 ## Parameters
 

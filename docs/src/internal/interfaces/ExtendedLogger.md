@@ -6,7 +6,7 @@
 
 # Interface: ExtendedLogger()
 
-Defined in: [src/internal.ts:465](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L465)
+Defined in: [src/internal.ts:465](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L465)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -19,10 +19,9 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:469](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L469)
+Defined in: [src/internal.ts:469](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L469)
 
-A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
-mere "debug" logger to general purpose "logger".
+Send an optionally-formatted message to output.
 
 ### Parameters
 
@@ -38,10 +37,9 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:473](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L473)
+Defined in: [src/internal.ts:473](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L473)
 
-A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
-mere "debug" logger to general purpose "logger".
+Send a tagged optionally-formatted message to output.
 
 ### Parameters
 
@@ -125,7 +123,7 @@ A sub-instance for outputting error messages.
 
 > **extend**: (...`args`) => `ExtendedLogger`
 
-Defined in: [src/internal.ts:505](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L505)
+Defined in: [src/internal.ts:505](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L505)
 
 Creates a new instance by appending `namespace` to the current instance's
 namespace. The new instance will also inherit the current instance's `log`
@@ -212,7 +210,7 @@ A sub-instance for outputting warning messages.
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:482](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L482)
+Defined in: [src/internal.ts:482](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L482)
 
 Send a blank newline to output.
 
@@ -235,7 +233,7 @@ stdout (`"default"`) and stderr (`"alternate"`).
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:496](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L496)
+Defined in: [src/internal.ts:496](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L496)
 
 Send a blank newline to output.
 

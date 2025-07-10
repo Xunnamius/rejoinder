@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalLogger()
 
-Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L450)
+Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L450)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -19,10 +19,9 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:454](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L454)
+Defined in: [src/internal.ts:454](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L454)
 
-An instance of UnextendableInternalDebugger that that belongs to an
-[ExtendedLogger](ExtendedLogger.md).
+Send an optionally-formatted message to output.
 
 ### Parameters
 
@@ -38,10 +37,9 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:458](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L458)
+Defined in: [src/internal.ts:458](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L458)
 
-An instance of UnextendableInternalDebugger that that belongs to an
-[ExtendedLogger](ExtendedLogger.md).
+Send a tagged optionally-formatted message to output.
 
 ### Parameters
 
@@ -57,10 +55,9 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/4c31d61cc2d97962fe915faa47504a4378c59057/src/internal.ts#L450)
+Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L450)
 
-An instance of UnextendableInternalDebugger that that belongs to an
-[ExtendedLogger](ExtendedLogger.md).
+Send an optionally-formatted message to output.
 
 ### Parameters
 
