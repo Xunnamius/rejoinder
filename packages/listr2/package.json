@@ -1,6 +1,6 @@
 {
   "name": "rejoinder-listr2",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A listr2 backend for rejoinder",
   "keywords": [
     "debug",

@@ -8,7 +8,7 @@
 
 > **ListrManager**\<`T`\> = `Manager`\<`T`, `"default"` \| `"verbose"`\>
 
-Defined in: [packages/listr2/src/index.ts:34](https://github.com/Xunnamius/rejoinder/blob/5bc1ad3ac2ec35fd6ea7303f62742d4acff84f60/packages/listr2/src/index.ts#L34)
+Defined in: [packages/listr2/src/index.ts:34](https://github.com/Xunnamius/rejoinder/blob/fd6ae7b54821a38e5873a5bc746fe7995ec48e83/packages/listr2/src/index.ts#L34)
 
 A pre-customized Listr Manager instance.
 
