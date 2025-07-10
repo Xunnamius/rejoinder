@@ -78,6 +78,7 @@
     "core-js": "^3.44.0"
   },
   "devDependencies": {
+    "@-xun/debug": "^2.0.1",
     "@-xun/fs": "^2.0.0"
   },
   "peerDependencies": {
