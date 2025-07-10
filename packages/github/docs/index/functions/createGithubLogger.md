@@ -8,7 +8,7 @@
 
 > **createGithubLogger**(`__namedParameters`): `ExtendedLogger`
 
-Defined in: [index.ts:34](https://github.com/Xunnamius/rejoinder/blob/67872d548fc54ecdc1af88af1bd8b857b98bedd8/packages/github/src/index.ts#L34)
+Defined in: [index.ts:34](https://github.com/Xunnamius/rejoinder/blob/2ce2f82101b3039b7e168488a4cf12b941d4b2fb/packages/github/src/index.ts#L34)
 
 Create and return new set of logger instances.
 
