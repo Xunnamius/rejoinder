@@ -8,7 +8,7 @@
 
 > **WithTagSupport**\<`T`, `Optional`\> = (...`args`) => `ReturnType`\<`T`\> \| `undefined` & `{ [P in keyof T]: T[P] }`
 
-Defined in: [src/internal.ts:39](https://github.com/Xunnamius/rejoinder/blob/c7f17e27f307bf82c34a0a089f2eb7bd7288b876/src/internal.ts#L39)
+Defined in: [src/internal.ts:39](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L39)
 
 Decorate a function-object `T` with an initial potentially-optional `tags`
 parameter without excluding any of its non-function own object properties.

@@ -138,7 +138,7 @@ Defined in: packages/debug/dist/packages/debug/src/index.d.ts:41
 
 #### Inherited from
 
-`_InternalDebuggerNoExtends.log`
+[`UnextendableInternalLogger`](../internal/interfaces/UnextendableInternalLogger.md).[`log`](../internal/interfaces/UnextendableInternalLogger.md#log)
 
 ***
 
