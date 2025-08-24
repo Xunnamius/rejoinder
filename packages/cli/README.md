@@ -31,7 +31,8 @@ A CLI frontend for <a href="https://github.com/Xunnamius/rejoinder#readme"><code
 
 <!-- symbiote-template-region-end -->
 
-A CLI frontend for [`rejoinder`][1].
+A CLI frontend for [`rejoinder`][1] that uses [`createGithubLogger`][2]
+(`--use log`) and [`createDebugLogger`][3] (`--use debug`) under the hood.
 
 <!-- symbiote-template-region-start 3 -->
 
@@ -63,14 +64,40 @@ A CLI frontend for [`rejoinder`][1].
 To install:
 
 ```shell
-npm install rejoinder-cli
+npm install --global rejoinder-cli
 ```
 
 ## Usage
 
-<!-- TODO -->
+```shell
+$ rejoin hello world!
+>> hello world!
+```
 
-TODO
+```shell
+$ rejoin 'hello world!'
+>> hello world!
+```
+
+```shell
+$ rejoin --namespace echo:: 'hello world!'
+echo:: hello world!
+```
+
+```shell
+$ rejoin --name output --use warn Warning! Warning! Warning!
+output:<warn> Warning! Warning! Warning!
+```
+
+```shell
+$ DEBUG='out' rejoin --use debug --namespace debug-output HELLO WORLD!
+debug-output HELLO WORLD!
+```
+
+```shell
+$ rejoin title=Output For Project X::Real output here!
+title=Output For Project X::>> Real output here!
+```
 
 <!-- symbiote-template-region-start 5 -->
 
@@ -218,3 +245,5 @@ See the [table of contributors][x-repo-contributors].
 [x-repo-sponsor]: https://github.com/sponsors/Xunnamius
 [x-repo-support]: /.github/SUPPORT.md
 [1]: https://github.com/Xunnamius/rejoinder#readme
+[2]: ../github/README.md
+[3]: ../../README.md
