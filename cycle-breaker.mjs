@@ -14,10 +14,6 @@ import { access, symlink } from 'node:fs/promises';
 
 import { toAbsolutePath, toPath, toRelativePath } from '@-xun/fs';
 
-const { createGenericLogger } = await import('rejoinder~dev').catch(
-  () => import('rejoinder')
-);
-
 const thisDir = toAbsolutePath(import.meta.dirname);
 const devRejoinderPath = toPath(thisDir, 'node_modules/rejoinder~dev');
 
@@ -30,6 +26,10 @@ const devRejoinderExists = await isAccessible(devRejoinderPath);
 const symbioteBundledRejoinderExists = await isAccessible(symbioteBundledRejoinderPath);
 
 assert(symbioteBundledRejoinderExists);
+
+const { createGenericLogger } = await import('rejoinder~dev').catch(
+  () => import(toPath(symbioteBundledRejoinderPath, 'dist/src/index.js'))
+);
 
 const log = createGenericLogger({ namespace: 'symbiote' }).extend('cycle-breaker');
 const relativeDevRejoinderPath = toRelativePath(thisDir, devRejoinderPath);
