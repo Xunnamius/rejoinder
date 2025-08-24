@@ -16,3 +16,4 @@
 
 - [createListrManager](functions/createListrManager.md)
 - [createListrTaskLogger](functions/createListrTaskLogger.md)
+- [waitForListr2OutputReady](functions/waitForListr2OutputReady.md)
