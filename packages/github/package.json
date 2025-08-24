@@ -1,6 +1,6 @@
 {
   "name": "rejoinder-github-actions",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A backend for rejoinder with outputs specialized for GitHub Actions pipelines",
   "keywords": [],
   "homepage": "https://github.com/Xunnamius/rejoinder/tree/main/packages/github#readme",
