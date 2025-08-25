@@ -71,9 +71,17 @@ npm install @-xun/debug
 
 ## Usage
 
+> [!TIP]
+>
+> This is a low-level package. You probably want [`rejoinder`][1] instead.
+
+`@-xun/debug`, as a wrapper around the `debug` package, also shares all of its
+features; see [`debug`'s documentation][2] for details.
+
 <!-- TODO -->
 
-TODO
+TODO: document the new features enabled by `@-xun/debug` that `debug` lacks (for
+now, see [`docs/`][x-repo-docs]).
 
 <!-- symbiote-template-region-start 5 -->
 
@@ -221,3 +229,4 @@ See the [table of contributors][x-repo-contributors].
 [x-repo-sponsor]: https://github.com/sponsors/Xunnamius
 [x-repo-support]: /.github/SUPPORT.md
 [1]: https://github.com/Xunnamius/rejoinder#readme
+[2]: https://npm.im/debug
