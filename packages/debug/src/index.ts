@@ -301,9 +301,14 @@ export function finalizeDebugger(
 ): UnextendableInternalDebugger {
   const unextendable = instance as UnextendableInternalDebugger;
 
-  unextendable.extend = () => {
-    throw new Error('instance is not extendable');
-  };
+  unextendable.extend = throwWhenCalled;
 
   return unextendable;
+}
+
+/**
+ * @internal
+ */
+export function throwWhenCalled(): never {
+  throw new Error('instance is not extendable');
 }
