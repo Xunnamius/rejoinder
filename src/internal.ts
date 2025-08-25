@@ -4,8 +4,6 @@
 import assert from 'node:assert';
 import { isPromise } from 'node:util/types';
 
-import addExitListener from 'exit-hook';
-
 import { $instances, debugFactory, throwWhenCalled } from '@-xun/debug';
 
 import type { Entry } from 'type-fest';
@@ -25,6 +23,9 @@ const globalThisWith$instances: typeof globalThis & { [$instances]?: boolean } =
 if (process.env.DEBUG_REPORT_NAMESPACES && !globalThisWith$instances[$instances]) {
   // ? Ensure this happens only once regardless of the dual package hazard
   globalThisWith$instances[$instances] = true;
+
+  // * Thank the Node gods for node@>=20 and improved ESM-CJS interop!
+  const addExitListener = require('exit-hook');
 
   addExitListener(() => {
     process.stdout.write('\n\n');
