@@ -4,7 +4,9 @@
 import assert from 'node:assert';
 import { isPromise } from 'node:util/types';
 
-import { $instances, debugFactory } from '@-xun/debug';
+import addExitListener from 'exit-hook';
+
+import { $instances, debugFactory, throwWhenCalled } from '@-xun/debug';
 
 import type { Entry } from 'type-fest';
 
@@ -17,6 +19,27 @@ import type {
 } from '@-xun/debug';
 
 const extendedLoggerFnPropsWeakMap = new WeakMap<Function, Function>();
+const globalThisWith$instances: typeof globalThis & { [$instances]?: boolean } =
+  globalThis;
+
+if (process.env.DEBUG_REPORT_NAMESPACES && !globalThisWith$instances[$instances]) {
+  // ? Ensure this happens only once regardless of the dual package hazard
+  globalThisWith$instances[$instances] = true;
+
+  addExitListener(() => {
+    process.stdout.write('\n\n');
+    process.stdout.write('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n');
+    process.stdout.write('REJOINDER KNOWN DEBUGGER NAMESPACES\n');
+    process.stdout.write('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n');
+
+    new Set(
+      metadata.debugger
+        // ? Only report extendable debugger namespaces
+        .filter((dbg) => dbg.extend !== throwWhenCalled)
+        .map((dbg) => dbg.namespace)
+    ).forEach((namespace) => process.stdout.write(namespace + '\n'));
+  });
+}
 
 export type { With$instances };
 export { $instances };

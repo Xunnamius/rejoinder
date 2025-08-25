@@ -88,8 +88,13 @@ npm install rejoinder
 
 <!-- TODO -->
 
-TODO (logger (not debug) errors and warnings guaranteed to be one color; always
-use DEBUG='rootNamespace:\*' for activation, never DEBUG='rootNamespace\*')
+Set the `DEBUG_REPORT_NAMESPACES=true` environment variable to get a list of all
+available namespaces registered with rejoinder over a program's lifetime.
+Namespaces will be reported via stdout right before the parent Node.js process
+terminates.
+
+TODO: list remaining features. For instance, logger (not debug) errors and
+warnings guaranteed to be one color.
 
 <!-- symbiote-template-region-start 5 -->
 
