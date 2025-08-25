@@ -65,7 +65,7 @@ export default async function command(): Promise<
         }
       }
 
-      logger(output);
+      Reflect.apply(logger, undefined, output);
     }
   };
 
