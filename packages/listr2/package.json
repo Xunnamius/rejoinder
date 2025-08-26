@@ -75,7 +75,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
-    "@-xun/debug": "^2.0.1",
+    "@-xun/debug": "^2.0.2",
     "core-js": "^3.45.1"
   },
   "devDependencies": {
