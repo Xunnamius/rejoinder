@@ -79,7 +79,7 @@
     "rejoinder-github-actions": "^2.0.3"
   },
   "devDependencies": {
-    "@-xun/debug": "^2.0.1",
+    "@-xun/debug": "^2.0.2",
     "@-xun/fs": "^2.0.0"
   },
   "peerDependencies": {
