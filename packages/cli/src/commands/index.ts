@@ -1,9 +1,21 @@
+//{@symbiote/notInvalid debug} // ? This package is coming from rejoinder
+import legacyDebug from 'debug';
 import { packageUp } from 'package-up';
 import { createDebugLogger, createGenericLogger, SINGLE_SPACE } from 'rejoinder';
 import { createGithubLogger } from 'rejoinder-github-actions';
 
 import type { ExtendedDebugger, UnextendableInternalDebugger } from '@-xun/debug';
 import type { RootConfiguration } from '@black-flag/core';
+
+// ? Remove the timestamp at the end of rejoinder's output
+const oldFormatArgs = legacyDebug.formatArgs;
+legacyDebug.formatArgs = function (this: legacyDebug.Debugger, args: unknown[]) {
+  Reflect.apply(oldFormatArgs, this, [args]);
+
+  if (args.at(-1) && String(args.at(-1)).startsWith('\u001B[3')) {
+    args.pop();
+  }
+};
 
 export default async function command(): Promise<
   RootConfiguration<{
