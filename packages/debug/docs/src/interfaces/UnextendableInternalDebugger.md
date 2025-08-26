@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalDebugger()
 
-Defined in: [packages/debug/src/index.ts:63](https://github.com/Xunnamius/rejoinder/blob/f64c1e0c19bc97c588be2ae8d7b20734d4ed6719/packages/debug/src/index.ts#L63)
+Defined in: [packages/debug/src/index.ts:63](https://github.com/Xunnamius/rejoinder/blob/209c7f2944f337141443b6e2663c00e5b47b6857/packages/debug/src/index.ts#L63)
 
 An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended via
 `InternalDebugger.extend`.
@@ -17,10 +17,9 @@ An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended v
 
 > **UnextendableInternalDebugger**(...`args`): `void`
 
-Defined in: [packages/debug/src/index.ts:63](https://github.com/Xunnamius/rejoinder/blob/f64c1e0c19bc97c588be2ae8d7b20734d4ed6719/packages/debug/src/index.ts#L63)
+Defined in: [packages/debug/src/index.ts:63](https://github.com/Xunnamius/rejoinder/blob/209c7f2944f337141443b6e2663c00e5b47b6857/packages/debug/src/index.ts#L63)
 
-An instance of [InternalDebugger](InternalDebugger.md) that cannot be extended via
-`InternalDebugger.extend`.
+Send an optionally-formatted message to output.
 
 ## Parameters
 
@@ -90,7 +89,7 @@ Defined in: node\_modules/@types/debug/index.d.ts:44
 
 > **extend**: (...`args`) => `never`
 
-Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/f64c1e0c19bc97c588be2ae8d7b20734d4ed6719/packages/debug/src/index.ts#L64)
+Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoinder/blob/209c7f2944f337141443b6e2663c00e5b47b6857/packages/debug/src/index.ts#L64)
 
 #### Parameters
 
@@ -112,7 +111,7 @@ Defined in: [packages/debug/src/index.ts:64](https://github.com/Xunnamius/rejoin
 
 > `optional` **log**: (...`args`) => `any`
 
-Defined in: [packages/debug/src/index.ts:57](https://github.com/Xunnamius/rejoinder/blob/f64c1e0c19bc97c588be2ae8d7b20734d4ed6719/packages/debug/src/index.ts#L57)
+Defined in: [packages/debug/src/index.ts:57](https://github.com/Xunnamius/rejoinder/blob/209c7f2944f337141443b6e2663c00e5b47b6857/packages/debug/src/index.ts#L57)
 
 #### Parameters
 

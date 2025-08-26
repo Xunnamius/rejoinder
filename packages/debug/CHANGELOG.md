@@ -28,101 +28,109 @@ this project adheres to [Semantic Versioning][2].
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@2.0.1][8] (2025-06-14)
+### 🏗️ Patch @-xun/debug[@2.0.2][8] (2025-08-26)
 
-#### 🪄 Fixes
+#### ⚡️ Optimizations
 
-- Do not expose internal properties when exporting types ([f64c1e0][9])
+- **packages/debug:** stabilize unextendable `extend` function variant ([5ce2154][9])
 
 <br />
 
-## @-xun/debug[@1.1.0][10] (2025-01-16)
+### 🏗️ Patch @-xun/debug[@2.0.1][10] (2025-06-14)
+
+#### 🪄 Fixes
+
+- Do not expose internal properties when exporting types ([f64c1e0][11])
+
+<br />
+
+## @-xun/debug[@1.1.0][12] (2025-01-16)
 
 ### ✨ Features
 
-- **packages/debug:** ensure mutations to `enabled` propagate to pre-extended sub-instances ([f9090a5][11])
+- **packages/debug:** ensure mutations to `enabled` propagate to pre-extended sub-instances ([f9090a5][13])
 
 ### 🪄 Fixes
 
-- **packages/debug:** no longer export `extendedDebuggerSubInstanceProperties` ([a8fc893][12])
+- **packages/debug:** no longer export `extendedDebuggerSubInstanceProperties` ([a8fc893][14])
 
 ### ⚙️ Build System
 
-- Add `--no-parallel` to release script ([36d9b15][13])
-- **cycle-breaker:** ensure rejoinder\~dev receives its own copy of @-xun/debug\~dev ([b10e6fc][14])
-- **release:** re-apply cycle-breaker patches after xrelease un-applies them ([571041b][15])
+- Add `--no-parallel` to release script ([36d9b15][15])
+- **cycle-breaker:** ensure rejoinder\~dev receives its own copy of @-xun/debug\~dev ([b10e6fc][16])
+- **release:** re-apply cycle-breaker patches after xrelease un-applies them ([571041b][17])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.1.4][16] (2025-02-21)
+### 🏗️ Patch @-xun/debug[@1.1.4][18] (2025-02-21)
 
 #### 🪄 Fixes
 
-- **packages/debug:** ensure parity with upstream `process.env.DEBUG` activation functionality ([ea4d1fc][17])
+- **packages/debug:** ensure parity with upstream `process.env.DEBUG` activation functionality ([ea4d1fc][19])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.1.3][18] (2025-01-25)
+### 🏗️ Patch @-xun/debug[@1.1.3][20] (2025-01-25)
 
 #### ⚙️ Build System
 
-- **packages/debug:** update documentation commentary ([62dfac9][19])
+- **packages/debug:** update documentation commentary ([62dfac9][21])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.1.2][20] (2025-01-25)
+### 🏗️ Patch @-xun/debug[@1.1.2][22] (2025-01-25)
 
 #### 🪄 Fixes
 
-- **packages/debug:** ensure output functions print entire array and string values ([425d724][21])
+- **packages/debug:** ensure output functions print entire array and string values ([425d724][23])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.1.1][22] (2025-01-20)
+### 🏗️ Patch @-xun/debug[@1.1.1][24] (2025-01-20)
 
 #### ⚙️ Build System
 
-- Regenerate assets ([d837f2c][23])
+- Regenerate assets ([d837f2c][25])
 
 <br />
 
-## @-xun/debug[@1.0.0][24] (2025-01-09)
+## @-xun/debug[@1.0.0][26] (2025-01-09)
 
 ### ⚙️ Build System
 
-- **packages/debug:** break off @-xun/debug from symbiote as standalone package ([5710193][25])
+- **packages/debug:** break off @-xun/debug from symbiote as standalone package ([5710193][27])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.0.4][26] (2025-01-11)
+### 🏗️ Patch @-xun/debug[@1.0.4][28] (2025-01-11)
 
 #### ⚙️ Build System
 
-- **babel:** break other dependency cycle between symbiote and rejoinder during build step ([3a2647a][27])
+- **babel:** break other dependency cycle between symbiote and rejoinder during build step ([3a2647a][29])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.0.3][28] (2025-01-11)
+### 🏗️ Patch @-xun/debug[@1.0.3][30] (2025-01-11)
 
 #### ⚙️ Build System
 
-- Use proper codecov package flag for badge link ([5526095][29])
+- Use proper codecov package flag for badge link ([5526095][31])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.0.2][30] (2025-01-11)
+### 🏗️ Patch @-xun/debug[@1.0.2][32] (2025-01-11)
 
 #### ⚙️ Build System
 
-- Regenerate assets ([78424fa][31])
+- Regenerate assets ([78424fa][33])
 
 <br />
 
-### 🏗️ Patch @-xun/debug[@1.0.1][32] (2025-01-10)
+### 🏗️ Patch @-xun/debug[@1.0.1][34] (2025-01-10)
 
 #### ⚙️ Build System
 
-- **packages/debug:** publish with proper logo link ([889da56][33])
+- **packages/debug:** publish with proper logo link ([889da56][35])
 
 [1]: https://conventionalcommits.org
 [2]: https://semver.org
@@ -131,29 +139,31 @@ this project adheres to [Semantic Versioning][2].
 [5]: https://github.com/Xunnamius/rejoinder/commit/f3d8a7e0f20be435cde3ca5b434c4050fbe9bafd
 [6]: https://github.com/Xunnamius/rejoinder/commit/baf5c89e66b1bdacf31ca37e80d78e8f1b048530
 [7]: https://github.com/Xunnamius/rejoinder/commit/d9d4f378320c4405c80cb306d8174b752def9292
-[8]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@2.0.0...@-xun/debug@2.0.1
-[9]: https://github.com/Xunnamius/rejoinder/commit/f64c1e0c19bc97c588be2ae8d7b20734d4ed6719
-[10]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.4...@-xun/debug@1.1.0
-[11]: https://github.com/Xunnamius/rejoinder/commit/f9090a50954e176acad599810313bd267fd1ae24
-[12]: https://github.com/Xunnamius/rejoinder/commit/a8fc893bb23117400a376d2641b297eb2199956b
-[13]: https://github.com/Xunnamius/rejoinder/commit/36d9b15a656e1eed5a50cdfe7fe502a22f0aa57f
-[14]: https://github.com/Xunnamius/rejoinder/commit/b10e6fc514367aef02468efe7382c2a09b7d45d5
-[15]: https://github.com/Xunnamius/rejoinder/commit/571041bf4746363a1355f6eb2e03d6c31e5b0a18
-[16]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.3...@-xun/debug@1.1.4
-[17]: https://github.com/Xunnamius/rejoinder/commit/ea4d1fcbef52808bb6714639c8fa60d65a3471ba
-[18]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.2...@-xun/debug@1.1.3
-[19]: https://github.com/Xunnamius/rejoinder/commit/62dfac9fe9201e2d1e0e6b073b75bb67ebe400ba
-[20]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.1...@-xun/debug@1.1.2
-[21]: https://github.com/Xunnamius/rejoinder/commit/425d724aa61953ac3a112f463314ea824384837e
-[22]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.0...@-xun/debug@1.1.1
-[23]: https://github.com/Xunnamius/rejoinder/commit/d837f2cf51d0f744b1acb9f03c50dbfbe4361561
-[24]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@0.0.0-init...@-xun/debug@1.0.0
-[25]: https://github.com/Xunnamius/rejoinder/commit/5710193dfcb9e7999fcf2a7c79680d1c61726378
-[26]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.3...@-xun/debug@1.0.4
-[27]: https://github.com/Xunnamius/rejoinder/commit/3a2647a4383d23c44984f5fba72936f803375d01
-[28]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.2...@-xun/debug@1.0.3
-[29]: https://github.com/Xunnamius/rejoinder/commit/5526095585c560786bb4716fe2181814ff33c2ac
-[30]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.1...@-xun/debug@1.0.2
-[31]: https://github.com/Xunnamius/rejoinder/commit/78424fa8f7badb679969f17dc434d2444f557d0d
-[32]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.0...@-xun/debug@1.0.1
-[33]: https://github.com/Xunnamius/rejoinder/commit/889da569331993385da96d349005064821723a46
+[8]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@2.0.1...@-xun/debug@2.0.2
+[9]: https://github.com/Xunnamius/rejoinder/commit/5ce21540d45dd2c0a251d9be836fc796dd698453
+[10]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@2.0.0...@-xun/debug@2.0.1
+[11]: https://github.com/Xunnamius/rejoinder/commit/f64c1e0c19bc97c588be2ae8d7b20734d4ed6719
+[12]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.4...@-xun/debug@1.1.0
+[13]: https://github.com/Xunnamius/rejoinder/commit/f9090a50954e176acad599810313bd267fd1ae24
+[14]: https://github.com/Xunnamius/rejoinder/commit/a8fc893bb23117400a376d2641b297eb2199956b
+[15]: https://github.com/Xunnamius/rejoinder/commit/36d9b15a656e1eed5a50cdfe7fe502a22f0aa57f
+[16]: https://github.com/Xunnamius/rejoinder/commit/b10e6fc514367aef02468efe7382c2a09b7d45d5
+[17]: https://github.com/Xunnamius/rejoinder/commit/571041bf4746363a1355f6eb2e03d6c31e5b0a18
+[18]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.3...@-xun/debug@1.1.4
+[19]: https://github.com/Xunnamius/rejoinder/commit/ea4d1fcbef52808bb6714639c8fa60d65a3471ba
+[20]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.2...@-xun/debug@1.1.3
+[21]: https://github.com/Xunnamius/rejoinder/commit/62dfac9fe9201e2d1e0e6b073b75bb67ebe400ba
+[22]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.1...@-xun/debug@1.1.2
+[23]: https://github.com/Xunnamius/rejoinder/commit/425d724aa61953ac3a112f463314ea824384837e
+[24]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.1.0...@-xun/debug@1.1.1
+[25]: https://github.com/Xunnamius/rejoinder/commit/d837f2cf51d0f744b1acb9f03c50dbfbe4361561
+[26]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@0.0.0-init...@-xun/debug@1.0.0
+[27]: https://github.com/Xunnamius/rejoinder/commit/5710193dfcb9e7999fcf2a7c79680d1c61726378
+[28]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.3...@-xun/debug@1.0.4
+[29]: https://github.com/Xunnamius/rejoinder/commit/3a2647a4383d23c44984f5fba72936f803375d01
+[30]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.2...@-xun/debug@1.0.3
+[31]: https://github.com/Xunnamius/rejoinder/commit/5526095585c560786bb4716fe2181814ff33c2ac
+[32]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.1...@-xun/debug@1.0.2
+[33]: https://github.com/Xunnamius/rejoinder/commit/78424fa8f7badb679969f17dc434d2444f557d0d
+[34]: https://github.com/Xunnamius/rejoinder/compare/@-xun/debug@1.0.0...@-xun/debug@1.0.1
+[35]: https://github.com/Xunnamius/rejoinder/commit/889da569331993385da96d349005064821723a46
