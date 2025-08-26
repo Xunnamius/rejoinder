@@ -6,7 +6,7 @@
 
 # Interface: UnextendableInternalLogger()
 
-Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L450)
+Defined in: [src/internal.ts:474](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L474)
 
 An instance of UnextendableInternalDebugger that that belongs to an
 [ExtendedLogger](ExtendedLogger.md).
@@ -19,7 +19,7 @@ An instance of UnextendableInternalDebugger that that belongs to an
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:454](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L454)
+Defined in: [src/internal.ts:478](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L478)
 
 Send an optionally-formatted message to output.
 
@@ -37,7 +37,7 @@ Send an optionally-formatted message to output.
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:458](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L458)
+Defined in: [src/internal.ts:482](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L482)
 
 Send a tagged optionally-formatted message to output.
 
@@ -55,7 +55,7 @@ Send a tagged optionally-formatted message to output.
 
 > **UnextendableInternalLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:450](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L450)
+Defined in: [src/internal.ts:474](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L474)
 
 Send an optionally-formatted message to output.
 

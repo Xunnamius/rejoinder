@@ -6,7 +6,7 @@
 
 # Interface: ExtendedLogger()
 
-Defined in: [src/internal.ts:465](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L465)
+Defined in: [src/internal.ts:489](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L489)
 
 A wrapper around [ExtendedDebugger](../../interfaces/ExtendedDebugger.md) representing the extension from
 mere "debug" logger to general purpose "logger".
@@ -19,7 +19,7 @@ mere "debug" logger to general purpose "logger".
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:469](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L469)
+Defined in: [src/internal.ts:493](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L493)
 
 Send an optionally-formatted message to output.
 
@@ -37,7 +37,7 @@ Send an optionally-formatted message to output.
 
 > **ExtendedLogger**(...`args`): `void`
 
-Defined in: [src/internal.ts:473](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L473)
+Defined in: [src/internal.ts:497](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L497)
 
 Send a tagged optionally-formatted message to output.
 
@@ -123,7 +123,7 @@ A sub-instance for outputting error messages.
 
 > **extend**: (...`args`) => `ExtendedLogger`
 
-Defined in: [src/internal.ts:505](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L505)
+Defined in: [src/internal.ts:529](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L529)
 
 Creates a new instance by appending `namespace` to the current instance's
 namespace. The new instance will also inherit the current instance's `log`
@@ -210,7 +210,7 @@ A sub-instance for outputting warning messages.
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:482](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L482)
+Defined in: [src/internal.ts:506](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L506)
 
 Send a blank newline to output.
 
@@ -233,7 +233,7 @@ stdout (`"default"`) and stderr (`"alternate"`).
 
 > **newline**(...`args`): `void`
 
-Defined in: [src/internal.ts:496](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L496)
+Defined in: [src/internal.ts:520](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L520)
 
 Send a blank newline to output.
 

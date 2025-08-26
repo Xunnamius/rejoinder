@@ -8,7 +8,7 @@
 
 > **WithExtendedParameters**\<`T`, `Optional`\> = `Optional` *extends* `true` ? \[`string`[], `...Parameters<T>`\] : \[`string`[], `...Parameters<T>`\]
 
-Defined in: [src/internal.ts:28](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L28)
+Defined in: [src/internal.ts:52](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L52)
 
 Decorate a function `T` with an initial potentially-optional `tags`
 parameter.

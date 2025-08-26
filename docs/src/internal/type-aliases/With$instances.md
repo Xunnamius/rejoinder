@@ -12,7 +12,7 @@ Defined in: packages/debug/dist/packages/debug/src/index.d.ts:92
 
 Exposes "secret" [$instances](../variables/$instances.md) access.
 
-## Type declaration
+## Type Declaration
 
 ### \[$instances\]
 

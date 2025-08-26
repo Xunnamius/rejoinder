@@ -8,7 +8,7 @@
 
 > **ExtendedLoggerParameters** = [`WithExtendedParameters`](WithExtendedParameters.md)\<[`ExtendedDebugger`](../../interfaces/ExtendedDebugger.md), `false`\>
 
-Defined in: [src/internal.ts:47](https://github.com/Xunnamius/rejoinder/blob/748babba233d71cd2034695ee391d03a3782c67b/src/internal.ts#L47)
+Defined in: [src/internal.ts:71](https://github.com/Xunnamius/rejoinder/blob/523d50127af7d502d1a1b1da0fd1638569552949/src/internal.ts#L71)
 
 An `ExtendedDebugger` function-object decorated with support for an initial
 `tags` parameter.
