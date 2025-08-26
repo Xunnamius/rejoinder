@@ -45,6 +45,7 @@ A CLI frontend for [`rejoinder`][1] that uses [`createGithubLogger`][2]
 
 - [Install](#install)
 - [Usage](#usage)
+  - [Examples](#examples)
 - [Appendix](#appendix)
   - [Published Package Details](#published-package-details)
   - [License](#license)
@@ -69,34 +70,78 @@ npm install --global rejoinder-cli
 
 ## Usage
 
-```shell
-$ rejoin hello world!
-hello world!
-```
+Using `rejoin` is very similar to using `echo` and other similar Linux utility
+commands.
+
+Note that the `rejoin` command will use the closest package.json file's "name"
+property as its namespace by default. This can be tweaked using the
+`--namespace` (or `--name`) option.
+
+See `rejoin --help` for more details.
+
+### Examples
+
+> [!NOTE]
+>
+> Since these examples were run within the rejoinder repository,
+> `--namespace`/`--name` defaults to `"rejoinder"`.
 
 ```shell
-$ rejoin 'hello world!'
-hello world!
+rejoin hello world!
 ```
 
+```text
+rejoinder hello world!
+```
+
+---
+
 ```shell
-$ rejoin --namespace echo:: 'hello world!'
+rejoin 'hello world!'
+```
+
+```text
+rejoinder hello world!
+```
+
+---
+
+```shell
+rejoin --namespace echo:: 'hello world!'
+```
+
+```text
 echo:: hello world!
 ```
 
+---
+
 ```shell
-$ rejoin --name output --use warn Warning! Warning! Warning!
+rejoin --name output --use warn Warning! Warning! Warning!
+```
+
+```text
 output:<warn> Warning! Warning! Warning!
 ```
 
+---
+
 ```shell
-$ DEBUG='out' rejoin --use debug --namespace debug-output HELLO WORLD!
+DEBUG='debug-output' npx rejoin --use debug --namespace debug-output HELLO WORLD!
+```
+
+```text
 debug-output HELLO WORLD!
 ```
 
+---
+
 ```shell
-$ rejoin title=Output For Project X::Real output here!
-title=Output For Project X::Real output here!
+CI=true npx rejoin --use error title=Output For Project X::Real output here!
+```
+
+```text
+::error title=Output For Project X::rejoinder: Real output here!
 ```
 
 <!-- symbiote-template-region-start 5 -->
