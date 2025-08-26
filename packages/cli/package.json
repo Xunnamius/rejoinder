@@ -74,6 +74,7 @@
   "dependencies": {
     "@black-flag/core": "^3.0.3",
     "package-up": "^5.0.0",
+    "rejoinder": "^2.0.3",
     "rejoinder-github-actions": "^2.0.2"
   },
   "devDependencies": {
