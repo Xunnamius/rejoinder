@@ -41,7 +41,8 @@
     }
   },
   "bin": {
-    "rejoin": "./dist/packages/cli/src/cli.js"
+    "rejoin": "./dist/packages/cli/src/cli.js",
+    "rejoinder-cli": "./dist/packages/cli/src/cli.js"
   },
   "files": [
     "/dist",
