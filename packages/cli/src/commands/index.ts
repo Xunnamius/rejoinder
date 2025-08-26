@@ -1,5 +1,5 @@
 import { packageUp } from 'package-up';
-import { createDebugLogger, SINGLE_SPACE } from 'rejoinder';
+import { createDebugLogger, createGenericLogger, SINGLE_SPACE } from 'rejoinder';
 import { createGithubLogger } from 'rejoinder-github-actions';
 
 import type { ExtendedDebugger, UnextendableInternalDebugger } from '@-xun/debug';
@@ -34,7 +34,10 @@ export default async function command(): Promise<
         ''
       );
 
-      bf.example(`rejoin title=Output For Project X::Real output here!`, '');
+      bf.example(
+        `rejoin title=Output For Project X::Real output here!`,
+        '(for CI environments)'
+      );
 
       return {
         use: {
@@ -54,7 +57,11 @@ export default async function command(): Promise<
 
     handler({ _: output, use: outputMethod, namespace }) {
       const createLogger =
-        outputMethod === 'debug' ? createDebugLogger : createGithubLogger;
+        outputMethod === 'debug'
+          ? createDebugLogger
+          : !['false', '0', 'off', 'no', undefined].includes(process.env.CI)
+            ? createGithubLogger
+            : createGenericLogger;
 
       let logger: ExtendedDebugger | UnextendableInternalDebugger = createLogger({
         namespace
