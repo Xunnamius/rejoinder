@@ -34,9 +34,6 @@ A GitHub Actions compatible backend for <a href="https://github.com/Xunnamius/re
 A backend for [`rejoinder`][1] with outputs specialized for GitHub Actions
 pipelines.
 
-When outside of a GitHub Actions context, `createGithubLogger` functions
-identically to `createGenericLogger`.
-
 <!-- symbiote-template-region-start 3 -->
 
 ---

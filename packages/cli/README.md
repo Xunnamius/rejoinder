@@ -71,12 +71,12 @@ npm install --global rejoinder-cli
 
 ```shell
 $ rejoin hello world!
->> hello world!
+hello world!
 ```
 
 ```shell
 $ rejoin 'hello world!'
->> hello world!
+hello world!
 ```
 
 ```shell
@@ -96,7 +96,7 @@ debug-output HELLO WORLD!
 
 ```shell
 $ rejoin title=Output For Project X::Real output here!
-title=Output For Project X::>> Real output here!
+title=Output For Project X::Real output here!
 ```
 
 <!-- symbiote-template-region-start 5 -->
