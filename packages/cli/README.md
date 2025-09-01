@@ -31,8 +31,9 @@ A CLI frontend for <a href="https://github.com/Xunnamius/rejoinder#readme"><code
 
 <!-- symbiote-template-region-end -->
 
-A CLI frontend for [`rejoinder`][1] that uses [`createGithubLogger`][2]
-(`--use log`) and [`createDebugLogger`][3] (`--use debug`) under the hood.
+A CLI frontend for [`rejoinder`][1] that uses
+[`createGenericLogger`][3]/[`createGithubLogger`][2] (`--use log`) and
+[`createDebugLogger`][3] (`--use debug`) under the hood.
 
 <!-- symbiote-template-region-start 3 -->
 
